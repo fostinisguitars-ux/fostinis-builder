@@ -376,4 +376,140 @@ body.visual-solid .model-visual img.guitar-img{filter:var(--card-filter,grayscal
 <!-- Removed CSS-shape renderer: preview uses the real guitar image again. -->
 
 
+
+
+<style id="fostinis-real-image-canvas-fix">
+/* FINAL FIX: remove the fake rectangular overlay system. The preview now uses the locked real base image and a canvas pixel mask so finishes follow the guitar shape. */
+.render-layer,.bodyfinish-layer-live,.finish-layer-live,.wood-layer-live,.flame-layer-live,.fretboard-layer-live,.inlay-layer-live,.route-layer-live,.pickup-layer-live,.bridge-layer-live,.control-layer-live,.string-layer-live{display:none!important;opacity:0!important;}
+.render-stage{background:#050506!important;border-radius:22px!important;overflow:hidden!important;position:relative!important;}
+.render-stage img#previewImage{opacity:0!important;filter:none!important;}
+#fostinisCanvasPreview{position:absolute;inset:0;width:100%;height:100%;z-index:12;display:block;border-radius:22px;}
+.preview.layered-on::before{content:"REAL IMAGE PREVIEW"!important;z-index:25!important;}
+.preview::after{z-index:26!important;}
+</style>
+
+<script id="fostinis-real-image-canvas-renderer-fix">
+(function(){
+  function $(id){return document.getElementById(id)}
+  function text(id){const s=$(id);return s&&s.options[s.selectedIndex]?s.options[s.selectedIndex].textContent.replace(/\+\$[0-9,]+/g,'').replace(/\s+—\s+Custom Quote/gi,'').replace(/\s+—\s+Quote Required/gi,'').trim():''}
+  function colorFromText(label, fallback){
+    const t=(label||'').toLowerCase();
+    if(t.includes('black')) return [12,12,14];
+    if(t.includes('charcoal')) return [76,76,80];
+    if(t.includes('grey')||t.includes('gray')) return [132,132,136];
+    if(t.includes('natural')) return [176,116,58];
+    if(t.includes('bourbon')) return [166,82,28];
+    if(t.includes('purple')&&t.includes('green')) return [80,230,125];
+    if(t.includes('purple')) return [132,48,218];
+    if(t.includes('blue')) return [42,104,220];
+    if(t.includes('red')) return [205,42,36];
+    if(t.includes('gold')) return [196,156,74];
+    if(t.includes('chrome')) return [185,192,196];
+    return fallback || [132,132,136];
+  }
+  function blend(base, tint, amount){
+    return [
+      base[0]*(1-amount)+tint[0]*amount,
+      base[1]*(1-amount)+tint[1]*amount,
+      base[2]*(1-amount)+tint[2]*amount
+    ];
+  }
+  function modelKey(){const m=text('model').toLowerCase(); if(m.includes('oryx')) return 'oryx'; if(m.includes('matadaur')) return 'matadaur'; return 'sphyx';}
+  function getGeometry(key){
+    if(key==='matadaur') return {bodyEnd:.43, rearY:.34, frontY:.70, frontTopY:.58, frontBottomY:.88};
+    if(key==='oryx') return {bodyEnd:.44, rearY:.34, frontY:.70, frontTopY:.58, frontBottomY:.88};
+    return {bodyEnd:.43, rearY:.34, frontY:.70, frontTopY:.58, frontBottomY:.88};
+  }
+  function ensureCanvas(){
+    const img=$('previewImage'); if(!img) return null;
+    const stage=img.closest('.render-stage') || img.parentElement; if(!stage) return null;
+    let canvas=$('fostinisCanvasPreview');
+    if(!canvas){canvas=document.createElement('canvas'); canvas.id='fostinisCanvasPreview'; stage.appendChild(canvas);}
+    return {img,stage,canvas};
+  }
+  function render(){
+    const pack=ensureCanvas(); if(!pack) return;
+    const {img,stage,canvas}=pack;
+    if(!img.complete || !img.naturalWidth){img.onload=()=>setTimeout(render,30); return;}
+    const rect=stage.getBoundingClientRect();
+    if(rect.width<10 || rect.height<10) return;
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    const W=Math.round(rect.width*dpr), H=Math.round(rect.height*dpr);
+    if(canvas.width!==W) canvas.width=W; if(canvas.height!==H) canvas.height=H;
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#050506'; ctx.fillRect(0,0,W,H);
+    const iw=img.naturalWidth, ih=img.naturalHeight;
+    const scale=Math.min(W/iw,H/ih)*0.985;
+    const dw=iw*scale, dh=ih*scale, dx=(W-dw)/2, dy=(H-dh)/2;
+    ctx.drawImage(img,dx,dy,dw,dh);
+
+    const key=modelKey(), geo=getGeometry(key);
+    const finish=text('finish'), color=text('color'), bodyFinish=text('bodyFinish'), top=text('top'), fret=text('fretboard'), hardware=text('hardware'), tuners=text('tuners');
+    const topTint=colorFromText(color,[132,132,136]);
+    const backTint=colorFromText(bodyFinish,[78,78,82]);
+    const hardwareTint=colorFromText((hardware+' '+tuners),[16,16,18]);
+    const isDye=/dye|burst|fade|artwork/i.test(finish+' '+color);
+    const isSolid=/solid/i.test(finish);
+    const useTopTint=isDye||isSolid||/purple|blue|red|bourbon|natural|black|grey|gray|charcoal/i.test(color);
+    const flame=/flame|quilt|burled|exhibition/i.test(top);
+
+    let data=ctx.getImageData(0,0,W,H), p=data.data;
+    for(let y=0;y<H;y++){
+      const ry=(y-dy)/dh;
+      for(let x=0;x<W;x++){
+        const rx=(x-dx)/dw;
+        if(rx<0||rx>1||ry<0||ry>1) continue;
+        const i=(y*W+x)*4, r=p[i], g=p[i+1], b=p[i+2], a=p[i+3];
+        if(a<20) continue;
+        const lum=(r+g+b)/3;
+        if(lum<38) continue; // keep dark background untouched
+        const isLeftBody=rx<geo.bodyEnd;
+        const isRearBody=isLeftBody && ry<0.49;
+        const isFrontBody=isLeftBody && ry>=0.49;
+        const isNeckOrHead=rx>=geo.bodyEnd;
+        let out=[r,g,b];
+        if(isRearBody){
+          out=blend(out,backTint,0.50);
+        } else if(isFrontBody && useTopTint){
+          let amt=isDye?0.58:0.42;
+          // simple burst/fade: stronger around rim, lighter around body center
+          const cx=geo.bodyEnd*0.45, cy=0.73;
+          const dist=Math.min(1,Math.sqrt((rx-cx)*(rx-cx)*12+(ry-cy)*(ry-cy)*7));
+          if(isDye) amt=0.28+dist*0.45;
+          out=blend(out,topTint,amt);
+          if(flame){
+            const wave=(Math.sin((rx*85)+(Math.sin(ry*24)*3))+1)/2;
+            const fig=(wave-.5)*30;
+            out=[out[0]+fig,out[1]+fig,out[2]+fig];
+          }
+        } else if(isNeckOrHead){
+          if(/maple/i.test(fret) && ry>0.50) out=blend(out,[178,140,84],0.18);
+          if(/rosewood|pau/i.test(fret) && ry>0.50) out=blend(out,[88,46,30],0.25);
+          if(/ebony/i.test(fret) && ry>0.50) out=blend(out,[18,18,20],0.25);
+          // subtle hardware/tuner tint only on far headstock highlights, not rectangles
+          if(rx>.82) out=blend(out,hardwareTint,0.18);
+        }
+        p[i]=Math.max(0,Math.min(255,out[0]));
+        p[i+1]=Math.max(0,Math.min(255,out[1]));
+        p[i+2]=Math.max(0,Math.min(255,out[2]));
+      }
+    }
+    ctx.putImageData(data,0,0);
+  }
+  function schedule(){setTimeout(render,60);setTimeout(render,220);setTimeout(render,700)}
+  const old=window.FOSTINIS_CALC;
+  if(typeof old==='function'){
+    window.FOSTINIS_CALC=function(){const v=old.apply(this,arguments); schedule(); return v;};
+    window.fostinisUpdatePrice=window.FOSTINIS_CALC;
+  }
+  function bind(){
+    document.querySelectorAll('select,input,textarea').forEach(el=>['change','input','click','touchend'].forEach(ev=>el.addEventListener(ev,schedule,{passive:true})));
+    window.addEventListener('resize',schedule,{passive:true});
+    schedule();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind); else bind();
+})();
+</script>
+
 </body></html>
