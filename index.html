@@ -143,6 +143,39 @@ body.finish-dye .grain-layer{opacity:.56;}
 .visual-note{font-size:12px;color:rgba(255,255,255,.62)}
 @media(max-width:560px){.finish-layer,.grain-layer,.hardware-layer{inset:12px}.hw.pickup{width:30px;height:10px}.hw.bridge{width:35px;height:11px}.hw.knob{width:10px;height:10px}.hw.tuner{width:7px;height:7px}}
 
+
+
+/* Fostinis visual system v9 - REAL BUILDER RENDER, not screen tint
+   This overrides the old image/filter approach. The preview is now built from live layers:
+   model silhouette + body/top finish + neck/fretboard + bridge/pickups/knobs/switch/tuners/inlays. */
+.preview img#previewImage{display:none!important;}
+.finish-layer,.grain-layer,.hardware-layer{display:none!important;}
+.preview{min-height:640px!important;justify-content:flex-start!important;padding:18px!important;background:radial-gradient(circle at 50% 45%,var(--live-glow,rgba(160,160,170,.18)),transparent 58%),#050506!important;}
+.premium-stage{position:relative;z-index:3;width:100%;height:430px;border-radius:24px;background:linear-gradient(180deg,#020203,#060608);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 0 80px rgba(255,255,255,.025);}
+.premium-stage::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 34% 56%,var(--live-glow,rgba(180,180,190,.16)),transparent 42%);opacity:.95;}
+.guitar-row{position:absolute;left:7%;right:7%;height:38%;}
+.guitar-row.rear{top:10%;opacity:.72}.guitar-row.front{bottom:11%;}
+.guitar{position:absolute;inset:0;filter:drop-shadow(0 15px 24px rgba(0,0,0,.8));}
+.g-body{position:absolute;left:4%;top:16%;width:26%;height:68%;background:var(--body-finish);box-shadow:inset -18px 0 28px rgba(0,0,0,.45),inset 12px 0 24px rgba(255,255,255,.12),0 0 0 1px rgba(255,255,255,.14);}
+.g-topgrain{position:absolute;inset:0;border-radius:inherit;background:var(--grain-layer);mix-blend-mode:overlay;opacity:var(--grain-strength,.0);pointer-events:none;}
+.g-neck{position:absolute;left:27%;top:43%;width:45%;height:14%;background:var(--neck-finish);clip-path:polygon(0 18%,96% 0,100% 50%,96% 100%,0 82%);box-shadow:inset 0 2px 5px rgba(255,255,255,.18),inset 0 -2px 5px rgba(0,0,0,.6);}
+.g-fretboard{position:absolute;left:31%;top:39%;width:35%;height:22%;background:var(--fretboard-finish);box-shadow:inset 0 0 10px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.08);}
+.g-head{position:absolute;right:2%;top:34%;width:14%;height:32%;background:var(--head-finish);clip-path:polygon(0 28%,42% 25%,70% 0,72% 32%,100% 32%,100% 68%,72% 68%,70% 100%,42% 75%,0 72%);box-shadow:inset 0 0 16px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.1);}
+.model-sphyx .g-body{clip-path:polygon(10% 4%,50% 10%,73% 0,92% 18%,72% 38%,96% 59%,74% 92%,39% 83%,11% 96%,0 70%,16% 50%,0 30%);}
+.model-oryx .g-body{clip-path:polygon(22% 6%,58% 0,92% 21%,86% 48%,100% 76%,66% 100%,25% 91%,1% 66%,10% 42%,0 20%);border-radius:46% 38% 42% 52%;}
+.model-matadaur .g-body{clip-path:polygon(23% 3%,65% 4%,95% 27%,83% 53%,98% 76%,63% 100%,25% 90%,0 68%,14% 45%,0 22%);border-radius:45% 42% 46% 50%;}
+.guitar-row.rear .g-fretboard,.guitar-row.rear .g-hardware,.guitar-row.rear .g-inlays{display:none}.guitar-row.rear .g-body{filter:brightness(.82) saturate(.75)}.guitar-row.rear .g-neck{top:44%;height:12%}
+.fret-lines{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 8.2%,rgba(255,255,255,.18) 8.7%,transparent 9.2%);opacity:.7}
+.g-hardware{position:absolute;inset:0;--hw:#050507;--edge:rgba(255,255,255,.25)}
+.part{position:absolute;background:var(--hw);border:1px solid var(--edge);box-shadow:0 3px 9px rgba(0,0,0,.9),inset 0 1px 1px rgba(255,255,255,.22)}
+.part.pickup{left:26%;width:8.5%;height:9%;border-radius:4px}.part.pickup.neck{top:36%}.part.pickup.bridge{top:56%}.part.single{height:5%;width:7.5%;border-radius:999px}.part.single.middle{left:31%;top:48%}.part.single.neck{left:33%;top:36%}.part.bridge-piece{left:19.5%;top:60%;width:10.5%;height:10%;border-radius:4px}.part.bridge-piece.trem{width:13%;height:12%;border-radius:7px}.part.bridge-piece.floyd{width:15%;height:13%;border-radius:5px}
+.part.knob{width:4.1%;height:8%;border-radius:50%;left:14%;top:66%}.part.knob.k2{left:10%;top:54%}.part.switch{width:8%;height:3.5%;left:14%;top:40%;border-radius:999px;transform:rotate(-26deg)}
+.part.tuner{width:2.8%;height:6%;right:6%;border-radius:2px}.part.t1{top:21%}.part.t2{top:31%}.part.t3{top:41%}.part.t4{top:53%}.part.t5{top:63%}.part.t6{top:73%}
+.g-inlays{position:absolute;left:34%;top:47%;width:28%;height:6%;z-index:6}.inlay-dot{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--inlay-color,rgba(245,245,250,.85));box-shadow:0 0 8px rgba(255,255,255,.45);top:50%;transform:translateY(-50%)}.inlay-dot:nth-child(1){left:10%}.inlay-dot:nth-child(2){left:28%}.inlay-dot:nth-child(3){left:46%}.inlay-dot:nth-child(4){left:64%}.inlay-dot:nth-child(5){left:82%}.inlay-dot.fostinis{border-radius:2px;transform:translateY(-50%) rotate(45deg)}
+.active-led2{position:absolute;left:9%;top:75%;width:7px;height:7px;border-radius:50%;background:#6ef5c4;box-shadow:0 0 14px #6ef5c4;}
+.preview-topline{z-index:5!important}.visual-note{z-index:5!important;position:relative}.preview::after{z-index:4!important;}
+@media(max-width:560px){.preview{min-height:600px!important;padding:14px!important}.premium-stage{height:370px}.guitar-row{left:5%;right:5%;height:39%}.preview-chip{font-size:9px;padding:7px 8px}}
+
 </style>
 </head>
 <body>
@@ -366,6 +399,84 @@ body.finish-dye .grain-layer{opacity:.56;}
   window.FOSTINIS_CALC=function(){ if(typeof old==='function') old(); const p=ensureLayers(); if(!p) return; const m=modelKey(); p.classList.remove('model-sphyx','model-oryx','model-matadaur'); p.classList.add('model-'+m); const rec=paintFor(label('color'),label('finish')); document.body.classList.remove('finish-solid','finish-dye'); document.body.classList.add(rec.body); document.documentElement.style.setProperty('--premium-base-filter',rec.filter); document.documentElement.style.setProperty('--finish-paint',rec.paint); document.documentElement.style.setProperty('--grain-opacity',rec.grain); document.documentElement.style.setProperty('--live-accent',rec.accent); document.documentElement.style.setProperty('--live-glow',rec.glow); renderHardware(); const vn=$('visualNote'); if(vn) vn.innerHTML='<strong>Premium live visual:</strong> model cards stay neutral; the build preview uses a real finish layer plus visible pickups, bridge, knobs, switch, tuners, inlays and electronics indicators.'; };
   window.fostinisUpdatePrice=window.FOSTINIS_CALC;
   function bind(){ensureLayers(); ids.forEach(id=>{const el=$(id); if(el) el.addEventListener('change',()=>setTimeout(window.FOSTINIS_CALC,0),true)}); window.FOSTINIS_CALC(); setTimeout(window.FOSTINIS_CALC,250);}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind); else bind();
+})();
+</script>
+
+
+
+<script>
+(function(){
+  const ids=['model','finish','color','body','top','neck','fretboard','inlay','pickups','bridge','hardware','tuners','electronics','case'];
+  const $=id=>document.getElementById(id);
+  const clean=t=>String(t||'').replace(/\s+\+\$[0-9,]+/g,'').replace(/\s+—\s+(Custom Quote|Quote Required|starts at \$[0-9,]+)/gi,'').trim();
+  const label=id=>{const s=$(id);return s&&s.options[s.selectedIndex]?clean(s.options[s.selectedIndex].textContent):''};
+  function key(){const m=label('model').toLowerCase();return m.includes('oryx')?'oryx':m.includes('matadaur')?'matadaur':'sphyx'}
+  function ensureStage(){
+    const p=$('previewImage')?.closest('.preview'); if(!p) return null;
+    if(!p.querySelector('.premium-stage')){
+      p.insertAdjacentHTML('afterbegin',`<div class="premium-stage" id="premiumStage">
+        ${row('rear')}${row('front')}
+      </div>`);
+    }
+    return p;
+  }
+  function row(which){return `<div class="guitar-row ${which}"><div class="guitar"><div class="g-body"><span class="g-topgrain"></span></div><div class="g-neck"></div><div class="g-fretboard"><span class="fret-lines"></span></div><div class="g-head"></div><div class="g-inlays" id="${which}Inlays"></div><div class="g-hardware" id="${which}Hardware"></div></div></div>`}
+  function paint(){
+    const c=label('color').toLowerCase(), f=label('finish').toLowerCase(), solid=!(f.includes('dye')||f.includes('burst')||f.includes('artwork'));
+    let body='linear-gradient(90deg,#202024,#6e6e72 48%,#17171a)', grain='none', glow='rgba(180,180,190,.16)', accent='rgba(190,190,200,.42)', strength='0';
+    if(solid){
+      if(c.includes('black')) body='linear-gradient(90deg,#020203,#202024 48%,#030304)';
+      else if(c.includes('natural')||c.includes('amber')){body='radial-gradient(ellipse at 44% 52%,#e0a34f 0 20%,#8b4b1e 45%,#1b0b05 100%)'; grain='repeating-linear-gradient(90deg,rgba(255,255,255,.0) 0 7px,rgba(255,255,255,.18) 9px,rgba(0,0,0,.0) 15px)'; strength='.75'; accent='rgba(230,176,92,.75)'; glow='rgba(214,150,70,.24)'}
+    }else{
+      strength='.82';
+      grain='repeating-linear-gradient(90deg,rgba(255,255,255,.0) 0 6px,rgba(255,255,255,.24) 8px,rgba(0,0,0,.05) 15px),radial-gradient(ellipse at 42% 52%,rgba(255,255,255,.22),transparent 35%)';
+      if(c.includes('green')&&c.includes('purple')){body='radial-gradient(ellipse at 43% 52%,#2fff73 0 18%,#5630aa 36%,#060208 100%)';accent='rgba(110,245,196,.75)';glow='rgba(70,240,130,.32)'}
+      else if(c.includes('purple')){body='radial-gradient(ellipse at 43% 52%,#d44cff 0 18%,#5d138c 39%,#060208 100%)';accent='rgba(190,80,255,.74)';glow='rgba(143,53,255,.36)'}
+      else if(c.includes('blue')){body='radial-gradient(ellipse at 43% 52%,#58b9ff 0 18%,#0b2c88 39%,#02040c 100%)';accent='rgba(95,175,255,.75)';glow='rgba(60,120,255,.32)'}
+      else if(c.includes('red')){body='radial-gradient(ellipse at 43% 52%,#ffc15a 0 16%,#b31512 38%,#120000 100%)';accent='rgba(255,135,75,.75)';glow='rgba(255,90,40,.32)'}
+      else {body='radial-gradient(ellipse at 43% 52%,#ffc45f 0 17%,#8f4d1e 40%,#090200 100%)';accent='rgba(230,176,92,.75)';glow='rgba(214,150,70,.30)'}
+    }
+    return {body,grain,glow,accent,strength};
+  }
+  function neckPaint(){const n=label('neck').toLowerCase(); if(n.includes('maple')) return 'linear-gradient(90deg,#d5b476,#f0d59a,#9a6a31)'; if(n.includes('wenge')) return 'linear-gradient(90deg,#1a100b,#4a2818,#120907)'; return 'linear-gradient(90deg,#5a2d18,#8b4d27,#2d140b)'}
+  function fretPaint(){const f=label('fretboard').toLowerCase(); if(f.includes('maple')) return 'linear-gradient(90deg,#d7b779,#edce92,#b4823b)'; if(f.includes('rosewood')) return 'linear-gradient(90deg,#2d120c,#6b3020,#1c0906)'; if(f.includes('pau')) return 'linear-gradient(90deg,#8c5a2d,#b77838,#5f371b)'; return 'linear-gradient(90deg,#050505,#181818,#030303)'}
+  function hardwareColor(){const h=(label('hardware')+' '+label('tuners')).toLowerCase(); if(h.includes('gold')) return ['#d6b46a','rgba(255,236,170,.68)']; if(h.includes('chrome')) return ['#cdd9df','rgba(255,255,255,.75)']; if(h.includes('cosmo')||h.includes('smoked')) return ['#66647a','rgba(210,210,235,.46)']; return ['#050507','rgba(255,255,255,.22)'];}
+  function renderHardware(){
+    const layer=$('frontHardware'); if(!layer) return; const p=label('pickups').toLowerCase(), b=label('bridge').toLowerCase(), inl=label('inlay').toLowerCase(), el=label('electronics').toLowerCase();
+    const [hw,edge]=hardwareColor(); layer.style.setProperty('--hw',hw); layer.style.setProperty('--edge',edge);
+    let html='';
+    if(p.includes('hss')) html+='<i class="part pickup single neck"></i><i class="part pickup single middle"></i><i class="part pickup bridge"></i>';
+    else html+='<i class="part pickup neck"></i><i class="part pickup bridge"></i>';
+    html+=`<i class="part bridge-piece ${b.includes('floyd')?'floyd':b.includes('tremolo')?'trem':''}"></i><i class="part knob"></i><i class="part knob k2"></i><i class="part switch"></i>`;
+    for(let i=1;i<=6;i++) html+=`<i class="part tuner t${i}"></i>`;
+    if(p.includes('active')||el.includes('custom')) html+='<i class="active-led2"></i>';
+    layer.innerHTML=html;
+    const il=$('frontInlays'); if(il){ il.innerHTML=''; if(!inl.includes('no inlays')){ for(let i=0;i<5;i++) il.insertAdjacentHTML('beforeend',`<i class="inlay-dot ${inl.includes('fostinis')?'fostinis':''}"></i>`); }}
+  }
+  function chips(){
+    const arr=['model','finish','color','body','top','neck','fretboard','pickups','bridge','hardware','tuners'].map(label).filter(Boolean);
+    const el=$('previewChips'); if(el) el.innerHTML=arr.map((x,i)=>`<span class="preview-chip ${i<3?'strong':''}">${x}</span>`).join('');
+  }
+  const old=window.FOSTINIS_CALC;
+  window.FOSTINIS_CALC=function(){
+    if(typeof old==='function') old();
+    const p=ensureStage(); if(!p) return;
+    p.classList.remove('model-sphyx','model-oryx','model-matadaur'); p.classList.add('model-'+key());
+    const rec=paint();
+    document.documentElement.style.setProperty('--body-finish',rec.body);
+    document.documentElement.style.setProperty('--grain-layer',rec.grain);
+    document.documentElement.style.setProperty('--grain-strength',rec.strength);
+    document.documentElement.style.setProperty('--neck-finish',neckPaint());
+    document.documentElement.style.setProperty('--head-finish',neckPaint());
+    document.documentElement.style.setProperty('--fretboard-finish',fretPaint());
+    document.documentElement.style.setProperty('--live-accent',rec.accent);
+    document.documentElement.style.setProperty('--live-glow',rec.glow);
+    renderHardware(); chips();
+    const vn=$('visualNote'); if(vn) vn.innerHTML='<strong>Live layered visual:</strong> finish now stays on the guitar body/top only. Pickups, bridge, knobs, switch, tuners, fretboard, inlays and hardware color update as real visible parts.';
+  };
+  window.fostinisUpdatePrice=window.FOSTINIS_CALC;
+  function bind(){ensureStage(); ids.forEach(id=>{const el=$(id); if(el) ['change','input','touchend','click'].forEach(ev=>el.addEventListener(ev,()=>setTimeout(window.FOSTINIS_CALC,0),{passive:true}));}); window.FOSTINIS_CALC(); setTimeout(window.FOSTINIS_CALC,300);}
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',bind); else bind();
 })();
 </script>
