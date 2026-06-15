@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Fostinis Guitars — Custom Builder</title>
+<style>
+  :root{
+    --bg:#07060a;--panel:#151219;--panel2:#1d1922;--line:rgba(255,255,255,.14);
+    --text:#f7f0ff;--muted:#c9bfd7;--gold:#e3bd72;--purple:#8a35ff;--green:#64e6a4;
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(circle at 50% 0,#2b0d4c 0,#09070d 42%,#050407 100%);color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif} 
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(7,6,10,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:18px 22px;font-weight:900;letter-spacing:.22em}.topbar span{color:var(--purple)}
+  .wrap{max-width:1180px;margin:auto;padding:28px 20px 72px}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}.eyebrow{color:var(--gold);letter-spacing:.28em;font-size:12px;font-weight:900;text-transform:uppercase}.h1{font-size:clamp(42px,7vw,86px);line-height:.88;margin:16px 0 18px;font-weight:950;letter-spacing:-.07em}.lead{font-size:clamp(17px,2vw,22px);line-height:1.55;color:var(--muted);max-width:620px}.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:28px;box-shadow:0 24px 80px rgba(0,0,0,.36);overflow:hidden}.preview-card{padding:20px}.preview-stage{background:#030305;border-radius:22px;border:1px solid rgba(255,255,255,.08);min-height:520px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.builder-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:24px}.render-shell{padding:18px}.view-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.tab{border:1px solid var(--line);background:#0d0b11;color:var(--text);border-radius:999px;padding:11px 14px;font-weight:850;letter-spacing:.08em;font-size:12px;text-transform:uppercase}.tab.active{border-color:rgba(227,189,114,.7);box-shadow:0 0 0 2px rgba(227,189,114,.12) inset;color:#fff}.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}.preview-grid.front-only,.preview-grid.back-only{grid-template-columns:minmax(0,1fr)}.view-card{background:#040407;border:1px solid rgba(255,255,255,.11);border-radius:22px;min-height:640px;position:relative;overflow:hidden}.view-card.hidden{display:none}.view-title{position:absolute;left:16px;top:14px;z-index:20;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);font-weight:900}.layer-stack{position:absolute;inset:52px 12px 24px;display:flex;align-items:center;justify-content:center}.layer-stack img{position:absolute;max-width:100%;max-height:100%;object-fit:contain;filter:none}.missing{position:absolute;inset:52px 18px 24px;border:1px dashed rgba(227,189,114,.45);border-radius:18px;display:none;align-items:center;justify-content:center;text-align:center;color:var(--muted);padding:20px;line-height:1.5}.missing strong{display:block;color:var(--gold);margin-bottom:8px}.status-pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.pill{border:1px solid rgba(227,189,114,.32);background:rgba(255,255,255,.035);border-radius:999px;padding:9px 12px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:#eee}.side{display:flex;flex-direction:column;gap:16px}.price{padding:22px}.price .num{font-size:48px;font-weight:950;letter-spacing:-.06em;margin:10px 0}.summary{color:var(--muted);line-height:1.45}.group{padding:18px}.group label{display:block;color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:10px}.group select{width:100%;appearance:none;background:#08070b;color:#fff;border:1px solid var(--line);border-radius:15px;padding:16px;font-size:16px}.note{font-size:13px;color:var(--muted);line-height:1.5;padding:0 2px}.asset-note{margin-top:16px;padding:14px 16px;border-radius:18px;border:1px solid rgba(100,230,164,.25);background:rgba(100,230,164,.06);color:#d9ffe9;font-size:13px;line-height:1.45}.footer{margin-top:28px;color:rgba(255,255,255,.56);font-size:13px;text-align:center}.hero .preview-stage{min-height:420px}.hero .layer-stack{inset:26px}.hero-mini{width:100%;height:100%;position:relative;min-height:390px}
+  @media(max-width:880px){.hero,.builder-grid{grid-template-columns:1fr}.preview-grid{grid-template-columns:1fr}.view-card{min-height:600px}.preview-stage{min-height:410px}.wrap{padding:22px 20px 64px}.topbar{padding-left:22px}}
+</style>
+</head>
+<body>
+<header class="topbar">FOSTINIS<span>.</span></header>
+<main class="wrap">
+  <section class="hero">
+    <div class="card preview-card">
+      <div class="preview-stage">
+        <div class="hero-mini" id="heroMini"></div>
+      </div>
+      <div class="status-pills" id="heroPills"></div>
+    </div>
+    <div>
+      <div class="eyebrow">Boutique Custom Instruments</div>
+      <div class="h1">Custom Built.<br>No Compromises.</div>
+      <p class="lead">Choose the locked Fostinis model, then build the guitar with separated front/back render layers. No hue-filter fake render and no generic guitar fallback.</p>
+    </div>
+  </section>
+
+  <section class="builder-grid" id="builder">
+    <div class="card render-shell">
+      <div class="view-tabs">
+        <button class="tab active" data-view="both">Front + Back</button>
+        <button class="tab" data-view="front">Front Only</button>
+        <button class="tab" data-view="back">Back Only</button>
+      </div>
+      <div class="preview-grid" id="previewGrid">
+        <div class="view-card" id="frontCard"><div class="view-title">Front</div><div class="layer-stack" id="frontStack"></div><div class="missing" id="frontMissing"></div></div>
+        <div class="view-card" id="backCard"><div class="view-title">Back</div><div class="layer-stack" id="backStack"></div><div class="missing" id="backMissing"></div></div>
+      </div>
+      <div class="asset-note">Asset system is ready for your real cutout PNGs. Put files in <b>/assets/models/</b> using the names listed inside the code manifest.</div>
+      <div class="status-pills" id="pills"></div>
+    </div>
+
+    <aside class="side">
+      <div class="card price">
+        <div class="eyebrow">Estimated Build Live Pricing</div>
+        <div class="num" id="price">$0</div>
+        <div class="summary" id="summary"></div>
+      </div>
+      <div class="card group"><label>Choose Your Model</label><select id="model"></select></div>
+      <div class="card group"><label>Finish Type</label><select id="finishType"></select></div>
+      <div class="card group"><label>Color / Dye Visual</label><select id="finish"></select></div>
+      <div class="card group"><label>Body Wood</label><select id="body"></select></div>
+      <div class="card group"><label>Top Wood</label><select id="top"></select></div>
+      <div class="card group"><label>Neck Wood</label><select id="neck"></select></div>
+      <div class="card group"><label>Fretboard</label><select id="fretboard"></select></div>
+      <div class="card group"><label>Inlays</label><select id="inlays"></select></div>
+      <div class="card group"><label>Pickups</label><select id="pickups"></select></div>
+      <div class="card group"><label>Bridge</label><select id="bridge"></select></div>
+      <div class="card group"><label>Hardware Color</label><select id="hardware"></select></div>
+    </aside>
+  </section>
+  <div class="footer">Fostinis Guitars custom builder preview.</div>
+</main>
+<script>
+/*
+REAL ASSET MANIFEST — replace or add files without changing the render engine.
+Folder structure expected:
+/assets/models/matadaur/front/base.png
+/assets/models/matadaur/front/body-solid-grey.png
+/assets/models/matadaur/front/body-purple-burst.png
+/assets/models/matadaur/front/fretboard-ebony.png
+/assets/models/matadaur/front/pickups-dual-humbuckers.png
+/assets/models/matadaur/front/bridge-hardtail.png
+/assets/models/matadaur/front/hardware-black.png
+Same pattern for /back/ and for oryx/sphyx.
+
+IMPORTANT: every PNG should be exported on the same transparent canvas size, for example 1600x2400.
+*/
+const money = n => n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+const path = (model, view, layer) => `assets/models/${model}/${view}/${layer}.png`;
+const config = {
+  models:{
+    matadaur:{label:'Matadaur — starts at $4,699', base:4699},
+    oryx:{label:'Oryx — starts at $4,299', base:4299},
+    sphyx:{label:'Sphyx — starts at $3,899', base:3899}
+  },
+  finishType:{solid:{label:'Solid Color',price:0},dye:{label:'Dye / Burst',price:350},art:{label:'Special Artwork / Quote Required',price:null}},
+  finish:{
+    'body-solid-grey':{label:'Charcoal Grey Solid', type:'solid'},
+    'body-black-solid':{label:'Black Solid', type:'solid'},
+    'body-purple-burst':{label:'Purple Burst', type:'dye'},
+    'body-red-amber-burst':{label:'Red / Amber Burst', type:'dye'},
+    'body-blue-burst':{label:'Blue Burst', type:'dye'},
+    'body-custom-art':{label:'Custom Artwork', type:'art'}
+  },
+  body:{'bodywood-mahogany':{label:'Mahogany Body',price:0},'bodywood-swamp-ash':{label:'Swamp Ash Body',price:250},'bodywood-black-limba':{label:'Black Limba Body',price:400}},
+  top:{'top-flame-maple':{label:'Flame Maple Top',price:350},'top-quilt-maple':{label:'Quilt Maple Top',price:450},'top-none':{label:'No Top / Solid Body',price:0}},
+  neck:{'neck-mahogany':{label:'Mahogany Neck',price:0},'neck-maple':{label:'Maple Neck',price:150},'neck-wenge':{label:'Wenge Neck',price:300}},
+  fretboard:{'fretboard-ebony':{label:'Ebony Fretboard',price:250},'fretboard-maple':{label:'Maple Fretboard',price:100},'fretboard-rosewood':{label:'Rosewood Fretboard',price:150}},
+  inlays:{'inlays-none':{label:'No Inlays',price:0},'inlays-dots':{label:'Dots',price:125},'inlays-fostinis':{label:'Fostinis Inlays',price:300},'inlays-custom':{label:'Custom Inlays / Quote Required',price:null}},
+  pickups:{'pickups-dual-humbuckers':{label:'Dual Humbuckers',price:0},'pickups-hss':{label:'HSS Layout',price:175},'pickups-single-humbucker':{label:'Single Humbucker',price:-100}},
+  bridge:{'bridge-hardtail':{label:'Hardtail Bridge',price:0},'bridge-tremolo':{label:'Tremolo Bridge',price:250},'bridge-floyd':{label:'Floyd Rose Style',price:425}},
+  hardware:{'hardware-black':{label:'Black Hardware',price:0},'hardware-chrome':{label:'Chrome Hardware',price:0},'hardware-gold':{label:'Gold Hardware',price:175}}
+};
+const state = {model:'matadaur',finishType:'solid',finish:'body-solid-grey',body:'bodywood-mahogany',top:'top-flame-maple',neck:'neck-mahogany',fretboard:'fretboard-ebony',inlays:'inlays-none',pickups:'pickups-dual-humbuckers',bridge:'bridge-hardtail',hardware:'hardware-black',view:'both'};
+const ids = ['model','finishType','finish','body','top','neck','fretboard','inlays','pickups','bridge','hardware'];
+function fillSelect(id, items){ const el=document.getElementById(id); el.innerHTML=''; Object.entries(items).forEach(([k,v])=>{ const o=document.createElement('option'); o.value=k; o.textContent=v.label; el.appendChild(o); }); el.value=state[id]; }
+function setup(){ fillSelect('model',config.models); fillSelect('finishType',config.finishType); fillSelect('finish',config.finish); ['body','top','neck','fretboard','inlays','pickups','bridge','hardware'].forEach(k=>fillSelect(k,config[k])); ids.forEach(id=>document.getElementById(id).addEventListener('change',e=>{state[id]=e.target.value;if(id==='finishType'){const first=Object.entries(config.finish).find(([,v])=>v.type===state.finishType); if(first){state.finish=first[0];document.getElementById('finish').value=state.finish;}} render();})); document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{state.view=b.dataset.view;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));render();})); render(); }
+function chosenLabel(k){return (k==='model'?config.models:config[k])[state[k]].label.replace(/ — starts.*$/,'')}
+function price(){ let total=config.models[state.model].base, quote=false; ['finishType','body','top','neck','fretboard','inlays','pickups','bridge','hardware'].forEach(k=>{const item=config[k][state[k]]; if(item.price===null) quote=true; else total+=item.price;}); return quote?'Quote Required':money(total); }
+function renderStack(view, holder, missing){ holder.innerHTML=''; missing.style.display='none'; const layers=['base',state.finish,state.body,state.top,state.neck,state.fretboard,state.inlays,state.pickups,state.bridge,state.hardware]; let loaded=0, failed=[]; layers.forEach((layer,i)=>{ const img=new Image(); img.alt=`${state.model} ${view} ${layer}`; img.style.zIndex=i+1; img.onload=()=>{loaded++;}; img.onerror=()=>{failed.push(path(state.model,view,layer)); img.remove(); missing.style.display='flex'; missing.innerHTML='<div><strong>Missing real asset PNG</strong>'+failed.slice(0,5).map(x=>`<div>${x}</div>`).join('')+(failed.length>5?'<div>…</div>':'')+'</div>';}; img.src=path(state.model,view,layer); holder.appendChild(img); }); }
+function renderHero(){ const hero=document.getElementById('heroMini'); hero.innerHTML='<div class="layer-stack" id="heroStack"></div><div class="missing" id="heroMissing"></div>'; renderStack('front',document.getElementById('heroStack'),document.getElementById('heroMissing')); document.getElementById('heroPills').innerHTML=[chosenLabel('model'),chosenLabel('finish'),chosenLabel('fretboard')].map(x=>`<span class="pill">${x}</span>`).join(''); }
+function render(){ const grid=document.getElementById('previewGrid'), front=document.getElementById('frontCard'), back=document.getElementById('backCard'); grid.className='preview-grid'+(state.view==='front'?' front-only':state.view==='back'?' back-only':''); front.classList.toggle('hidden',state.view==='back'); back.classList.toggle('hidden',state.view==='front'); if(state.view!=='back') renderStack('front',document.getElementById('frontStack'),document.getElementById('frontMissing')); if(state.view!=='front') renderStack('back',document.getElementById('backStack'),document.getElementById('backMissing')); document.getElementById('price').textContent=price(); document.getElementById('summary').textContent=[chosenLabel('model'),chosenLabel('finishType'),chosenLabel('finish'),chosenLabel('body'),chosenLabel('top'),chosenLabel('neck'),chosenLabel('fretboard'),chosenLabel('inlays'),chosenLabel('pickups'),chosenLabel('bridge'),chosenLabel('hardware')].join(' · '); document.getElementById('pills').innerHTML=[chosenLabel('model'),chosenLabel('finish'),chosenLabel('fretboard'),chosenLabel('pickups'),chosenLabel('bridge'),chosenLabel('hardware')].map(x=>`<span class="pill">${x}</span>`).join(''); renderHero(); }
+setup();
+</script>
+</body>
+</html>
