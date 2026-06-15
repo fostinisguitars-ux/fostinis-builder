@@ -138,6 +138,44 @@ select,textarea,input{width:100%;background:#08080d;color:var(--ink);border:1px 
 .view-wrap.real-img-wrap{background:#050506}
 .view-wrap.real-img-wrap .view-label,.view-wrap.real-img-wrap .asset-badge{z-index:9}
 
+
+/* REAL LOCKED FOSTINIS MODEL IMAGE SYSTEM */
+.real-render{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:#050506;overflow:hidden;
+}
+.real-base{
+  width:100%;height:100%;object-fit:contain;position:absolute;inset:0;z-index:2;
+  filter:var(--model-filter,none);
+}
+.color-wash{
+  position:absolute;inset:0;z-index:3;mix-blend-mode:color;opacity:var(--wash-opacity,.0);
+  background:var(--wash,#777);pointer-events:none;
+}
+.burst-wash{
+  position:absolute;inset:0;z-index:4;opacity:var(--burst-opacity,.0);pointer-events:none;
+  background:radial-gradient(circle at 35% 58%,rgba(255,255,255,.25),transparent 23%,var(--burst-mid,rgba(120,60,200,.35)) 48%,var(--burst-edge,rgba(0,0,0,.55)) 82%);
+  mix-blend-mode:overlay;
+}
+.top-grain{
+  position:absolute;inset:0;z-index:5;opacity:var(--grain-opacity,.0);pointer-events:none;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.13) 0 2px,transparent 2px 18px),
+    repeating-linear-gradient(74deg,rgba(0,0,0,.16) 0 3px,transparent 3px 24px);
+  mix-blend-mode:overlay;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 42%,transparent 62%);
+}
+.option-badge{
+  position:absolute;left:14px;bottom:12px;z-index:8;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.13);border-radius:999px;padding:7px 9px;background:rgba(0,0,0,.38)
+}
+.model-visual .real-render{position:relative;width:100%;height:100%;border-radius:18px}
+.hero-stage .real-render{position:relative;min-height:330px}
+.view-wrap.real-img-wrap{background:#050506}
+.view-wrap.real-img-wrap .view-label,.view-wrap.real-img-wrap .asset-badge{z-index:9}
+.svg-fallback{display:none!important}
+.guitar-svg{display:none!important}
+
 </style>
 </head>
 <body>
@@ -485,28 +523,33 @@ window.fostinisSetView=setView;
 update();
 </script>
 
+
+
+
 <script>
 (function(){
-  function modelKeyReal(){
-    const s=document.getElementById('model');
-    if(!s) return 'sphyx';
-    const opt=s.options[s.selectedIndex];
-    return opt.dataset.key || 'sphyx';
-  }
-  function txt(id){
-    const s=document.getElementById(id);
-    if(!s) return '';
-    return (s.options[s.selectedIndex].textContent || '')
+  function cleanText(t){
+    return String(t||'')
       .replace(/\s+—\s+starts\s+at\s+\$[0-9,]+/gi,'')
       .replace(/\s+\+\$[0-9,]+/g,'')
       .replace(/\s+—\s+Custom Quote/gi,'')
       .trim();
   }
+  function txt(id){
+    const s=document.getElementById(id);
+    if(!s) return '';
+    return cleanText(s.options[s.selectedIndex].textContent);
+  }
+  function selectedModel(){
+    const s=document.getElementById('model');
+    if(!s) return 'sphyx';
+    const opt=s.options[s.selectedIndex];
+    return opt.dataset.key || 'sphyx';
+  }
   function visualVars(){
     const color=txt('color').toLowerCase();
     const finish=txt('finish').toLowerCase();
     const top=txt('top').toLowerCase();
-    const fb=txt('fretboard').toLowerCase();
     let wash='transparent', washOpacity='.0', burstOpacity='.0', grainOpacity='.0', filter='none';
     let burstMid='rgba(120,60,200,.35)', burstEdge='rgba(0,0,0,.55)';
     if(color.includes('black')){filter='brightness(.58) contrast(1.12)'; wash='#111'; washOpacity='.20'}
@@ -516,57 +559,53 @@ update();
     else if(color.includes('green')){wash='#35a86b'; washOpacity='.42'; burstMid='rgba(53,168,107,.45)'; burstEdge='rgba(85,0,160,.62)';}
     else if(color.includes('blue')){wash='#245ed6'; washOpacity='.45'; burstMid='rgba(36,94,214,.48)'; burstEdge='rgba(0,8,40,.72)';}
     else if(color.includes('red')){wash='#b52e2e'; washOpacity='.45'; burstMid='rgba(181,46,46,.48)'; burstEdge='rgba(65,10,0,.72)';}
-    else {filter='none'; wash='#777'; washOpacity='.06'}
+    else {wash='#777'; washOpacity='.04'}
     if(finish.includes('dye') || finish.includes('burst')) burstOpacity='.55';
-    if(top.includes('flame') || top.includes('quilt') || top.includes('burled') || top.includes('exhibition')) grainOpacity='.20';
-    if(fb.includes('maple')) filter += ' sepia(.08) saturate(1.05)';
+    if(top.includes('flame') || top.includes('quilt') || top.includes('burled') || top.includes('exhibition')) grainOpacity='.18';
     return `--wash:${wash};--wash-opacity:${washOpacity};--burst-opacity:${burstOpacity};--grain-opacity:${grainOpacity};--model-filter:${filter};--burst-mid:${burstMid};--burst-edge:${burstEdge};`;
   }
-  function realModelHTML(key,label){
-    const src=(ASSET_LIBRARY[key]||{}).base || '';
-    if(!src) return '<div class="svg-fallback">'+guitarSvg(key,'front')+'</div>';
+  function modelHTML(key,label){
+    const src=(window.ASSET_LIBRARY||ASSET_LIBRARY)[key]?.base || '';
     return `<div class="real-render" style="${visualVars()}">
       <img class="real-base" src="${src}" alt="Fostinis ${key} locked base model">
       <div class="color-wash"></div>
       <div class="burst-wash"></div>
       <div class="top-grain"></div>
-      ${label?`<div class="option-badge">${label}</div>`:''}
+      <div class="option-badge">${label || key.toUpperCase()} · REAL MODEL</div>
     </div>`;
   }
-  function realStageHTML(key){
+  function stageHTML(key){
     return `<div class="view-wrap real-img-wrap" style="grid-row:1 / -1">
-      <div class="view-label">locked base model</div>
-      ${realModelHTML(key, txt('model'))}
+      <div class="view-label">locked fostinis base model</div>
+      ${modelHTML(key, txt('model'))}
       <div class="asset-badge">Real uploaded image</div>
     </div>`;
   }
-
-  const oldUpdate=window.fostinisUpdatePrice || window.update;
-  window.renderRealAssets=function(){
-    const key=modelKeyReal();
+  function forceRealModels(){
+    const key=selectedModel();
     const stage=document.getElementById('renderStage');
-    if(stage) stage.innerHTML=realStageHTML(key);
+    if(stage) stage.innerHTML=stageHTML(key);
     const hero=document.getElementById('heroStage');
-    if(hero) hero.innerHTML=realModelHTML(key,'Selected Model');
+    if(hero) hero.innerHTML=modelHTML(key,'Selected Model');
     document.querySelectorAll('[data-model-card]').forEach(card=>{
       const k=card.dataset.modelCard;
       const box=card.querySelector('.model-visual');
-      if(box) box.innerHTML=realModelHTML(k,k.toUpperCase());
+      if(box) box.innerHTML=modelHTML(k,k.toUpperCase());
     });
-  };
+    const note=document.getElementById('visualNote');
+    if(note) note.textContent='Using your locked Fostinis base model images only. No generic SVG fallback.';
+  }
+  const oldUpdate=window.fostinisUpdatePrice;
   window.fostinisUpdatePrice=function(){
     if(typeof oldUpdate==='function') oldUpdate();
-    window.renderRealAssets();
+    forceRealModels();
   };
-  const ids=['model','finish','color','body','bodyFinish','top','neck','fretboard','inlay','pickups','bridge','hardware','tuners','electronics','case'];
-  ids.forEach(id=>{
+  ['model','finish','color','body','bodyFinish','top','neck','fretboard','inlay','pickups','bridge','hardware','tuners','electronics','case'].forEach(id=>{
     const el=document.getElementById(id);
-    if(el) el.addEventListener('change',()=>setTimeout(window.renderRealAssets,0));
+    if(el) el.addEventListener('change',()=>setTimeout(forceRealModels,0));
   });
-  setTimeout(function(){
-    if(typeof window.fostinisUpdatePrice==='function') window.fostinisUpdatePrice();
-    window.renderRealAssets();
-  },0);
+  window.addEventListener('load',forceRealModels);
+  setTimeout(forceRealModels,0);
 })();
 </script>
 
