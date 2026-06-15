@@ -42,7 +42,11 @@ section{max-width:1180px;margin:auto;padding:68px 20px}.hero{display:grid;grid-t
 <section id="contact"><div class="statement"><div class="eyebrow">Start the Conversation</div><h2>Your Fostinis starts here.</h2><p>Tell us the model that speaks to you and the appointments that make it yours.</p><div class="actions" style="justify-content:center"><a class="pill primary" href="mailto:info@fostinisguitars.com">Request a Build</a><a class="pill" href="#models">Explore Models</a></div></div></section>
 </main><footer class="footer">© Fostinis Guitars. Custom built. No compromises.</footer>
 <script>
-const REAL_ASSETS={sphyx:{front:'assets/sphyx_front.png',back:'assets/sphyx_back.png'},matadaur:{front:'assets/matadaur_front.png',back:'assets/matadaur_back.png'},oryx:{front:'assets/oryx_front.png',back:'assets/oryx_back.png'}};
+const REAL_ASSETS={
+  sphyx:{front:'sphyx_front.png',back:'sphyx_back.png'},
+  matadaur:{front:'matadaur_front.png',back:'matadaur_back.png'},
+  oryx:{front:'oryx_front.png',back:'oryx_front.png'}
+};
 const IDS=['model','finish','color','body','bodyFinish','top','neck','fretboard','inlay','pickups','bridge','hardware','tuners','electronics','case'];const $=id=>document.getElementById(id);let VIEW='both';
 function clean(t){return String(t||'').replace(/\s+—\s+starts\s+at\s+\$[0-9,]+/gi,'').replace(/\s+\+\$[0-9,]+/g,'').replace(/\s+—\s+Custom Quote/gi,'').trim()}function text(id){let s=$(id);return s?clean(s.options[s.selectedIndex].textContent):''}function val(id){let s=$(id);if(!s)return 0;let v=s.value;if(v==='quote')return 'quote';return Number(v)||0}function key(){let s=$('model');return s.options[s.selectedIndex].dataset.key||'sphyx'}function money(n){return '$'+Math.round(n).toLocaleString('en-US')}
 function vars(view){let c=text('color').toLowerCase(),f=text('finish').toLowerCase(),bf=text('bodyFinish').toLowerCase(),top=text('top').toLowerCase();let wash='transparent',washOpacity=0,burstOpacity=0,grainOpacity=0,filter='none',mid='rgba(120,60,200,.45)',edge='rgba(0,0,0,.62)';if(view==='back'){if(bf.includes('black')){filter='brightness(.55) contrast(1.08)';wash='#111';washOpacity=.15}else if(bf.includes('natural')){wash='#9b5f35';washOpacity=.32}else if(!bf.includes('matching')){wash='#777';washOpacity=.03}}if(view==='front'||bf.includes('matching')){if(c.includes('black')){filter='brightness(.58) contrast(1.12)';wash='#111';washOpacity=.20}else if(c.includes('amber')){wash='#c47b2c';washOpacity=.42;mid='rgba(196,123,44,.45)'}else if(c.includes('bourbon')){wash='#9b431a';washOpacity=.48;mid='rgba(165,75,26,.48)';edge='rgba(50,12,4,.72)'}else if(c.includes('purple')){wash='#7432d8';washOpacity=.48;mid='rgba(116,50,216,.52)';edge='rgba(20,0,38,.75)'}else if(c.includes('green')){wash='#35a86b';washOpacity=.42;mid='rgba(53,168,107,.45)';edge='rgba(85,0,160,.62)'}else if(c.includes('blue')){wash='#245ed6';washOpacity=.45;mid='rgba(36,94,214,.48)';edge='rgba(0,8,40,.72)'}else if(c.includes('red')){wash='#b52e2e';washOpacity=.45;mid='rgba(181,46,46,.48)';edge='rgba(65,10,0,.72)'}else if(view!=='back'){wash='#777';washOpacity=.035}}if((view==='front'||bf.includes('matching'))&&(f.includes('dye')||f.includes('burst')))burstOpacity=.55;if(view==='front'&&(top.includes('flame')||top.includes('quilt')||top.includes('burled')||top.includes('exhibition')))grainOpacity=.18;if(f.includes('solid')&&view==='front')burstOpacity=0;return `--filter:${filter};--wash:${wash};--wash-opacity:${washOpacity};--burst-opacity:${burstOpacity};--grain-opacity:${grainOpacity};--burst-mid:${mid};--burst-edge:${edge};`}
@@ -51,4 +55,15 @@ function renderStage(){let k=key();$('renderStage').innerHTML=VIEW==='front'?vie
 function setView(v){VIEW=v;['showBoth','showFront','showBack'].forEach(id=>$(id).classList.remove('active'));$(v==='both'?'showBoth':v==='front'?'showFront':'showBack').classList.add('active');update()}function update(){let total=0,quote=false,parts=[];IDS.forEach(id=>{let v=val(id);if(v==='quote')quote=true;else total+=v;parts.push(text(id))});$('price').textContent=quote?money(total)+' + Quote':money(total);$('summary').textContent=parts.slice(0,12).join(' · ');$('quoteNote').textContent=quote?'This build includes at least one custom quote item. The shown number is before final review.':'Live estimate updates as options are selected.';$('previewChips').innerHTML=[text('model'),text('finish'),text('color'),text('bodyFinish'),text('fretboard'),text('inlay'),text('pickups'),text('bridge'),text('hardware')].filter(Boolean).map(x=>`<span class="chip">${x}</span>`).join('');$('visualNote').textContent='Stable real-asset version: model switching, front/back view, pricing, and finish preview are working.';renderStage();renderHero();renderCards()}
 IDS.forEach(id=>{let el=$(id);if(el)el.addEventListener('change',update)});$('showBoth').addEventListener('click',()=>setView('both'));$('showFront').addEventListener('click',()=>setView('front'));$('showBack').addEventListener('click',()=>setView('back'));window.fostinisUpdatePrice=update;update();
 </script>
+
+<script data-image-error-added>
+window.addEventListener('error', function(e){
+  if(e.target && e.target.tagName === 'IMG'){
+    e.target.style.border = '2px solid #ff4d4d';
+    e.target.alt = 'Missing image: ' + (e.target.getAttribute('src') || '');
+    console.warn('Missing image:', e.target.getAttribute('src'));
+  }
+}, true);
+</script>
+
 </body></html>
