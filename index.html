@@ -262,13 +262,31 @@ h1{
   position:absolute;
   inset:0;
   z-index:5;
-  opacity:var(--woodOpacity,.03);
+  opacity:var(--topWoodOpacity,.03);
   mix-blend-mode:overlay;
   pointer-events:none;
-  background:
-    repeating-linear-gradient(88deg,rgba(255,255,255,.20) 0 1px,transparent 1px 12px),
-    repeating-linear-gradient(74deg,rgba(0,0,0,.16) 0 2px,transparent 2px 22px);
+  background:var(--topWoodTexture);
   mask-image:radial-gradient(ellipse at 45% 55%,#000 0 34%,transparent 55%);
+}
+.bodywood{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  opacity:var(--bodyWoodOpacity,.04);
+  mix-blend-mode:soft-light;
+  pointer-events:none;
+  background:var(--bodyWoodTexture);
+  mask-image:radial-gradient(ellipse at 48% 57%,#000 0 33%,transparent 56%);
+}
+.neckwood{
+  position:absolute;
+  inset:0;
+  z-index:6;
+  opacity:var(--neckWoodOpacity,.10);
+  mix-blend-mode:overlay;
+  pointer-events:none;
+  background:var(--neckWoodTexture);
+  mask-image:linear-gradient(82deg,transparent 0 43%,#000 46% 69%,transparent 73%);
 }
 .chips{
   position:absolute;
@@ -426,11 +444,11 @@ select{
       <div class="scene" id="scene">
         <div class="guitar active" id="frontView">
           <img src="https://fostinisguitars-ux.github.io/fostinis-builder/sphyx_front.png" alt="Sphyx front view">
-          <div class="wash"></div><div class="burst"></div><div class="wood"></div>
+          <div class="wash"></div><div class="burst"></div><div class="bodywood"></div><div class="wood"></div><div class="neckwood"></div>
         </div>
         <div class="guitar" id="backView">
           <img src="https://fostinisguitars-ux.github.io/fostinis-builder/sphyx_back.png" alt="Sphyx back view">
-          <div class="wash"></div><div class="burst"></div><div class="wood"></div>
+          <div class="wash"></div><div class="burst"></div><div class="bodywood"></div><div class="wood"></div><div class="neckwood"></div>
         </div>
       </div>
     </div>
@@ -445,9 +463,11 @@ select{
 
     <div class="station"><label>Finish Studio</label><select id="finish"><option value="0">Solid Color</option><option value="350">Dye / Burst Finish +$350</option><option value="quote">Special Artwork — Custom Quote</option></select></div>
     <div class="station"><label>Color Direction</label><select id="color"><option value="charcoal">Charcoal Solid</option><option value="black">Blackout</option><option value="purple">Purple Burst</option><option value="greenpurple">Green / Purple Fade</option><option value="blue">Blue Burst</option><option value="bourbon">Bourbon Burst</option><option value="amber">Natural Amber</option></select></div>
-    <div class="station"><label>Construction Studio</label><select id="body"><option value="0">Mahogany Body</option><option value="250">Alder Body +$250</option><option value="350">Swamp Ash Body +$350</option><option value="450">Black Limba Body +$450</option><option value="quote">Other Body Wood — Custom Quote</option></select></div>
+    <div class="station"><label>Construction Studio — Body Wood</label><select id="body"><option value="0">Mahogany Body</option><option value="250">Alder Body +$250</option><option value="350">Swamp Ash Body +$350</option><option value="450">Black Limba Body +$450</option><option value="quote">Other Body Wood — Custom Quote</option></select></div>
+    <div class="station"><label>Body / Back Wood Visual</label><select id="bodyVisual"><option value="mahogany">Mahogany — warm brown grain</option><option value="alder">Alder — light straight grain</option><option value="swampash">Swamp Ash — open bold grain</option><option value="blacklimba">Black Limba — dark streaked grain</option><option value="painted">Painted / opaque body back</option></select></div>
     <div class="station"><label>Top Wood</label><select id="top"><option value="0">Flame Maple Top</option><option value="350">Quilted Maple Top +$350</option><option value="450">Burled Maple Top +$450</option><option value="650">Exhibition Maple Top +$650</option><option value="quote">Rare / Specialty Top — Custom Quote</option></select></div>
     <div class="station"><label>Neck Studio</label><select id="neck"><option value="0">Mahogany Neck</option><option value="250">Maple Neck +$250</option><option value="450">Roasted Maple Neck +$450</option><option value="quote">Custom Neck Laminate — Custom Quote</option></select></div>
+    <div class="station"><label>Neck Wood Visual</label><select id="neckVisual"><option value="mahogany">Mahogany — dark warm neck</option><option value="maple">Maple — pale figured neck</option><option value="roasted">Roasted Maple — caramel neck</option><option value="wenge">Wenge / dark laminate neck</option></select></div>
     <div class="station"><label>Fingerboard Studio</label><select id="fretboard"><option value="0">Ebony Fretboard</option><option value="0">Maple Fretboard</option><option value="0">Rosewood Fretboard</option><option value="250">Pau Ferro Fretboard +$250</option><option value="quote">Rare Fretboard Wood — Custom Quote</option></select></div>
     <div class="station"><label>Inlay Studio</label><select id="inlay"><option value="0">No Inlays</option><option value="250">Dots +$250</option><option value="450">Fostinis Cherub Wings™ Inlays +$450</option><option value="quote">Custom Inlays — Custom Quote</option></select></div>
     <div class="station"><label>Electronics Studio</label><select id="pickups"><option value="0">HH Dual Humbuckers</option><option value="175">SH Configuration +$175</option><option value="250">Premium Modern Humbuckers +$250</option><option value="350">Active Pickup Set +$350</option><option value="450">Custom Wound Set +$450</option></select></div>
@@ -463,7 +483,7 @@ select{
 <script>
 const basePrice=3499;
 const priced=['finish','body','top','neck','fretboard','inlay','pickups','bridge','case'];
-const all=['finish','color','body','top','neck','fretboard','inlay','pickups','bridge','case'];
+const all=['finish','color','body','bodyVisual','top','neck','neckVisual','fretboard','inlay','pickups','bridge','case'];
 const $=id=>document.getElementById(id);
 
 function selectedText(id){
@@ -486,17 +506,34 @@ function setView(view){
   $('backView').classList.toggle('active',view==='back'||view==='dual');
 }
 
+function woodTexture(kind){
+  const textures={
+    flame:"repeating-linear-gradient(86deg,rgba(255,255,255,.26) 0 1px,transparent 1px 10px),repeating-linear-gradient(72deg,rgba(0,0,0,.15) 0 2px,transparent 2px 22px)",
+    quilt:"radial-gradient(circle at 25% 35%,rgba(255,255,255,.22),transparent 10%),radial-gradient(circle at 45% 58%,rgba(255,255,255,.16),transparent 12%),radial-gradient(circle at 66% 38%,rgba(0,0,0,.18),transparent 13%),repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 2px,transparent 2px 16px)",
+    burl:"radial-gradient(circle at 28% 42%,rgba(255,255,255,.22),transparent 8%),radial-gradient(circle at 42% 57%,rgba(0,0,0,.24),transparent 9%),radial-gradient(circle at 58% 45%,rgba(255,255,255,.16),transparent 7%),radial-gradient(circle at 70% 62%,rgba(0,0,0,.20),transparent 10%)",
+    exhibition:"repeating-linear-gradient(84deg,rgba(255,255,255,.30) 0 1px,transparent 1px 8px),radial-gradient(ellipse at 45% 50%,rgba(255,255,255,.15),transparent 38%)",
+    mahogany:"repeating-linear-gradient(88deg,rgba(123,65,36,.55) 0 2px,rgba(70,33,20,.35) 2px 7px,transparent 7px 17px)",
+    alder:"repeating-linear-gradient(88deg,rgba(218,173,119,.38) 0 1px,rgba(112,72,44,.12) 1px 8px,transparent 8px 20px)",
+    swampash:"repeating-linear-gradient(84deg,rgba(230,190,120,.45) 0 2px,rgba(74,45,20,.30) 2px 6px,transparent 6px 18px),repeating-linear-gradient(74deg,rgba(0,0,0,.20) 0 2px,transparent 2px 34px)",
+    blacklimba:"repeating-linear-gradient(86deg,rgba(160,120,64,.38) 0 2px,rgba(20,14,10,.42) 2px 8px,transparent 8px 20px)",
+    maple:"repeating-linear-gradient(88deg,rgba(240,205,145,.44) 0 1px,rgba(120,86,45,.12) 1px 8px,transparent 8px 18px)",
+    roasted:"repeating-linear-gradient(88deg,rgba(190,112,48,.42) 0 1px,rgba(70,34,16,.20) 1px 8px,transparent 8px 19px)",
+    wenge:"repeating-linear-gradient(88deg,rgba(80,48,30,.42) 0 2px,rgba(8,6,5,.48) 2px 7px,transparent 7px 18px)",
+    painted:"linear-gradient(90deg,rgba(255,255,255,.03),rgba(255,255,255,.015))"
+  };
+  return textures[kind] || textures.flame;
+}
+
 function applyVisuals(){
   const c=$('color').value;
   const finish=selectedText('finish').toLowerCase();
   const top=selectedText('top').toLowerCase();
+  const bodyVisual=$('bodyVisual').value;
+  const neckVisual=$('neckVisual').value;
 
   /*
-    Important fix:
-    The previous version used a large color layer above the guitar. Because the source PNGs sit
-    on a dark rectangular render, that layer could tint or flatten the entire stage. This version
-    colors the actual image through CSS filters instead, so the black studio background remains
-    black and the real Sphyx details stay visible.
+    The guitar image stays untouched underneath. These are subtle texture/filter layers
+    over the real Sphyx asset, not AI-redrawn shapes and not a flat sheet over the stage.
   */
   let finishFilter='none';
   let burstOpacity=0;
@@ -517,14 +554,26 @@ function applyVisuals(){
     finishFilter='brightness(1) contrast(1.04) saturate(.92)';
   }
 
-  if(finish.includes('dye')||finish.includes('burst')) burstOpacity=.42;
+  if(finish.includes('dye')||finish.includes('burst')) burstOpacity=.40;
 
-  let woodOpacity=(top.includes('flame')||top.includes('quilt')||top.includes('burled')||top.includes('exhibition')) ? .16 : .03;
+  let topKind='flame';
+  if(top.includes('quilt')) topKind='quilt';
+  if(top.includes('burl')) topKind='burl';
+  if(top.includes('exhibition')) topKind='exhibition';
+
+  const topOpacity = finish.includes('solid') ? .06 : .18;
+  const bodyOpacity = bodyVisual==='painted' ? .04 : .16;
+  const neckOpacity = .20;
 
   document.querySelectorAll('.guitar').forEach(el=>{
     el.style.setProperty('--finishFilter',finishFilter);
     el.style.setProperty('--burstOpacity',burstOpacity);
-    el.style.setProperty('--woodOpacity',woodOpacity);
+    el.style.setProperty('--topWoodTexture',woodTexture(topKind));
+    el.style.setProperty('--topWoodOpacity',topOpacity);
+    el.style.setProperty('--bodyWoodTexture',woodTexture(bodyVisual));
+    el.style.setProperty('--bodyWoodOpacity',bodyOpacity);
+    el.style.setProperty('--neckWoodTexture',woodTexture(neckVisual));
+    el.style.setProperty('--neckWoodOpacity',neckOpacity);
   });
 }
 
@@ -541,14 +590,16 @@ function update(){
     ? 'Custom quote decision included. Studio review required before approval.'
     : 'Estimate updates as decisions are selected. Final build is reviewed before approval.';
 
-  const chips=['SPHYX',selectedText('finish'),selectedText('color'),selectedText('top'),selectedText('fretboard'),selectedText('inlay'),selectedText('pickups'),selectedText('bridge')];
+  const chips=['SPHYX',selectedText('finish'),selectedText('color'),selectedText('bodyVisual'),selectedText('neckVisual'),selectedText('top'),selectedText('fretboard'),selectedText('inlay'),selectedText('pickups'),selectedText('bridge')];
   $('chips').innerHTML=chips.map(x=>`<span>${x}</span>`).join('');
 
   const specs=[
     ['Model','Sphyx'],
     ['Finish',selectedText('finish')],
     ['Color',selectedText('color')],
-    ['Top',selectedText('top')],
+    ['Top Cap',selectedText('top')],
+    ['Body / Back Wood',selectedText('bodyVisual')],
+    ['Neck Wood Visual',selectedText('neckVisual')],
     ['Fretboard',selectedText('fretboard')],
     ['Inlays',selectedText('inlay')],
     ['Pickups',selectedText('pickups')],
