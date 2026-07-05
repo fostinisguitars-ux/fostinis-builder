@@ -231,40 +231,44 @@ h1{
   height:100%;
   object-fit:contain;
   z-index:2;
-  filter:var(--tone,none);
+  filter:var(--finishFilter,none);
+  transition:filter .22s ease, opacity .22s ease;
 }
 .scene.dual .guitar{display:block}
 .wash{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  background:var(--wash,transparent);
-  opacity:var(--washOpacity,0);
-  mix-blend-mode:color;
-  pointer-events:none;
-  mask-image:radial-gradient(ellipse at 46% 55%,#000 0 42%,transparent 68%);
+  display:none;
 }
 .burst{
   position:absolute;
   inset:0;
   z-index:4;
   opacity:var(--burstOpacity,0);
-  mix-blend-mode:overlay;
   pointer-events:none;
-  background:radial-gradient(circle at 44% 54%,rgba(255,255,255,.26),transparent 19%,var(--mid,rgba(120,60,200,.48)) 42%,var(--edge,rgba(0,0,0,.76)) 75%);
-  mask-image:radial-gradient(ellipse at 46% 55%,#000 0 42%,transparent 68%);
+  mix-blend-mode:soft-light;
+  background:
+    radial-gradient(ellipse at 44% 54%,
+      rgba(255,255,255,.18) 0%,
+      rgba(255,255,255,.08) 18%,
+      transparent 30%),
+    radial-gradient(ellipse at 45% 55%,
+      transparent 0%,
+      transparent 38%,
+      rgba(0,0,0,.34) 62%,
+      rgba(0,0,0,.58) 78%,
+      transparent 84%);
+  mask-image:radial-gradient(ellipse at 45% 55%,#000 0 38%,transparent 58%);
 }
 .wood{
   position:absolute;
   inset:0;
   z-index:5;
-  opacity:var(--woodOpacity,.04);
+  opacity:var(--woodOpacity,.03);
   mix-blend-mode:overlay;
   pointer-events:none;
   background:
-    repeating-linear-gradient(88deg,rgba(255,255,255,.19) 0 2px,transparent 2px 15px),
-    repeating-linear-gradient(72deg,rgba(0,0,0,.20) 0 3px,transparent 3px 24px);
-  mask-image:radial-gradient(ellipse at 45% 55%,#000 0 35%,transparent 58%);
+    repeating-linear-gradient(88deg,rgba(255,255,255,.20) 0 1px,transparent 1px 12px),
+    repeating-linear-gradient(74deg,rgba(0,0,0,.16) 0 2px,transparent 2px 22px);
+  mask-image:radial-gradient(ellipse at 45% 55%,#000 0 34%,transparent 55%);
 }
 .chips{
   position:absolute;
@@ -437,7 +441,7 @@ select{
   <aside class="panel">
     <div class="eyebrow">Studio Estimate</div>
     <div class="price" id="price">$3,499</div>
-    <p class="note" id="priceNote">Estimate updates as decisions are selected. Final build is reviewed before approval.</p>
+    <p class="note" id="priceNote">Estimate updates as decisions are selected. Final build is reviewed before approval.</p><p class="note">Finish preview now preserves the studio background and the real Sphyx render details instead of laying a flat color sheet over the whole image.</p>
 
     <div class="station"><label>Finish Studio</label><select id="finish"><option value="0">Solid Color</option><option value="350">Dye / Burst Finish +$350</option><option value="quote">Special Artwork — Custom Quote</option></select></div>
     <div class="station"><label>Color Direction</label><select id="color"><option value="charcoal">Charcoal Solid</option><option value="black">Blackout</option><option value="purple">Purple Burst</option><option value="greenpurple">Green / Purple Fade</option><option value="blue">Blue Burst</option><option value="bourbon">Bourbon Burst</option><option value="amber">Natural Amber</option></select></div>
@@ -487,28 +491,39 @@ function applyVisuals(){
   const finish=selectedText('finish').toLowerCase();
   const top=selectedText('top').toLowerCase();
 
-  let wash='transparent', washOpacity=0, burstOpacity=0, tone='none';
-  let mid='rgba(120,60,200,.48)', edge='rgba(0,0,0,.76)';
+  /*
+    Important fix:
+    The previous version used a large color layer above the guitar. Because the source PNGs sit
+    on a dark rectangular render, that layer could tint or flatten the entire stage. This version
+    colors the actual image through CSS filters instead, so the black studio background remains
+    black and the real Sphyx details stay visible.
+  */
+  let finishFilter='none';
+  let burstOpacity=0;
 
-  if(c==='black'){tone='brightness(.55) contrast(1.12)';wash='#111';washOpacity=.18}
-  else if(c==='purple'){wash='#7432d8';washOpacity=.46;mid='rgba(116,50,216,.55)';edge='rgba(18,0,38,.78)'}
-  else if(c==='greenpurple'){wash='#35a86b';washOpacity=.42;mid='rgba(53,168,107,.48)';edge='rgba(86,0,160,.68)'}
-  else if(c==='blue'){wash='#245ed6';washOpacity=.44;mid='rgba(36,94,214,.50)';edge='rgba(0,8,45,.75)'}
-  else if(c==='bourbon'){wash='#9b431a';washOpacity=.46;mid='rgba(165,75,26,.48)';edge='rgba(50,12,4,.75)'}
-  else if(c==='amber'){wash='#c47b2c';washOpacity=.40;mid='rgba(196,123,44,.45)'}
-  else {wash='#777';washOpacity=.035}
+  if(c==='black'){
+    finishFilter='brightness(.58) contrast(1.22) saturate(.75)';
+  }else if(c==='purple'){
+    finishFilter='brightness(.92) contrast(1.12) saturate(1.65) sepia(.24) hue-rotate(224deg)';
+  }else if(c==='greenpurple'){
+    finishFilter='brightness(.94) contrast(1.10) saturate(1.55) sepia(.28) hue-rotate(104deg)';
+  }else if(c==='blue'){
+    finishFilter='brightness(.92) contrast(1.10) saturate(1.55) sepia(.20) hue-rotate(184deg)';
+  }else if(c==='bourbon'){
+    finishFilter='brightness(.95) contrast(1.12) saturate(1.45) sepia(.46) hue-rotate(338deg)';
+  }else if(c==='amber'){
+    finishFilter='brightness(1.02) contrast(1.06) saturate(1.28) sepia(.50) hue-rotate(350deg)';
+  }else{
+    finishFilter='brightness(1) contrast(1.04) saturate(.92)';
+  }
 
-  if(finish.includes('dye')||finish.includes('burst')) burstOpacity=.56;
+  if(finish.includes('dye')||finish.includes('burst')) burstOpacity=.42;
 
-  let woodOpacity=(top.includes('flame')||top.includes('quilt')||top.includes('burled')||top.includes('exhibition')) ? .20 : .04;
+  let woodOpacity=(top.includes('flame')||top.includes('quilt')||top.includes('burled')||top.includes('exhibition')) ? .16 : .03;
 
   document.querySelectorAll('.guitar').forEach(el=>{
-    el.style.setProperty('--tone',tone);
-    el.style.setProperty('--wash',wash);
-    el.style.setProperty('--washOpacity',washOpacity);
+    el.style.setProperty('--finishFilter',finishFilter);
     el.style.setProperty('--burstOpacity',burstOpacity);
-    el.style.setProperty('--mid',mid);
-    el.style.setProperty('--edge',edge);
     el.style.setProperty('--woodOpacity',woodOpacity);
   });
 }
