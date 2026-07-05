@@ -231,7 +231,7 @@ h1{
   height:100%;
   object-fit:contain;
   z-index:2;
-  filter:var(--finishFilter,none);
+  filter:var(--baseFilter,contrast(1.04));
   transition:filter .22s ease, opacity .22s ease;
 }
 .scene.dual .guitar{display:block}
@@ -375,6 +375,51 @@ select{
   line-height:1.5;
   margin-top:13px;
 }
+
+.finishTint,.topTexture,.bodyTexture,.neckTexture{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.finishTint{
+  z-index:7;
+  opacity:var(--finishOpacity,.0);
+  background:var(--finishColor,transparent);
+  mix-blend-mode:multiply;
+  mask-image:var(--guitarMask);
+  -webkit-mask-image:var(--guitarMask);
+}
+.topTexture{
+  z-index:8;
+  opacity:var(--topTextureOpacity,.0);
+  background:var(--topTexture,transparent);
+  mix-blend-mode:overlay;
+  mask-image:var(--topMask);
+  -webkit-mask-image:var(--topMask);
+}
+.bodyTexture{
+  z-index:9;
+  opacity:var(--bodyTextureOpacity,.0);
+  background:var(--bodyTexture,transparent);
+  mix-blend-mode:overlay;
+  mask-image:var(--bodyMask);
+  -webkit-mask-image:var(--bodyMask);
+}
+.neckTexture{
+  z-index:10;
+  opacity:var(--neckTextureOpacity,.0);
+  background:var(--neckTexture,transparent);
+  mix-blend-mode:overlay;
+  mask-image:var(--neckMask);
+  -webkit-mask-image:var(--neckMask);
+}
+.guitar.debug-layers .finishTint,
+.guitar.debug-layers .topTexture,
+.guitar.debug-layers .bodyTexture,
+.guitar.debug-layers .neckTexture{
+  mix-blend-mode:normal;
+}
+
 @media(max-width:1180px){
   .shell{grid-template-columns:1fr}
   .panel{max-height:none}
@@ -444,11 +489,11 @@ select{
       <div class="scene" id="scene">
         <div class="guitar active" id="frontView">
           <img src="https://fostinisguitars-ux.github.io/fostinis-builder/sphyx_front.png" alt="Sphyx front view">
-          <div class="wash"></div><div class="burst"></div><div class="bodywood"></div><div class="wood"></div><div class="neckwood"></div>
+          <div class="finishTint"></div><div class="topTexture"></div><div class="bodyTexture"></div><div class="neckTexture"></div>
         </div>
         <div class="guitar" id="backView">
           <img src="https://fostinisguitars-ux.github.io/fostinis-builder/sphyx_back.png" alt="Sphyx back view">
-          <div class="wash"></div><div class="burst"></div><div class="bodywood"></div><div class="wood"></div><div class="neckwood"></div>
+          <div class="finishTint"></div><div class="topTexture"></div><div class="bodyTexture"></div><div class="neckTexture"></div>
         </div>
       </div>
     </div>
@@ -459,10 +504,11 @@ select{
   <aside class="panel">
     <div class="eyebrow">Studio Estimate</div>
     <div class="price" id="price">$3,499</div>
-    <p class="note" id="priceNote">Estimate updates as decisions are selected. Final build is reviewed before approval.</p><p class="note">Finish preview now preserves the studio background and the real Sphyx render details instead of laying a flat color sheet over the whole image.</p>
+    <p class="note" id="priceNote">Estimate updates as decisions are selected. Final build is reviewed before approval.</p><p class="note">Visuals are now intentionally stronger so you can confirm the menus are working. These overlays sit on the real Sphyx asset; later we can replace broad masks with exact part masks.</p>
 
     <div class="station"><label>Finish Studio</label><select id="finish"><option value="0">Solid Color</option><option value="350">Dye / Burst Finish +$350</option><option value="quote">Special Artwork — Custom Quote</option></select></div>
     <div class="station"><label>Color Direction</label><select id="color"><option value="charcoal">Charcoal Solid</option><option value="black">Blackout</option><option value="purple">Purple Burst</option><option value="greenpurple">Green / Purple Fade</option><option value="blue">Blue Burst</option><option value="bourbon">Bourbon Burst</option><option value="amber">Natural Amber</option></select></div>
+    <div class="station"><label>Visual Strength</label><select id="visualStrength"><option value="realistic">Realistic / subtle</option><option value="strong" selected>Strong preview</option><option value="max">Maximum visibility</option></select></div>
     <div class="station"><label>Construction Studio — Body Wood</label><select id="body"><option value="0">Mahogany Body</option><option value="250">Alder Body +$250</option><option value="350">Swamp Ash Body +$350</option><option value="450">Black Limba Body +$450</option><option value="quote">Other Body Wood — Custom Quote</option></select></div>
     <div class="station"><label>Body / Back Wood Visual</label><select id="bodyVisual"><option value="mahogany">Mahogany — warm brown grain</option><option value="alder">Alder — light straight grain</option><option value="swampash">Swamp Ash — open bold grain</option><option value="blacklimba">Black Limba — dark streaked grain</option><option value="painted">Painted / opaque body back</option></select></div>
     <div class="station"><label>Top Wood</label><select id="top"><option value="0">Flame Maple Top</option><option value="350">Quilted Maple Top +$350</option><option value="450">Burled Maple Top +$450</option><option value="650">Exhibition Maple Top +$650</option><option value="quote">Rare / Specialty Top — Custom Quote</option></select></div>
@@ -483,7 +529,7 @@ select{
 <script>
 const basePrice=3499;
 const priced=['finish','body','top','neck','fretboard','inlay','pickups','bridge','case'];
-const all=['finish','color','body','bodyVisual','top','neck','neckVisual','fretboard','inlay','pickups','bridge','case'];
+const all=['finish','color','visualStrength','body','bodyVisual','top','neck','neckVisual','fretboard','inlay','pickups','bridge','case'];
 const $=id=>document.getElementById(id);
 
 function selectedText(id){
@@ -508,18 +554,18 @@ function setView(view){
 
 function woodTexture(kind){
   const textures={
-    flame:"repeating-linear-gradient(86deg,rgba(255,255,255,.26) 0 1px,transparent 1px 10px),repeating-linear-gradient(72deg,rgba(0,0,0,.15) 0 2px,transparent 2px 22px)",
-    quilt:"radial-gradient(circle at 25% 35%,rgba(255,255,255,.22),transparent 10%),radial-gradient(circle at 45% 58%,rgba(255,255,255,.16),transparent 12%),radial-gradient(circle at 66% 38%,rgba(0,0,0,.18),transparent 13%),repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 2px,transparent 2px 16px)",
-    burl:"radial-gradient(circle at 28% 42%,rgba(255,255,255,.22),transparent 8%),radial-gradient(circle at 42% 57%,rgba(0,0,0,.24),transparent 9%),radial-gradient(circle at 58% 45%,rgba(255,255,255,.16),transparent 7%),radial-gradient(circle at 70% 62%,rgba(0,0,0,.20),transparent 10%)",
-    exhibition:"repeating-linear-gradient(84deg,rgba(255,255,255,.30) 0 1px,transparent 1px 8px),radial-gradient(ellipse at 45% 50%,rgba(255,255,255,.15),transparent 38%)",
-    mahogany:"repeating-linear-gradient(88deg,rgba(123,65,36,.55) 0 2px,rgba(70,33,20,.35) 2px 7px,transparent 7px 17px)",
-    alder:"repeating-linear-gradient(88deg,rgba(218,173,119,.38) 0 1px,rgba(112,72,44,.12) 1px 8px,transparent 8px 20px)",
-    swampash:"repeating-linear-gradient(84deg,rgba(230,190,120,.45) 0 2px,rgba(74,45,20,.30) 2px 6px,transparent 6px 18px),repeating-linear-gradient(74deg,rgba(0,0,0,.20) 0 2px,transparent 2px 34px)",
-    blacklimba:"repeating-linear-gradient(86deg,rgba(160,120,64,.38) 0 2px,rgba(20,14,10,.42) 2px 8px,transparent 8px 20px)",
-    maple:"repeating-linear-gradient(88deg,rgba(240,205,145,.44) 0 1px,rgba(120,86,45,.12) 1px 8px,transparent 8px 18px)",
-    roasted:"repeating-linear-gradient(88deg,rgba(190,112,48,.42) 0 1px,rgba(70,34,16,.20) 1px 8px,transparent 8px 19px)",
-    wenge:"repeating-linear-gradient(88deg,rgba(80,48,30,.42) 0 2px,rgba(8,6,5,.48) 2px 7px,transparent 7px 18px)",
-    painted:"linear-gradient(90deg,rgba(255,255,255,.03),rgba(255,255,255,.015))"
+    flame:"repeating-linear-gradient(86deg,rgba(255,255,255,.85) 0 2px,transparent 2px 11px),repeating-linear-gradient(72deg,rgba(0,0,0,.42) 0 2px,transparent 2px 21px)",
+    quilt:"radial-gradient(circle at 24% 34%,rgba(255,255,255,.75),transparent 12%),radial-gradient(circle at 45% 58%,rgba(255,255,255,.55),transparent 13%),radial-gradient(circle at 66% 38%,rgba(0,0,0,.50),transparent 14%),repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 2px,transparent 2px 15px)",
+    burl:"radial-gradient(circle at 28% 42%,rgba(255,255,255,.75),transparent 9%),radial-gradient(circle at 42% 57%,rgba(0,0,0,.62),transparent 10%),radial-gradient(circle at 58% 45%,rgba(255,255,255,.52),transparent 8%),radial-gradient(circle at 70% 62%,rgba(0,0,0,.55),transparent 11%)",
+    exhibition:"repeating-linear-gradient(84deg,rgba(255,255,255,.90) 0 2px,transparent 2px 8px),radial-gradient(ellipse at 45% 50%,rgba(255,255,255,.40),transparent 38%)",
+    mahogany:"linear-gradient(90deg,rgba(91,42,22,.85),rgba(145,72,38,.65)),repeating-linear-gradient(88deg,rgba(255,210,160,.45) 0 2px,rgba(70,33,20,.65) 2px 7px,transparent 7px 17px)",
+    alder:"linear-gradient(90deg,rgba(210,155,95,.70),rgba(235,190,135,.55)),repeating-linear-gradient(88deg,rgba(255,235,185,.55) 0 2px,rgba(112,72,44,.28) 2px 8px,transparent 8px 20px)",
+    swampash:"linear-gradient(90deg,rgba(225,175,90,.70),rgba(120,70,25,.45)),repeating-linear-gradient(84deg,rgba(255,235,165,.70) 0 3px,rgba(74,45,20,.58) 3px 7px,transparent 7px 18px),repeating-linear-gradient(74deg,rgba(0,0,0,.45) 0 2px,transparent 2px 34px)",
+    blacklimba:"linear-gradient(90deg,rgba(160,115,55,.55),rgba(30,20,12,.75)),repeating-linear-gradient(86deg,rgba(215,170,95,.55) 0 2px,rgba(10,7,5,.78) 2px 8px,transparent 8px 20px)",
+    maple:"linear-gradient(90deg,rgba(245,208,145,.72),rgba(255,235,180,.45)),repeating-linear-gradient(88deg,rgba(255,245,205,.65) 0 2px,rgba(120,86,45,.26) 2px 8px,transparent 8px 18px)",
+    roasted:"linear-gradient(90deg,rgba(180,92,35,.70),rgba(230,145,65,.45)),repeating-linear-gradient(88deg,rgba(255,190,110,.55) 0 2px,rgba(70,34,16,.46) 2px 8px,transparent 8px 19px)",
+    wenge:"linear-gradient(90deg,rgba(50,30,18,.80),rgba(8,6,5,.85)),repeating-linear-gradient(88deg,rgba(110,70,45,.52) 0 2px,rgba(5,4,3,.85) 2px 7px,transparent 7px 18px)",
+    painted:"linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.02))"
   };
   return textures[kind] || textures.flame;
 }
@@ -528,52 +574,51 @@ function applyVisuals(){
   const c=$('color').value;
   const finish=selectedText('finish').toLowerCase();
   const top=selectedText('top').toLowerCase();
-  const bodyVisual=$('bodyVisual').value;
-  const neckVisual=$('neckVisual').value;
+  const bodyVisual=$('bodyVisual') ? $('bodyVisual').value : 'mahogany';
+  const neckVisual=$('neckVisual') ? $('neckVisual').value : 'mahogany';
+  const strength=$('visualStrength') ? $('visualStrength').value : 'strong';
 
-  /*
-    The guitar image stays untouched underneath. These are subtle texture/filter layers
-    over the real Sphyx asset, not AI-redrawn shapes and not a flat sheet over the stage.
-  */
-  let finishFilter='none';
-  let burstOpacity=0;
-
-  if(c==='black'){
-    finishFilter='brightness(.58) contrast(1.22) saturate(.75)';
-  }else if(c==='purple'){
-    finishFilter='brightness(.92) contrast(1.12) saturate(1.65) sepia(.24) hue-rotate(224deg)';
-  }else if(c==='greenpurple'){
-    finishFilter='brightness(.94) contrast(1.10) saturate(1.55) sepia(.28) hue-rotate(104deg)';
-  }else if(c==='blue'){
-    finishFilter='brightness(.92) contrast(1.10) saturate(1.55) sepia(.20) hue-rotate(184deg)';
-  }else if(c==='bourbon'){
-    finishFilter='brightness(.95) contrast(1.12) saturate(1.45) sepia(.46) hue-rotate(338deg)';
-  }else if(c==='amber'){
-    finishFilter='brightness(1.02) contrast(1.06) saturate(1.28) sepia(.50) hue-rotate(350deg)';
-  }else{
-    finishFilter='brightness(1) contrast(1.04) saturate(.92)';
-  }
-
-  if(finish.includes('dye')||finish.includes('burst')) burstOpacity=.40;
+  let finishColor='rgba(120,120,120,.12)';
+  if(c==='black') finishColor='rgba(0,0,0,.56)';
+  if(c==='purple') finishColor='rgba(112,40,220,.58)';
+  if(c==='greenpurple') finishColor='linear-gradient(90deg,rgba(42,160,98,.58),rgba(110,35,210,.46))';
+  if(c==='blue') finishColor='rgba(35,88,210,.56)';
+  if(c==='bourbon') finishColor='rgba(140,58,22,.58)';
+  if(c==='amber') finishColor='rgba(200,122,35,.50)';
 
   let topKind='flame';
   if(top.includes('quilt')) topKind='quilt';
   if(top.includes('burl')) topKind='burl';
   if(top.includes('exhibition')) topKind='exhibition';
 
-  const topOpacity = finish.includes('solid') ? .06 : .18;
-  const bodyOpacity = bodyVisual==='painted' ? .04 : .16;
-  const neckOpacity = .20;
+  const scale = strength==='max' ? 1.45 : strength==='strong' ? 1.0 : .55;
+  const isSolid = finish.includes('solid');
+
+  /*
+    These masks are intentionally broad and visible. They do not redraw the guitar;
+    they place visible texture regions over the real Sphyx asset so you can confirm
+    the menus are actually changing. Later these masks can be tightened with exact
+    transparent PNG part masks.
+  */
+  const guitarMask='radial-gradient(ellipse at 48% 55%, #000 0 46%, transparent 66%)';
+  const topMask='radial-gradient(ellipse at 40% 57%, #000 0 26%, transparent 42%)';
+  const bodyMask='radial-gradient(ellipse at 39% 58%, #000 0 31%, transparent 48%)';
+  const neckMask='linear-gradient(82deg, transparent 0 39%, #000 43% 72%, transparent 77%)';
 
   document.querySelectorAll('.guitar').forEach(el=>{
-    el.style.setProperty('--finishFilter',finishFilter);
-    el.style.setProperty('--burstOpacity',burstOpacity);
-    el.style.setProperty('--topWoodTexture',woodTexture(topKind));
-    el.style.setProperty('--topWoodOpacity',topOpacity);
-    el.style.setProperty('--bodyWoodTexture',woodTexture(bodyVisual));
-    el.style.setProperty('--bodyWoodOpacity',bodyOpacity);
-    el.style.setProperty('--neckWoodTexture',woodTexture(neckVisual));
-    el.style.setProperty('--neckWoodOpacity',neckOpacity);
+    el.style.setProperty('--baseFilter','contrast(1.08) brightness(.98)');
+    el.style.setProperty('--finishColor',finishColor);
+    el.style.setProperty('--finishOpacity',String((isSolid ? .30 : .48) * scale));
+    el.style.setProperty('--topTexture',woodTexture(topKind));
+    el.style.setProperty('--topTextureOpacity',String((isSolid ? .22 : .52) * scale));
+    el.style.setProperty('--bodyTexture',woodTexture(bodyVisual));
+    el.style.setProperty('--bodyTextureOpacity',String((bodyVisual==='painted' ? .10 : .42) * scale));
+    el.style.setProperty('--neckTexture',woodTexture(neckVisual));
+    el.style.setProperty('--neckTextureOpacity',String(.55 * scale));
+    el.style.setProperty('--guitarMask',guitarMask);
+    el.style.setProperty('--topMask',topMask);
+    el.style.setProperty('--bodyMask',bodyMask);
+    el.style.setProperty('--neckMask',neckMask);
   });
 }
 
