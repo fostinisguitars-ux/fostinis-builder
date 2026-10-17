@@ -1,0 +1,67 @@
+{
+  "layout": {
+    "units": "mm",
+    "originalNeckPickupY": 77.387566,
+    "neckPickupY": 86.51256576,
+    "bridgePickupY": -10.437434,
+    "fretboardEndY": 107.18756576,
+    "maximumFretboardPickupGapMm": 3.175,
+    "openCoilHalfLengthMm": 17.5,
+    "coveredPickupHalfLengthMm": 18.5,
+    "mountingFrameHalfLengthMm": 20
+  },
+  "neckPickupShiftMm": 9.124999759999994,
+  "scaleLengthMm": 647.7,
+  "neckTranslated": false,
+  "bridgeTranslated": false,
+  "bodies": {
+    "matadaur_standard": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0.0,
+      "outsideRoutingRemovedMm3": 0.0,
+      "outsideRoutingAddedMm3": 0.0,
+      "routingFloorZMm": -30.166034555429995,
+      "neckPickupY": 86.51256576
+    },
+    "matadaur_tremolo": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0.0,
+      "outsideRoutingRemovedMm3": 0.0,
+      "outsideRoutingAddedMm3": 0.0,
+      "routingFloorZMm": -30.166034555429995,
+      "neckPickupY": 86.51256576
+    },
+    "oryx_standard": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0.0,
+      "outsideRoutingRemovedMm3": 0.0,
+      "outsideRoutingAddedMm3": 0.0,
+      "routingFloorZMm": -27.499609375,
+      "neckPickupY": 86.51256576
+    },
+    "oryx_tremolo": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0.0,
+      "outsideRoutingRemovedMm3": 0.0,
+      "outsideRoutingAddedMm3": 0.0,
+      "routingFloorZMm": -27.499609375,
+      "neckPickupY": 86.51256576
+    },
+    "sphyx_standard": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0.0,
+      "outsideRoutingRemovedMm3": 0.0,
+      "outsideRoutingAddedMm3": 0.0,
+      "routingFloorZMm": -27.499609375,
+      "neckPickupY": 86.51256576
+    },
+    "sphyx_tremolo": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0.0,
+      "outsideRoutingRemovedMm3": 0.0,
+      "outsideRoutingAddedMm3": 0.0,
+      "routingFloorZMm": -27.499609375,
+      "neckPickupY": 86.51256576
+    }
+  }
+}

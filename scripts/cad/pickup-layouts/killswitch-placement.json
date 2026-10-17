@@ -1,0 +1,167 @@
+{
+  "sphyx": {
+    "positionMm": [
+      126,
+      -126,
+      -6.47079630986835
+    ],
+    "normal": [
+      0.3627356894866077,
+      -0.035622223006412775,
+      0.9312109733034489
+    ],
+    "triangle": 4902,
+    "buttonRadiusMm": 7.5,
+    "frontCircleSamplesInsideTop": 64,
+    "backCircleSamplesInsideCover": 64,
+    "samples": 64,
+    "backCoverCenter": {
+      "positionMm": [
+        126,
+        -126,
+        -42.59961098432541
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "triangle": 240
+    },
+    "vacantPot": {
+      "positionMm": [
+        108.12143236398697,
+        -100.11876747012138,
+        -10.292535080742722
+      ],
+      "normal": [
+        0.14622447196746702,
+        0.05128917949067292,
+        0.9879209603328644
+      ],
+      "triangle": 673,
+      "recessIndex": 1,
+      "boreCenterMm": [
+        108.12143236398697,
+        -100.11876747012138
+      ],
+      "seatingRaiseMm": 0,
+      "buttonRadiusMm": 7.5,
+      "rimSamplesInsideTop": 64,
+      "backCircleSamplesInsideCover": 64,
+      "samples": 64,
+      "minRimClearanceMm": 1.056987961997427,
+      "maxRimClearanceMm": 1.156462748526316
+    }
+  },
+  "oryx": {
+    "positionMm": [
+      126,
+      -126,
+      -6.421316423243995
+    ],
+    "normal": [
+      0.3521760038117437,
+      -0.03604377424161082,
+      0.9352394926849543
+    ],
+    "triangle": 22862,
+    "buttonRadiusMm": 7.5,
+    "frontCircleSamplesInsideTop": 64,
+    "backCircleSamplesInsideCover": 64,
+    "samples": 64,
+    "backCoverCenter": {
+      "positionMm": [
+        126,
+        -126,
+        -42.59961098432541
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "triangle": 240
+    },
+    "vacantPot": {
+      "positionMm": [
+        108.12143236398697,
+        -100.11876747012138,
+        -10.292535080742722
+      ],
+      "normal": [
+        0.14622447196746702,
+        0.05128917949067292,
+        0.9879209603328644
+      ],
+      "triangle": 673,
+      "recessIndex": 1,
+      "boreCenterMm": [
+        108.12143236398697,
+        -100.11876747012138
+      ],
+      "seatingRaiseMm": 0,
+      "buttonRadiusMm": 7.5,
+      "rimSamplesInsideTop": 64,
+      "backCircleSamplesInsideCover": 64,
+      "samples": 64,
+      "minRimClearanceMm": 1.056987961997427,
+      "maxRimClearanceMm": 1.156462748526316
+    }
+  },
+  "matadaur": {
+    "positionMm": [
+      126,
+      -126,
+      -12.454638361712437
+    ],
+    "normal": [
+      0.3497983895519449,
+      -0.03858054599136336,
+      0.9360302495848487
+    ],
+    "triangle": 9523,
+    "buttonRadiusMm": 7.5,
+    "frontCircleSamplesInsideTop": 64,
+    "backCircleSamplesInsideCover": 64,
+    "samples": 64,
+    "backCoverCenter": {
+      "positionMm": [
+        126,
+        -126,
+        -45.266035944223404
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ],
+      "triangle": 237
+    },
+    "vacantPot": {
+      "positionMm": [
+        108.12162980437279,
+        -100.11856630444527,
+        -11.778417847764553
+      ],
+      "normal": [
+        0.3924989767778024,
+        0.03132668563922028,
+        0.9192187944092742
+      ],
+      "triangle": 524,
+      "recessIndex": 1,
+      "boreCenterMm": [
+        108.12162980437279,
+        -100.11856630444527
+      ],
+      "seatingRaiseMm": 0,
+      "buttonRadiusMm": 7.5,
+      "rimSamplesInsideTop": 64,
+      "backCircleSamplesInsideCover": 64,
+      "samples": 64,
+      "minRimClearanceMm": 1.0851417038946476,
+      "maxRimClearanceMm": 1.3157778273026937
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "neckUnchanged": true,
+  "carvedCapUnchanged": true,
+  "bodies": {
+    "oryx_standard": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0.0,
+      "removedPocketLipMm3": 27.941082,
+      "carvedCapUnchanged": true
+    },
+    "oryx_tremolo": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0.0,
+      "removedPocketLipMm3": 27.941082,
+      "carvedCapUnchanged": true
+    }
+  }
+}

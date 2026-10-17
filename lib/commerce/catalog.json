@@ -1,0 +1,2067 @@
+{
+  "version": "2026-10-17-faded-burst",
+  "checkedAt": "2026-10-16",
+  "currency": "usd",
+  "currencyApproved": true,
+  "checkoutEnabled": true,
+  "models": {
+    "sphyx": {
+      "name": "Sphyx",
+      "cents": 349900
+    },
+    "oryx": {
+      "name": "Oryx",
+      "cents": 399900
+    },
+    "matadaur": {
+      "name": "Matadaur",
+      "cents": 449900
+    }
+  },
+  "provenance": "Model starting amounts approved July 6, 2026. Owner-approved hardware allowances and 20% excess-only markup, fixed figured-maple and burst charges, and all remaining listed options included at no extra charge. Shipping, tax and payment launch still require configuration. Headstock bursts are included at zero extra charge per the owner’s October 15 instruction. Headstocks offer only body-matched color/burst or classic black, both included, per the owner’s October 16 instruction. Owner instruction October 16: single humbucker included; popular pickup combinations priced using existing allowance; $50 per modified pot; gig bag included; custom fitted case +$500. Installed momentary killswitch +$75 based on posted US shop labor and roughly $20 switch.",
+  "fields": {
+    "finishType": {
+      "label": "Top finish type",
+      "options": {
+        "dye": {
+          "label": "Transparent stain / dye",
+          "cents": 0,
+          "approved": true
+        },
+        "solid": {
+          "label": "Solid color (opaque)",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "backFinishType": {
+      "label": "Back finish type",
+      "options": {
+        "dye": {
+          "label": "Transparent stain / dye",
+          "cents": 0,
+          "approved": true
+        },
+        "solid": {
+          "label": "Solid color (opaque)",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "neckFinishType": {
+      "label": "Neck finish type",
+      "options": {
+        "dye": {
+          "label": "Transparent stain / dye",
+          "cents": 0,
+          "approved": true
+        },
+        "solid": {
+          "label": "Solid color (opaque)",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "burst": {
+      "label": "Top burst",
+      "options": {
+        "none": {
+          "label": "No burst",
+          "cents": 0,
+          "approved": true
+        },
+        "faded": {
+          "label": "Faded burst · chosen color",
+          "cents": 15000,
+          "approved": true
+        },
+        "honey": {
+          "label": "Honey amber burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "icedtea": {
+          "label": "Iced tea burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "cherry": {
+          "label": "Cherry sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "tobacco": {
+          "label": "Tobacco sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "bourbon": {
+          "label": "Bourbon burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "darkcherry": {
+          "label": "Dark cherry sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "charcoal": {
+          "label": "Charcoal smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "cobalt": {
+          "label": "Cobalt smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "fire": {
+          "label": "Fire smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "violet": {
+          "label": "Violet burst",
+          "cents": 15000,
+          "approved": true
+        }
+      }
+    },
+    "burstWidth": {
+      "label": "Burst spread",
+      "options": {
+        "subtle": {
+          "label": "Subtle edge fade",
+          "cents": 0,
+          "approved": true
+        },
+        "standard": {
+          "label": "Classic sunburst",
+          "cents": 0,
+          "approved": true
+        },
+        "wide": {
+          "label": "Wide graduated burst",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "headstockBurst": {
+      "label": "Headstock finish",
+      "default": "black",
+      "legacyAliases": {
+        "none": "black",
+        "faded": "match",
+        "honey": "match",
+        "icedtea": "match",
+        "cherry": "match",
+        "tobacco": "match",
+        "bourbon": "match",
+        "darkcherry": "match",
+        "charcoal": "match",
+        "cobalt": "match",
+        "fire": "match",
+        "violet": "match"
+      },
+      "options": {
+        "match": {
+          "label": "Match body color",
+          "cents": 0,
+          "approved": true
+        },
+        "black": {
+          "label": "Classic black",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "backBurst": {
+      "label": "Back burst",
+      "options": {
+        "none": {
+          "label": "No burst",
+          "cents": 0,
+          "approved": true
+        },
+        "faded": {
+          "label": "Faded burst · chosen color",
+          "cents": 15000,
+          "approved": true
+        },
+        "honey": {
+          "label": "Honey amber burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "icedtea": {
+          "label": "Iced tea burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "cherry": {
+          "label": "Cherry sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "tobacco": {
+          "label": "Tobacco sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "bourbon": {
+          "label": "Bourbon burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "darkcherry": {
+          "label": "Dark cherry sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "charcoal": {
+          "label": "Charcoal smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "cobalt": {
+          "label": "Cobalt smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "fire": {
+          "label": "Fire smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "violet": {
+          "label": "Violet burst",
+          "cents": 15000,
+          "approved": true
+        }
+      }
+    },
+    "neckBurst": {
+      "label": "Neck burst",
+      "options": {
+        "none": {
+          "label": "No burst",
+          "cents": 0,
+          "approved": true
+        },
+        "faded": {
+          "label": "Faded burst · chosen color",
+          "cents": 15000,
+          "approved": true
+        },
+        "honey": {
+          "label": "Honey amber burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "icedtea": {
+          "label": "Iced tea burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "cherry": {
+          "label": "Cherry sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "tobacco": {
+          "label": "Tobacco sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "bourbon": {
+          "label": "Bourbon burst",
+          "cents": 15000,
+          "approved": true
+        },
+        "darkcherry": {
+          "label": "Dark cherry sunburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "charcoal": {
+          "label": "Charcoal smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "cobalt": {
+          "label": "Cobalt smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "fire": {
+          "label": "Fire smokeburst",
+          "cents": 15000,
+          "approved": true
+        },
+        "violet": {
+          "label": "Violet burst",
+          "cents": 15000,
+          "approved": true
+        }
+      }
+    },
+    "backWood": {
+      "label": "Back wood / veneer",
+      "options": {
+        "flame": {
+          "label": "Flamed maple veneer",
+          "cents": 20000,
+          "approved": true
+        },
+        "quilt": {
+          "label": "Quilted big leaf maple veneer",
+          "cents": 40000,
+          "approved": true
+        },
+        "ash": {
+          "label": "Ash",
+          "cents": 0,
+          "approved": true
+        },
+        "walnut": {
+          "label": "Walnut",
+          "cents": 0,
+          "approved": true
+        },
+        "mahogany": {
+          "label": "Red mahogany",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "backFinish": {
+      "label": "Back color / stain",
+      "options": {
+        "natural": {
+          "label": "Natural clear",
+          "cents": 0,
+          "approved": true
+        },
+        "amber": {
+          "label": "Vintage amber",
+          "cents": 0,
+          "approved": true
+        },
+        "lemon": {
+          "label": "Lemon drop",
+          "cents": 0,
+          "approved": true
+        },
+        "tobacco": {
+          "label": "Tobacco amber",
+          "cents": 0,
+          "approved": true
+        },
+        "bourbon": {
+          "label": "Bourbon orange",
+          "cents": 0,
+          "approved": true
+        },
+        "cherry": {
+          "label": "Cherry red",
+          "cents": 0,
+          "approved": true
+        },
+        "ruby": {
+          "label": "Ruby red",
+          "cents": 0,
+          "approved": true
+        },
+        "ocean": {
+          "label": "Ocean blue",
+          "cents": 0,
+          "approved": true
+        },
+        "sapphire": {
+          "label": "Deep sapphire",
+          "cents": 0,
+          "approved": true
+        },
+        "purple": {
+          "label": "Royal purple",
+          "cents": 0,
+          "approved": true
+        },
+        "emerald": {
+          "label": "Emerald green",
+          "cents": 0,
+          "approved": true
+        },
+        "greenpurple": {
+          "label": "Emerald lime",
+          "cents": 0,
+          "approved": true
+        },
+        "smoke": {
+          "label": "Silver smoke",
+          "cents": 0,
+          "approved": true
+        },
+        "black": {
+          "label": "Black dye",
+          "cents": 0,
+          "approved": true
+        },
+        "walnut": {
+          "label": "Natural walnut",
+          "cents": 0,
+          "approved": true
+        },
+        "mahogany": {
+          "label": "Natural mahogany",
+          "cents": 0,
+          "approved": true
+        },
+        "blonde": {
+          "label": "Blonde ash",
+          "cents": 0,
+          "approved": true
+        },
+        "white": {
+          "label": "Translucent pearl white",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "backSheen": {
+      "label": "Back sheen",
+      "options": {
+        "gloss": {
+          "label": "High gloss",
+          "cents": 0,
+          "approved": true
+        },
+        "satin": {
+          "label": "Satin",
+          "cents": 0,
+          "approved": true
+        },
+        "matte": {
+          "label": "Matte",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "neckWood": {
+      "label": "Neck wood",
+      "options": {
+        "flame": {
+          "label": "Flame maple",
+          "cents": 20000,
+          "approved": true
+        },
+        "mahogany": {
+          "label": "Red mahogany",
+          "cents": 0,
+          "approved": true
+        },
+        "walnut": {
+          "label": "Walnut",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "neckFinish": {
+      "label": "Neck color / stain",
+      "options": {
+        "natural": {
+          "label": "Natural clear",
+          "cents": 0,
+          "approved": true
+        },
+        "amber": {
+          "label": "Vintage amber",
+          "cents": 0,
+          "approved": true
+        },
+        "lemon": {
+          "label": "Lemon drop",
+          "cents": 0,
+          "approved": true
+        },
+        "tobacco": {
+          "label": "Tobacco amber",
+          "cents": 0,
+          "approved": true
+        },
+        "bourbon": {
+          "label": "Bourbon orange",
+          "cents": 0,
+          "approved": true
+        },
+        "cherry": {
+          "label": "Cherry red",
+          "cents": 0,
+          "approved": true
+        },
+        "ruby": {
+          "label": "Ruby red",
+          "cents": 0,
+          "approved": true
+        },
+        "ocean": {
+          "label": "Ocean blue",
+          "cents": 0,
+          "approved": true
+        },
+        "sapphire": {
+          "label": "Deep sapphire",
+          "cents": 0,
+          "approved": true
+        },
+        "purple": {
+          "label": "Royal purple",
+          "cents": 0,
+          "approved": true
+        },
+        "emerald": {
+          "label": "Emerald green",
+          "cents": 0,
+          "approved": true
+        },
+        "greenpurple": {
+          "label": "Emerald lime",
+          "cents": 0,
+          "approved": true
+        },
+        "smoke": {
+          "label": "Silver smoke",
+          "cents": 0,
+          "approved": true
+        },
+        "black": {
+          "label": "Black dye",
+          "cents": 0,
+          "approved": true
+        },
+        "walnut": {
+          "label": "Natural walnut",
+          "cents": 0,
+          "approved": true
+        },
+        "mahogany": {
+          "label": "Natural mahogany",
+          "cents": 0,
+          "approved": true
+        },
+        "blonde": {
+          "label": "Blonde ash",
+          "cents": 0,
+          "approved": true
+        },
+        "white": {
+          "label": "Translucent pearl white",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "neckSheen": {
+      "label": "Neck sheen",
+      "options": {
+        "gloss": {
+          "label": "High gloss",
+          "cents": 0,
+          "approved": true
+        },
+        "satin": {
+          "label": "Satin",
+          "cents": 0,
+          "approved": true
+        },
+        "matte": {
+          "label": "Matte",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "wood": {
+      "label": "Top wood / figure",
+      "options": {
+        "flame": {
+          "label": "Flame maple",
+          "cents": 20000,
+          "approved": true
+        },
+        "quilt": {
+          "label": "Quilted Bigleaf maple",
+          "cents": 40000,
+          "approved": true
+        },
+        "ash": {
+          "label": "Ash",
+          "cents": 0,
+          "approved": true
+        },
+        "walnut": {
+          "label": "Walnut",
+          "cents": 0,
+          "approved": true
+        },
+        "mahogany": {
+          "label": "Red mahogany",
+          "cents": 0,
+          "approved": true
+        },
+        "burl": {
+          "label": "Burl — may require resin filling",
+          "cents": 80000,
+          "approved": true
+        }
+      }
+    },
+    "finish": {
+      "label": "Top color / stain",
+      "options": {
+        "natural": {
+          "label": "Natural clear",
+          "cents": 0,
+          "approved": true
+        },
+        "amber": {
+          "label": "Vintage amber",
+          "cents": 0,
+          "approved": true
+        },
+        "lemon": {
+          "label": "Lemon drop",
+          "cents": 0,
+          "approved": true
+        },
+        "tobacco": {
+          "label": "Tobacco amber",
+          "cents": 0,
+          "approved": true
+        },
+        "bourbon": {
+          "label": "Bourbon orange",
+          "cents": 0,
+          "approved": true
+        },
+        "cherry": {
+          "label": "Cherry red",
+          "cents": 0,
+          "approved": true
+        },
+        "ruby": {
+          "label": "Ruby red",
+          "cents": 0,
+          "approved": true
+        },
+        "ocean": {
+          "label": "Ocean blue",
+          "cents": 0,
+          "approved": true
+        },
+        "sapphire": {
+          "label": "Deep sapphire",
+          "cents": 0,
+          "approved": true
+        },
+        "purple": {
+          "label": "Royal purple",
+          "cents": 0,
+          "approved": true
+        },
+        "emerald": {
+          "label": "Emerald green",
+          "cents": 0,
+          "approved": true
+        },
+        "greenpurple": {
+          "label": "Emerald lime",
+          "cents": 0,
+          "approved": true
+        },
+        "smoke": {
+          "label": "Silver smoke",
+          "cents": 0,
+          "approved": true
+        },
+        "black": {
+          "label": "Black dye",
+          "cents": 0,
+          "approved": true
+        },
+        "walnut": {
+          "label": "Natural walnut",
+          "cents": 0,
+          "approved": true
+        },
+        "mahogany": {
+          "label": "Natural mahogany",
+          "cents": 0,
+          "approved": true
+        },
+        "blonde": {
+          "label": "Blonde ash",
+          "cents": 0,
+          "approved": true
+        },
+        "white": {
+          "label": "Translucent pearl white",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "sheen": {
+      "label": "Top sheen",
+      "options": {
+        "gloss": {
+          "label": "High gloss",
+          "cents": 0,
+          "approved": true
+        },
+        "satin": {
+          "label": "Satin",
+          "cents": 0,
+          "approved": true
+        },
+        "matte": {
+          "label": "Matte",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "pickupSet": {
+      "label": "Pickup set",
+      "options": {
+        "sd-jb-jazz": {
+          "label": "Seymour Duncan JB / Jazz",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 19800
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "sd-distortion": {
+          "label": "Seymour Duncan Distortion set",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 19800
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "sd-nazgul-sentient": {
+          "label": "Seymour Duncan Nazgûl / Sentient",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 22900
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "sd-saturday-night-special": {
+          "label": "Seymour Duncan Saturday Night Special",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 24900
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "bkp-ragnarok": {
+          "label": "Bare Knuckle Ragnarok",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 60000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "bkp-juggernaut": {
+          "label": "Bare Knuckle Juggernaut",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 55000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "fishman-modern": {
+          "label": "Fishman Fluence Modern",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 29995
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "fishman-classic": {
+          "label": "Fishman Fluence Classic",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 29995
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "emg-81-85": {
+          "label": "EMG 81 / 85 Original Logo Set",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 24900
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "emg-57-66": {
+          "label": "EMG 57 / 66",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 23900
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "instrumental-sfty3": {
+          "label": "Instrumental SFTY3-6 Humbucker Set",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 23000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "dimarzio-request": {
+          "label": "DiMarzio — any model (specify model)",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 20000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "lundgren-request": {
+          "label": "Lundgren M6C set",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 38000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        }
+      }
+    },
+    "pickups": {
+      "label": "Pickup appearance",
+      "options": {
+        "open": {
+          "label": "Open coil",
+          "cents": 0,
+          "approved": true
+        },
+        "covered": {
+          "label": "Metal covered",
+          "cents": 0,
+          "approved": true
+        },
+        "zebra": {
+          "label": "Zebra",
+          "cents": 0,
+          "approved": true
+        },
+        "active": {
+          "label": "Sealed cover",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "bridgeModel": {
+      "label": "Bridge / tremolo",
+      "options": {
+        "floyd-original": {
+          "label": "Floyd Rose Original",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 26600,
+            "black": 28400,
+            "gold": 36500
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "floyd-1000": {
+          "label": "Floyd Rose 1000 Series",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 16000,
+            "black": 17300,
+            "gold": 20599
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "floyd-special": {
+          "label": "Floyd Rose Special",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 10000,
+            "black": 10800,
+            "gold": 13200
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "floyd-pro": {
+          "label": "Floyd Rose 1000 Series Pro",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 27000,
+            "black": 28300,
+            "gold": 33300
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "hipshot-fixed": {
+          "label": "Hipshot 6-string Fixed Bridge",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 13978,
+            "black": 13413,
+            "gold": 18568
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "hipshot-contour": {
+          "label": "Hipshot US Contour tremolo",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 19800,
+            "black": 19800,
+            "gold": 26724
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "evertune": {
+          "label": "EverTune F Model",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 35000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "gotoh-510": {
+          "label": "Gotoh 510TS-FE1",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 16000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "toneomatic": {
+          "label": "Hipshot Tone-A-Matic",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 19756,
+            "black": 19756,
+            "gold": 28180
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        }
+      }
+    },
+    "hardware": {
+      "label": "Hardware finish",
+      "options": {
+        "black": {
+          "label": "Black",
+          "cents": 0,
+          "approved": true
+        },
+        "chrome": {
+          "label": "Chrome",
+          "cents": 0,
+          "approved": true
+        },
+        "gold": {
+          "label": "Gold",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "tunerModel": {
+      "label": "3 + 3 tuners",
+      "options": {
+        "hipshot-open": {
+          "label": "Hipshot Classic Open Gear",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 9678,
+            "black": 10818,
+            "gold": 13020
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "hipshot-locking": {
+          "label": "Hipshot Grip-Lock Open Gear",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "chrome": 12840,
+            "black": 13770,
+            "gold": 18588
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "gotoh-locking": {
+          "label": "Gotoh SG381 MG-T Magnum Lock Trad",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 9000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        },
+        "schaller-locking": {
+          "label": "Schaller M6 135 Locking 3+3",
+          "cents": null,
+          "approved": true,
+          "componentPricesCents": {
+            "reference": 20000
+          },
+          "pricingBasis": "Owner-approved component snapshot; set totals in USD cents."
+        }
+      }
+    },
+    "knobs": {
+      "label": "Control knobs",
+      "options": {
+        "dome": {
+          "label": "Dome",
+          "cents": 0,
+          "approved": true
+        },
+        "speed": {
+          "label": "Speed",
+          "cents": 0,
+          "approved": true
+        },
+        "bell": {
+          "label": "Bell",
+          "cents": 0,
+          "approved": true
+        },
+        "knurled": {
+          "label": "Metal knurled",
+          "cents": 0,
+          "approved": true
+        },
+        "pearl": {
+          "label": "Knurled pearl cap",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "wiring": {
+      "label": "Pickup switching",
+      "default": "threeway",
+      "options": {
+        "direct": {
+          "label": "Direct · single pickup",
+          "cents": 0,
+          "approved": true
+        },
+        "threeway": {
+          "label": "3-way selector",
+          "cents": 0,
+          "approved": true
+        },
+        "fiveway": {
+          "label": "5-way selector",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "fretboard": {
+      "label": "Fretboard appearance",
+      "options": {
+        "ebony": {
+          "label": "Ebony",
+          "cents": 0,
+          "approved": true
+        },
+        "rosewood": {
+          "label": "Rosewood",
+          "cents": 0,
+          "approved": true
+        },
+        "maple": {
+          "label": "Maple",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "inlays": {
+      "label": "Inlays",
+      "options": {
+        "motif": {
+          "label": "Cherub Wings",
+          "cents": 0,
+          "approved": true
+        },
+        "dots": {
+          "label": "Pearl dots",
+          "cents": 0,
+          "approved": true
+        },
+        "none": {
+          "label": "No inlays",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "pickupLayout": {
+      "label": "Pickup layout",
+      "default": "hh",
+      "options": {
+        "h": {
+          "label": "H · single bridge humbucker",
+          "cents": 0,
+          "approved": true
+        },
+        "hh": {
+          "label": "HH · two humbuckers",
+          "cents": 0,
+          "approved": true
+        },
+        "hsh": {
+          "label": "HSH · humbucker / single / humbucker",
+          "cents": 0,
+          "approved": true
+        },
+        "hss": {
+          "label": "HSS / SSH · neck single, middle single, bridge humbucker",
+          "cents": 0,
+          "approved": true
+        },
+        "hs": {
+          "label": "HS · neck single, bridge humbucker",
+          "cents": 0,
+          "approved": true
+        },
+        "sss": {
+          "label": "SSS · three single coils",
+          "cents": 0,
+          "approved": true
+        },
+        "ss": {
+          "label": "SS · neck and bridge single coils",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "singleCoilModel": {
+      "label": "Single-coil model",
+      "default": "ssl2",
+      "options": {
+        "ssl2": {
+          "label": "Seymour Duncan SSL-2 Vintage Flat",
+          "cents": 0,
+          "componentCents": 7900,
+          "approved": true,
+          "source": "https://www.seymourduncan.com/single-product/vintage-flat-strat"
+        },
+        "ssl6": {
+          "label": "Seymour Duncan SSL-6 Custom Flat",
+          "cents": 0,
+          "componentCents": 7900,
+          "approved": true,
+          "source": "https://www.seymourduncan.com/single-product/custom-flat-strat"
+        }
+      }
+    },
+    "singleCoilCover": {
+      "label": "Single-coil cover color",
+      "default": "black",
+      "options": {
+        "black": {
+          "label": "Black",
+          "cents": 0,
+          "approved": true
+        },
+        "cream": {
+          "label": "Cream",
+          "cents": 0,
+          "approved": true
+        },
+        "white": {
+          "label": "White",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
+    "pot1Mod": {
+      "label": "Pot 1 modification",
+      "default": "none",
+      "options": {
+        "none": {
+          "label": "Standard pot",
+          "cents": 0,
+          "approved": true
+        },
+        "split-bridge": {
+          "label": "Push-pull · bridge humbucker coil split",
+          "cents": 5000,
+          "approved": true
+        },
+        "split-neck": {
+          "label": "Push-pull · neck humbucker coil split",
+          "cents": 5000,
+          "approved": true
+        },
+        "split-both": {
+          "label": "Push-pull · split both humbuckers together",
+          "cents": 5000,
+          "approved": true
+        },
+        "parallel-bridge": {
+          "label": "Push-pull · bridge humbucker series / parallel",
+          "cents": 5000,
+          "approved": true
+        },
+        "parallel-neck": {
+          "label": "Push-pull · neck humbucker series / parallel",
+          "cents": 5000,
+          "approved": true
+        },
+        "phase": {
+          "label": "Push-pull · bridge pickup phase reverse",
+          "cents": 5000,
+          "approved": true
+        },
+        "treble-bleed": {
+          "label": "Push-pull · treble-bleed bypass",
+          "cents": 5000,
+          "approved": true
+        },
+        "voice": {
+          "label": "Push-pull · Fluence Voice 1 / 2",
+          "cents": 5000,
+          "approved": true
+        }
+      }
+    },
+    "pot2Mod": {
+      "label": "Pot 2 modification",
+      "default": "none",
+      "options": {
+        "none": {
+          "label": "Standard pot",
+          "cents": 0,
+          "approved": true
+        },
+        "split-bridge": {
+          "label": "Push-pull · bridge humbucker coil split",
+          "cents": 5000,
+          "approved": true
+        },
+        "split-neck": {
+          "label": "Push-pull · neck humbucker coil split",
+          "cents": 5000,
+          "approved": true
+        },
+        "split-both": {
+          "label": "Push-pull · split both humbuckers together",
+          "cents": 5000,
+          "approved": true
+        },
+        "parallel-bridge": {
+          "label": "Push-pull · bridge humbucker series / parallel",
+          "cents": 5000,
+          "approved": true
+        },
+        "parallel-neck": {
+          "label": "Push-pull · neck humbucker series / parallel",
+          "cents": 5000,
+          "approved": true
+        },
+        "phase": {
+          "label": "Push-pull · bridge pickup phase reverse",
+          "cents": 5000,
+          "approved": true
+        },
+        "treble-bleed": {
+          "label": "Push-pull · treble-bleed bypass",
+          "cents": 5000,
+          "approved": true
+        },
+        "voice": {
+          "label": "Push-pull · Fluence Voice 1 / 2",
+          "cents": 5000,
+          "approved": true
+        }
+      }
+    },
+    "pot3Mod": {
+      "label": "Pot 3 modification",
+      "default": "none",
+      "options": {
+        "none": {
+          "label": "Standard pot",
+          "cents": 0,
+          "approved": true
+        },
+        "split-bridge": {
+          "label": "Push-pull · bridge humbucker coil split",
+          "cents": 5000,
+          "approved": true
+        },
+        "split-neck": {
+          "label": "Push-pull · neck humbucker coil split",
+          "cents": 5000,
+          "approved": true
+        },
+        "split-both": {
+          "label": "Push-pull · split both humbuckers together",
+          "cents": 5000,
+          "approved": true
+        },
+        "parallel-bridge": {
+          "label": "Push-pull · bridge humbucker series / parallel",
+          "cents": 5000,
+          "approved": true
+        },
+        "parallel-neck": {
+          "label": "Push-pull · neck humbucker series / parallel",
+          "cents": 5000,
+          "approved": true
+        },
+        "phase": {
+          "label": "Push-pull · bridge pickup phase reverse",
+          "cents": 5000,
+          "approved": true
+        },
+        "treble-bleed": {
+          "label": "Push-pull · treble-bleed bypass",
+          "cents": 5000,
+          "approved": true
+        },
+        "voice": {
+          "label": "Push-pull · Fluence Voice 1 / 2",
+          "cents": 5000,
+          "approved": true
+        }
+      }
+    },
+    "pot4Mod": {
+      "label": "Pot 4 modification",
+      "default": "none",
+      "options": {
+        "none": {
+          "label": "Standard pot",
+          "cents": 0,
+          "approved": true
+        },
+        "split-bridge": {
+          "label": "Push-pull · bridge humbucker coil split",
+          "cents": 5000,
+          "approved": true
+        },
+        "split-neck": {
+          "label": "Push-pull · neck humbucker coil split",
+          "cents": 5000,
+          "approved": true
+        },
+        "split-both": {
+          "label": "Push-pull · split both humbuckers together",
+          "cents": 5000,
+          "approved": true
+        },
+        "parallel-bridge": {
+          "label": "Push-pull · bridge humbucker series / parallel",
+          "cents": 5000,
+          "approved": true
+        },
+        "parallel-neck": {
+          "label": "Push-pull · neck humbucker series / parallel",
+          "cents": 5000,
+          "approved": true
+        },
+        "phase": {
+          "label": "Push-pull · bridge pickup phase reverse",
+          "cents": 5000,
+          "approved": true
+        },
+        "treble-bleed": {
+          "label": "Push-pull · treble-bleed bypass",
+          "cents": 5000,
+          "approved": true
+        },
+        "voice": {
+          "label": "Push-pull · Fluence Voice 1 / 2",
+          "cents": 5000,
+          "approved": true
+        }
+      }
+    },
+    "killswitch": {
+      "label": "Killswitch",
+      "default": "none",
+      "options": {
+        "none": {
+          "label": "No killswitch",
+          "cents": 0,
+          "approved": true
+        },
+        "momentary": {
+          "label": "Momentary killswitch · installed",
+          "cents": 7500,
+          "approved": true
+        }
+      }
+    },
+    "caseOption": {
+      "label": "Gig bag / fitted case",
+      "default": "gigbag",
+      "options": {
+        "gigbag": {
+          "label": "Gig bag included",
+          "cents": 0,
+          "approved": true
+        },
+        "fitted": {
+          "label": "Custom fitted case + included gig bag",
+          "cents": 50000,
+          "approved": true
+        }
+      }
+    }
+  },
+  "references": {
+    "sd-jb-jazz": {
+      "name": "Seymour Duncan JB / Jazz",
+      "source": "https://www.seymourduncan.com/single-product/hot-rodded",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 19800,
+          "label": "Hot Rodded JB / Jazz set · black open coil",
+          "currency": "USD",
+          "quantity": 1,
+          "available": null
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "sd-distortion": {
+      "name": "Seymour Duncan Distortion set",
+      "source": "https://www.seymourduncan.com/single-product/mayhem-set",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 19800,
+          "label": "Mayhem / Distortion set · black open coil",
+          "currency": "USD",
+          "quantity": 1,
+          "available": null
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "sd-nazgul-sentient": {
+      "name": "Seymour Duncan Nazgûl / Sentient",
+      "source": "https://www.seymourduncan.com/single-product/nazgul-sentient",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 22900,
+          "label": "Nazgûl / Sentient set · standard open coil",
+          "currency": "USD",
+          "quantity": 1,
+          "available": null
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "sd-saturday-night-special": {
+      "name": "Seymour Duncan Saturday Night Special",
+      "source": "https://www.seymourduncan.com/single-product/saturday-night-special",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 24900,
+          "label": "Saturday Night Special six-string set · black · 11104-11-B",
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "bkp-ragnarok": {
+      "name": "Bare Knuckle Ragnarok",
+      "source": "https://www.bareknucklepickups.co.uk/pickup/humbucker/ragnarok",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 60000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": null,
+          "label": "Neck + bridge set · owner-supplied component price"
+        }
+      },
+      "note": "Owner-supplied USD component price from the annotated October 15 review. Covers and fit are confirmed separately."
+    },
+    "bkp-juggernaut": {
+      "name": "Bare Knuckle Juggernaut",
+      "source": "https://www.bareknucklepickups.co.uk/pickup/humbucker/juggernaut",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 55000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": null,
+          "label": "Neck + bridge set · owner-supplied component price"
+        }
+      },
+      "note": "Owner-supplied USD component price from the annotated October 15 review. Covers and fit are confirmed separately."
+    },
+    "fishman-modern": {
+      "name": "Fishman Fluence Modern",
+      "source": "https://fishman.com/dp/fluence-modern-6-string-pickups/",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 29995,
+          "label": "6-string Modern set · black plastic · PRF-M36-SB2",
+          "currency": "USD",
+          "quantity": 1,
+          "available": null
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "fishman-classic": {
+      "name": "Fishman Fluence Classic",
+      "source": "https://fishman.com/dp/fluence-classic-humbuckers-6-string-pickups/",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 29995,
+          "label": "6-string Classic set · nickel · PRF-CHB-SN2",
+          "currency": "USD",
+          "quantity": 1,
+          "available": null
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "emg-81-85": {
+      "name": "EMG 81 / 85 Original Logo Set",
+      "source": "https://www.emgpickups.com/81-85-og-logo-set.html",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 24900,
+          "label": "81/85 OG Logo set · advertised base variant",
+          "currency": "USD",
+          "quantity": 1,
+          "available": null
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "emg-57-66": {
+      "name": "EMG 57 / 66",
+      "source": "https://www.emgpickups.com/57-66-set.html",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 23900,
+          "label": "57/66 set · advertised starting price",
+          "currency": "USD",
+          "quantity": 1,
+          "available": null
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "instrumental-sfty3": {
+      "name": "Instrumental SFTY3-6 Humbucker Set",
+      "source": "https://www.instrumentalpickups.com/shop-online/sfty3-7-humbucker-cerwy",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 23000,
+          "label": "SFTY3-6 set · F-spaced black / black",
+          "currency": "USD",
+          "quantity": 1,
+          "available": false
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Covers and spacing are confirmed separately."
+    },
+    "dimarzio-request": {
+      "name": "DiMarzio — any model (specify model)",
+      "source": "https://www.dimarzio.com/pickups/humbuckers",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 20000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": null,
+          "label": "Neck + bridge set · owner-supplied component price"
+        }
+      },
+      "note": "Owner-supplied USD component price from the annotated October 15 review. Covers and fit are confirmed separately."
+    },
+    "lundgren-request": {
+      "name": "Lundgren M6C set",
+      "source": "https://lundgren.se/",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 38000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": null,
+          "label": "Neck + bridge set · owner-supplied component price"
+        }
+      },
+      "note": "Owner-supplied USD component price from the annotated October 15 review. Covers and fit are confirmed separately."
+    },
+    "floyd-original": {
+      "name": "Floyd Rose Original",
+      "source": "https://www.floydrose.com/products/frto",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "Chrome · FRT100",
+          "cents": 26600,
+          "currency": "USD",
+          "quantity": 1,
+          "available": false
+        },
+        "black": {
+          "label": "Black · FRT200",
+          "cents": 28400,
+          "currency": "USD",
+          "quantity": 1,
+          "available": false
+        },
+        "gold": {
+          "label": "Gold · FRT300",
+          "cents": 36500,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Locking nut, routing and fit are confirmed separately."
+    },
+    "floyd-1000": {
+      "name": "Floyd Rose 1000 Series",
+      "source": "https://www.floydrose.com/products/1000-series-original-style-tremolo-system",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "Chrome · FRT01000",
+          "cents": 16000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": false
+        },
+        "black": {
+          "label": "Black · FRT02000",
+          "cents": 17300,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        },
+        "gold": {
+          "label": "Gold · FRT03000",
+          "cents": 20599,
+          "currency": "USD",
+          "quantity": 1,
+          "available": false
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Locking nut, routing and fit are confirmed separately."
+    },
+    "floyd-special": {
+      "name": "Floyd Rose Special",
+      "source": "https://www.floydrose.com/products/frts",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "Chrome / Righty · FRTS1000",
+          "cents": 10000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": false
+        },
+        "black": {
+          "label": "Black / Righty · FRTS2000",
+          "cents": 10800,
+          "currency": "USD",
+          "quantity": 1,
+          "available": false
+        },
+        "gold": {
+          "label": "Gold / Righty · FRTS3000",
+          "cents": 13200,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Locking nut, routing and fit are confirmed separately."
+    },
+    "floyd-pro": {
+      "name": "Floyd Rose 1000 Series Pro",
+      "source": "https://www.floydrose.com/products/frtp1k",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "Chrome · FRTP1000",
+          "cents": 27000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        },
+        "black": {
+          "label": "Black · FRTP2000",
+          "cents": 28300,
+          "currency": "USD",
+          "quantity": 1,
+          "available": false
+        },
+        "gold": {
+          "label": "Gold · FRTP3000",
+          "cents": 33300,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Locking nut, routing and fit are confirmed separately."
+    },
+    "hipshot-fixed": {
+      "name": "Hipshot 6-string Fixed Bridge",
+      "source": "https://hipshotproducts.com/products/fixed-guitar-bridge",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "Chrome / 0.125 · 41060C",
+          "cents": 13978,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        },
+        "black": {
+          "label": "Black / 0.125 · 41060B",
+          "cents": 13413,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        },
+        "gold": {
+          "label": "Gold / 0.125 · 41060G",
+          "cents": 18568,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Locking nut, routing and fit are confirmed separately."
+    },
+    "hipshot-contour": {
+      "name": "Hipshot US Contour tremolo",
+      "source": "https://hipshotproducts.com/products/6-string-us-contour-tremolo-bridge",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "Chrome / Standard Block / Right Handed · 42100VC",
+          "cents": 19800,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        },
+        "black": {
+          "label": "Black / Standard Block / Right Handed · 42100VB",
+          "cents": 19800,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        },
+        "gold": {
+          "label": "Gold / Standard Block / Right Handed · 42100VG",
+          "cents": 26724,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Locking nut, routing and fit are confirmed separately."
+    },
+    "evertune": {
+      "name": "EverTune F Model",
+      "source": "https://www.evertune.com/shop/bridges/f_model.php",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 35000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": null,
+          "label": "Bridge · owner-supplied component price"
+        }
+      },
+      "note": "Owner-supplied USD component price from the annotated October 15 review. Same component price across hardware finishes."
+    },
+    "gotoh-510": {
+      "name": "Gotoh 510TS-FE1",
+      "source": "https://g-gotoh.com/product/510ts-fe1/?lang=en",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 16000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": null,
+          "label": "Bridge · owner-supplied component price"
+        }
+      },
+      "note": "Owner-supplied USD component price from the annotated October 15 review. Same component price across hardware finishes."
+    },
+    "toneomatic": {
+      "name": "Hipshot Tone-A-Matic",
+      "source": "https://hipshotproducts.com/products/6-string-tone-a-matic-guitar-bridge-metric-right-handed",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "Chrome / Bridge and Tailpiece / Notched - Right Handed · 4TM060C",
+          "cents": 19756,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        },
+        "black": {
+          "label": "Black / Bridge and Tailpiece / Notched - Right Handed · 4TM060B",
+          "cents": 19756,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        },
+        "gold": {
+          "label": "Gold / Bridge and Tailpiece / Notched - Right Handed · 4TM060G",
+          "cents": 28180,
+          "currency": "USD",
+          "quantity": 1,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Locking nut, routing and fit are confirmed separately."
+    },
+    "hipshot-open": {
+      "name": "Hipshot Classic Open Gear",
+      "source": "https://hipshotproducts.com/products/classic-open-guitar-tuning-machines",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "chrome · 3 bass + 3 treble · 21 mm posts · 6GN0C-21 / 6GN0CT-21",
+          "cents": 1613,
+          "currency": "USD",
+          "quantity": 6,
+          "available": true
+        },
+        "black": {
+          "label": "black · 3 bass + 3 treble · 21 mm posts · 6GN0B-21 / 6GN0BT-21",
+          "cents": 1803,
+          "currency": "USD",
+          "quantity": 6,
+          "available": true
+        },
+        "gold": {
+          "label": "gold · 3 bass + 3 treble · 21 mm posts · 6GN0G-21 / 6GN0GT-21",
+          "cents": 2170,
+          "currency": "USD",
+          "quantity": 6,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Six-machine 3 + 3 set; final post length and fit are confirmed separately."
+    },
+    "hipshot-locking": {
+      "name": "Hipshot Grip-Lock Open Gear",
+      "source": "https://hipshotproducts.com/products/grip-lock-open-guitar-tuning-machines",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "chrome": {
+          "label": "chrome · 3 bass + 3 treble · 21 mm posts · 6GL0C-21 / 6GL0CT-21",
+          "cents": 2140,
+          "currency": "USD",
+          "quantity": 6,
+          "available": true
+        },
+        "black": {
+          "label": "black · 3 bass + 3 treble · 21 mm posts · 6GL0B-21 / 6GL0BT-21",
+          "cents": 2295,
+          "currency": "USD",
+          "quantity": 6,
+          "available": true
+        },
+        "gold": {
+          "label": "gold · 3 bass + 3 treble · 21 mm posts · 6GL0G-21 / 6GL0GT-21",
+          "cents": 3098,
+          "currency": "USD",
+          "quantity": 6,
+          "available": true
+        }
+      },
+      "note": "Reviewed component price; approved upgrade uses the included allowance plus 20% on the excess. Six-machine 3 + 3 set; final post length and fit are confirmed separately."
+    },
+    "gotoh-locking": {
+      "name": "Gotoh SG381 MG-T Magnum Lock Trad",
+      "source": "https://g-gotoh.com/product/sg381/?lang=en",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 9000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": null,
+          "label": "Six-machine 3 + 3 set · owner-supplied component price"
+        }
+      },
+      "note": "Owner-supplied USD component price from the annotated October 15 review. Same component price across hardware finishes."
+    },
+    "schaller-locking": {
+      "name": "Schaller M6 135 Locking 3+3",
+      "source": "https://schaller.info/en/m6-135/10020123.01.53",
+      "checkedAt": "2026-10-15",
+      "variants": {
+        "reference": {
+          "cents": 20000,
+          "currency": "USD",
+          "quantity": 1,
+          "available": null,
+          "label": "Six-machine 3 + 3 set · owner-supplied component price"
+        }
+      },
+      "note": "Owner-supplied USD component price from the annotated October 15 review. Same component price across hardware finishes."
+    }
+  },
+  "shipping": {
+    "countries": [
+      "US"
+    ],
+    "cents": 0
+  },
+  "taxMode": "automatic",
+  "termsUrl": "https://fostinis-design-review.bouncybow11.chatgpt.site/order-terms.html",
+  "hardwarePricing": {
+    "approved": true,
+    "markupBasisPoints": 2000,
+    "allowancesCents": {
+      "bridgeModel": 10000,
+      "tunerModel": 10000,
+      "pickupSet": 20000
+    },
+    "categories": [
+      "bridgeModel",
+      "tunerModel",
+      "pickupSet",
+      "knobs",
+      "wiring",
+      "pickups"
+    ],
+    "rule": "Upgrade charge = max(0, component price - included allowance) x 1.20, rounded to cents. No credit below allowance. Tuners are priced per six-machine set and pickups per neck + bridge set.",
+    "approvedAt": "2026-10-16",
+    "provenance": "Owner-annotated October 15, 2026 worksheet and subsequent confirmation in chat."
+  },
+  "materialPricing": {
+    "categories": [
+      "wood",
+      "backWood",
+      "neckWood",
+      "burst",
+      "backBurst",
+      "neckBurst",
+      "burstWidth",
+      "headstockBurst"
+    ],
+    "policy": "Fixed upgrade prices per selected region: quilted maple $400; flame maple $200; burl top $800 (may require resin filling); body top, back and neck bursts $150 each. Headstock finishes, no burst and burst width add $0. Hardware markup does not apply. Maple fretboard is included.",
+    "approvedAt": "2026-10-16",
+    "provenance": "Owner instruction: quilted maple, flame maple and burst surcharges; remove White maple; label figured maple back options as veneer. October 16: add burl top at $800 with resin-filling note, restore maple as a fretboard option, rename motif to Cherub Wings."
+  },
+  "includedOptionsPolicy": "Owner confirmed October 15, 2026: every listed option without an explicit upcharge is included in the build total. Custom requests outside the listed options are reviewed separately.",
+  "electronicsPricing": {
+    "categories": [
+      "pot1Mod",
+      "pot2Mod",
+      "pot3Mod",
+      "pot4Mod",
+      "killswitch"
+    ],
+    "potModificationCents": 5000,
+    "killswitchCents": 7500,
+    "approvedAt": "2026-10-16",
+    "killswitchResearch": {
+      "partsCents": 1999,
+      "laborExamples": [
+        {
+          "shop": "String Theory Guitar Repair",
+          "cents": 3500,
+          "source": "https://www.stringtheoryguitarrepair.com/repair-prices"
+        },
+        {
+          "shop": "Indy String Theory",
+          "cents": 7500,
+          "source": "https://www.indystringtheory.com/repairs/guitar-electronics-repair/"
+        }
+      ],
+      "note": "Posted labor plus approximately $20 switch gives about $55–$95 installed. $75 is the midpoint used for this new-build option, not a national statistical average."
+    }
+  },
+  "accessoryPricing": {
+    "categories": [
+      "caseOption"
+    ]
+  },
+  "pickupLayoutPricing": {
+    "singleHIncluded": true,
+    "singleCoilCents": 7900,
+    "oneHumbuckerFractionOfPair": 0.5,
+    "policy": "Retain the $200 pickup-package allowance and 20% excess-only markup. HH uses the approved pair snapshot; HSH adds one single coil; HSS/HS allocate half the pair snapshot to the bridge humbucker. SSS/SS use three/two single coils. H always has zero pickup surcharge. Routing and matching selector are included in these new builds. No credit below allowance. Single-coil controls and RWRP middle variant are matched to the chosen layout.",
+    "checkedAt": "2026-10-16"
+  }
+}

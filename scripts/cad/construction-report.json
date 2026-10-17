@@ -1,0 +1,107 @@
+{
+  "construction": {
+    "units": "mm",
+    "bodyWoodThicknessMm": 25.4,
+    "exposedMapleCapMm": 6.35,
+    "totalSideThicknessMm": 31.75,
+    "originalBackZMm": -59,
+    "rimZMm": {
+      "sphyx": -13.749609375,
+      "oryx": -13.749609375,
+      "matadaur": -16.41603455543
+    }
+  },
+  "method": "remove internal slice and translate rear section; no scaling",
+  "bodies": {
+    "matadaur_standard": {
+      "validSolid": true,
+      "rimZMm": -16.41603455543,
+      "capBaseZMm": -22.766034555429997,
+      "backZMm": -48.166034555429995,
+      "rearTranslationMm": 10.833965444570005,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.349999999999998,
+      "totalSideThicknessMm": 31.749999999999996,
+      "remainingNeckIntersectionMm3": 0.0,
+      "additionalHeelReliefMm3": 0.0,
+      "frontSurfaceAreaDifferenceMm2": 0.0,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "matadaur_tremolo": {
+      "validSolid": true,
+      "rimZMm": -16.41603455543,
+      "capBaseZMm": -22.766034555429997,
+      "backZMm": -48.166034555429995,
+      "rearTranslationMm": 10.833965444570005,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.349999999999998,
+      "totalSideThicknessMm": 31.749999999999996,
+      "remainingNeckIntersectionMm3": 0.0,
+      "additionalHeelReliefMm3": 0.0,
+      "frontSurfaceAreaDifferenceMm2": 0.0,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "oryx_standard": {
+      "validSolid": true,
+      "rimZMm": -13.749609375,
+      "capBaseZMm": -20.099609375,
+      "backZMm": -45.499609375,
+      "rearTranslationMm": 13.500390625000001,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.35,
+      "totalSideThicknessMm": 31.75,
+      "remainingNeckIntersectionMm3": 0.0,
+      "additionalHeelReliefMm3": 0.0,
+      "frontSurfaceAreaDifferenceMm2": 0.0,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "oryx_tremolo": {
+      "validSolid": true,
+      "rimZMm": -13.749609375,
+      "capBaseZMm": -20.099609375,
+      "backZMm": -45.499609375,
+      "rearTranslationMm": 13.500390625000001,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.35,
+      "totalSideThicknessMm": 31.75,
+      "remainingNeckIntersectionMm3": 0.0,
+      "additionalHeelReliefMm3": 0.0,
+      "frontSurfaceAreaDifferenceMm2": 0.0,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "sphyx_standard": {
+      "validSolid": true,
+      "rimZMm": -13.749609375,
+      "capBaseZMm": -20.099609375,
+      "backZMm": -45.499609375,
+      "rearTranslationMm": 13.500390625000001,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.35,
+      "totalSideThicknessMm": 31.75,
+      "remainingNeckIntersectionMm3": 0.0,
+      "additionalHeelReliefMm3": 0.0,
+      "frontSurfaceAreaDifferenceMm2": 0.00022,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "sphyx_tremolo": {
+      "validSolid": true,
+      "rimZMm": -13.749609375,
+      "capBaseZMm": -20.099609375,
+      "backZMm": -45.499609375,
+      "rearTranslationMm": 13.500390625000001,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.35,
+      "totalSideThicknessMm": 31.75,
+      "remainingNeckIntersectionMm3": 0.0,
+      "additionalHeelReliefMm3": 0.0,
+      "frontSurfaceAreaDifferenceMm2": 0.00022,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    }
+  }
+}

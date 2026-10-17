@@ -1,0 +1,65 @@
+{
+  "blendRangeYmm": [
+    230,
+    289.327388272
+  ],
+  "heelContourPreservedBelowYmm": 230,
+  "originalStepMm": 0.7399999133448638,
+  "maxRadialCorrectionMm": 0.7610733727451482,
+  "removedCollarTriangles": 140,
+  "boundaryVertices": [
+    105,
+    75
+  ],
+  "patchTriangles": 24242,
+  "boundsBeforeMm": [
+    [
+      -44.450003653764725,
+      56.38756975531578,
+      -69.01565194129944
+    ],
+    [
+      44.450003653764725,
+      805.6876063346863,
+      1.8625000957399607
+    ]
+  ],
+  "boundsAfterMm": [
+    [
+      -44.450003653764725,
+      56.38756975531578,
+      -69.01565194129944
+    ],
+    [
+      44.450003653764725,
+      805.6876063346863,
+      1.8625000957399607
+    ]
+  ],
+  "scaleLengthMm": 647.7,
+  "neckScale": 1,
+  "headstockUnchanged": true,
+  "topAndTrussRodChannelRetained": true,
+  "grainUsesUnchangedPositionMapping": true,
+  "validation": {
+    "boundaryChecks": [
+      {
+        "yMm": 230,
+        "maxRadialDifferenceAcross4MicronsMm": 0.00012389521831934758,
+        "maxNormalAngleDegrees": 0.0085794588050606,
+        "anglesChecked": 181
+      },
+      {
+        "yMm": 289.327388272,
+        "maxRadialDifferenceAcross4MicronsMm": 0.0002050587280137961,
+        "maxNormalAngleDegrees": 0.009334091554711647,
+        "anglesChecked": 181
+      }
+    ],
+    "originalStepMm": 0.7400494920157286,
+    "openOrNonmanifoldEdgesInRepair": 0,
+    "heelAndHeadstockTrianglesUnchanged": true,
+    "overallDimensionsUnchanged": true,
+    "normalAndWindingChecksPassed": true
+  }
+}

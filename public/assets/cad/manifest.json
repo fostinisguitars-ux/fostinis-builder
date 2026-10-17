@@ -1,0 +1,407 @@
+{
+  "matadaur_standard": {
+    "source": "matadaur_standard.step",
+    "dimensionsMm": [
+      311.070556640625,
+      508.4093933105469,
+      47.16603469848633
+    ],
+    "boundsMm": [
+      [
+        -155.5321502685547,
+        -235.4110107421875,
+        -48.16603469848633
+      ],
+      [
+        155.53842163085938,
+        272.9983825683594,
+        -1
+      ]
+    ],
+    "vertices": 190968,
+    "triangles": 283444,
+    "bytes": 9518644,
+    "materials": [
+      "top",
+      "side",
+      "binding",
+      "cavity",
+      "back",
+      "cover"
+    ],
+    "sourceSha256": "8ca1dc813b5e667afd681c1d0487aee97b450d86539e4ecd9b76d39d0a029b93",
+    "construction": {
+      "validSolid": true,
+      "rimZMm": -16.41603455543,
+      "capBaseZMm": -22.766034555429997,
+      "backZMm": -48.166034555429995,
+      "rearTranslationMm": 10.833965444570005,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.349999999999998,
+      "totalSideThicknessMm": 31.749999999999996,
+      "remainingNeckIntersectionMm3": 0,
+      "additionalHeelReliefMm3": 0,
+      "frontSurfaceAreaDifferenceMm2": 0,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "pickupAlignment": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0,
+      "outsideRoutingRemovedMm3": 0,
+      "outsideRoutingAddedMm3": 0,
+      "routingFloorZMm": -30.166034555429995,
+      "neckPickupY": 86.51256576
+    }
+  },
+  "matadaur_tremolo": {
+    "source": "matadaur_tremolo.step",
+    "dimensionsMm": [
+      311.070556640625,
+      508.4093933105469,
+      48.91603469848633
+    ],
+    "boundsMm": [
+      [
+        -155.5321502685547,
+        -235.4110107421875,
+        -49.91603469848633
+      ],
+      [
+        155.53842163085938,
+        272.9983825683594,
+        -1
+      ]
+    ],
+    "vertices": 194776,
+    "triangles": 285872,
+    "bytes": 9669552,
+    "materials": [
+      "top",
+      "side",
+      "binding",
+      "cavity",
+      "back",
+      "cover"
+    ],
+    "sourceSha256": "777ad99e5d8989a548ea8518387c2c477f26bd582f36d980b95ec2559948b244",
+    "construction": {
+      "validSolid": true,
+      "rimZMm": -16.41603455543,
+      "capBaseZMm": -22.766034555429997,
+      "backZMm": -48.166034555429995,
+      "rearTranslationMm": 10.833965444570005,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.349999999999998,
+      "totalSideThicknessMm": 31.749999999999996,
+      "remainingNeckIntersectionMm3": 0,
+      "additionalHeelReliefMm3": 0,
+      "frontSurfaceAreaDifferenceMm2": 0,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "pickupAlignment": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0,
+      "outsideRoutingRemovedMm3": 0,
+      "outsideRoutingAddedMm3": 0,
+      "routingFloorZMm": -30.166034555429995,
+      "neckPickupY": 86.51256576
+    }
+  },
+  "oryx_neck": {
+    "source": "oryx_neck.step",
+    "dimensionsMm": [
+      88.9000015258789,
+      749.2999877929688,
+      70.8781509399414
+    ],
+    "boundsMm": [
+      [
+        -44.45000076293945,
+        56.38756561279297,
+        -69.0156478881836
+      ],
+      [
+        44.45000076293945,
+        805.6875610351562,
+        1.8624999523162842
+      ]
+    ],
+    "vertices": 22474,
+    "triangles": 40334,
+    "bytes": 485192,
+    "materials": [
+      "neck",
+      "headstock_front"
+    ],
+    "sourceSha256": "3d9a80e5f15a324f028a19f32c9489ceb6dbc3f867e22fe4af8fcba36503848c",
+    "surfaceRepair": {
+      "type": "continuous-shaft",
+      "blendRangeYmm": [
+        230,
+        289.327388272
+      ]
+    }
+  },
+  "oryx_standard": {
+    "source": "oryx_standard.step",
+    "dimensionsMm": [
+      325.07562255859375,
+      435.67388916015625,
+      44.49968719482422
+    ],
+    "boundsMm": [
+      [
+        -162.53782653808594,
+        -256.0928649902344,
+        -45.499610900878906
+      ],
+      [
+        162.53778076171875,
+        179.5810089111328,
+        -0.9999231100082397
+      ]
+    ],
+    "vertices": 71751,
+    "triangles": 79705,
+    "bytes": 3258860,
+    "materials": [
+      "top",
+      "side",
+      "binding",
+      "cavity",
+      "back",
+      "cover"
+    ],
+    "sourceSha256": "2ec3baa8d718b683a51f196c6a0b48be2542eecee9ce2d43758040220269abab",
+    "construction": {
+      "validSolid": true,
+      "rimZMm": -13.749609375,
+      "capBaseZMm": -20.099609375,
+      "backZMm": -45.499609375,
+      "rearTranslationMm": 13.500390625000001,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.35,
+      "totalSideThicknessMm": 31.75,
+      "remainingNeckIntersectionMm3": 0,
+      "additionalHeelReliefMm3": 0,
+      "frontSurfaceAreaDifferenceMm2": 0,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "pickupAlignment": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0,
+      "outsideRoutingRemovedMm3": 0,
+      "outsideRoutingAddedMm3": 0,
+      "routingFloorZMm": -27.499609375,
+      "neckPickupY": 86.51256576
+    },
+    "heelCleanup": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0,
+      "removedPocketLipMm3": 27.941082,
+      "carvedCapUnchanged": true
+    }
+  },
+  "oryx_tremolo": {
+    "source": "oryx_tremolo.step",
+    "dimensionsMm": [
+      325.07562255859375,
+      435.67388916015625,
+      46.24961471557617
+    ],
+    "boundsMm": [
+      [
+        -162.53782653808594,
+        -256.0928649902344,
+        -47.249610900878906
+      ],
+      [
+        162.53778076171875,
+        179.5810089111328,
+        -0.9999958872795105
+      ]
+    ],
+    "vertices": 76177,
+    "triangles": 81957,
+    "bytes": 3427412,
+    "materials": [
+      "top",
+      "side",
+      "binding",
+      "cavity",
+      "back",
+      "cover"
+    ],
+    "sourceSha256": "b8fdb69a6b1ce20bed90ac82f7eb6a7b6b7745a08d54c73eb731aaae8bc7be80",
+    "construction": {
+      "validSolid": true,
+      "rimZMm": -13.749609375,
+      "capBaseZMm": -20.099609375,
+      "backZMm": -45.499609375,
+      "rearTranslationMm": 13.500390625000001,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.35,
+      "totalSideThicknessMm": 31.75,
+      "remainingNeckIntersectionMm3": 0,
+      "additionalHeelReliefMm3": 0,
+      "frontSurfaceAreaDifferenceMm2": 0,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "pickupAlignment": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0,
+      "outsideRoutingRemovedMm3": 0,
+      "outsideRoutingAddedMm3": 0,
+      "routingFloorZMm": -27.499609375,
+      "neckPickupY": 86.51256576
+    },
+    "heelCleanup": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0,
+      "removedPocketLipMm3": 27.941082,
+      "carvedCapUnchanged": true
+    }
+  },
+  "shared_neck": {
+    "source": "shared_neck.step",
+    "dimensionsMm": [
+      88.9000015258789,
+      749.2999877929688,
+      70.8781509399414
+    ],
+    "boundsMm": [
+      [
+        -44.45000076293945,
+        56.38756561279297,
+        -69.0156478881836
+      ],
+      [
+        44.45000076293945,
+        805.6875610351562,
+        1.8624999523162842
+      ]
+    ],
+    "vertices": 10628,
+    "triangles": 16946,
+    "bytes": 545868,
+    "materials": [
+      "neck",
+      "headstock_front"
+    ],
+    "sourceSha256": "2898798e70de6c405f2138fd0dc70244d3dda948f5b4509466d042ba9c30131a"
+  },
+  "sphyx_standard": {
+    "source": "sphyx_standard.step",
+    "dimensionsMm": [
+      325.08538818359375,
+      397.28546142578125,
+      44.499610900878906
+    ],
+    "boundsMm": [
+      [
+        -162.54379272460938,
+        -256.09423828125,
+        -45.499610900878906
+      ],
+      [
+        162.54159545898438,
+        141.1912384033203,
+        -0.9999985098838806
+      ]
+    ],
+    "vertices": 78330,
+    "triangles": 96886,
+    "bytes": 3675528,
+    "materials": [
+      "top",
+      "side",
+      "binding",
+      "cavity",
+      "back",
+      "cover"
+    ],
+    "sourceSha256": "17e16e3a2104ace6c4e176f09f9d1f49a1f4445fe8e8e45f35b2b604f58ae14a",
+    "construction": {
+      "validSolid": true,
+      "rimZMm": -13.749609375,
+      "capBaseZMm": -20.099609375,
+      "backZMm": -45.499609375,
+      "rearTranslationMm": 13.500390625000001,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.35,
+      "totalSideThicknessMm": 31.75,
+      "remainingNeckIntersectionMm3": 0,
+      "additionalHeelReliefMm3": 0,
+      "frontSurfaceAreaDifferenceMm2": 0.00022,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "pickupAlignment": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0,
+      "outsideRoutingRemovedMm3": 0,
+      "outsideRoutingAddedMm3": 0,
+      "routingFloorZMm": -27.499609375,
+      "neckPickupY": 86.51256576
+    }
+  },
+  "sphyx_tremolo": {
+    "source": "sphyx_tremolo.step",
+    "dimensionsMm": [
+      325.08538818359375,
+      397.28546142578125,
+      46.249610900878906
+    ],
+    "boundsMm": [
+      [
+        -162.54379272460938,
+        -256.09423828125,
+        -47.249610900878906
+      ],
+      [
+        162.54159545898438,
+        141.1912384033203,
+        -0.9999985098838806
+      ]
+    ],
+    "vertices": 82596,
+    "triangles": 98818,
+    "bytes": 3835124,
+    "materials": [
+      "top",
+      "side",
+      "binding",
+      "cavity",
+      "back",
+      "cover"
+    ],
+    "sourceSha256": "cf3909249b2ddb8ab21910f018afbf5ba17ed525e55d1a91b2c4bff0b5e5db95",
+    "construction": {
+      "validSolid": true,
+      "rimZMm": -13.749609375,
+      "capBaseZMm": -20.099609375,
+      "backZMm": -45.499609375,
+      "rearTranslationMm": 13.500390625000001,
+      "bodyWoodThicknessMm": 25.4,
+      "exposedMapleCapMm": 6.35,
+      "totalSideThicknessMm": 31.75,
+      "remainingNeckIntersectionMm3": 0,
+      "additionalHeelReliefMm3": 0,
+      "frontSurfaceAreaDifferenceMm2": 0.00022,
+      "capRetainedWithoutScaling": true,
+      "neckScale": 1
+    },
+    "pickupAlignment": {
+      "validSolid": true,
+      "remainingNeckIntersectionMm3": 0,
+      "outsideRoutingRemovedMm3": 0,
+      "outsideRoutingAddedMm3": 0,
+      "routingFloorZMm": -27.499609375,
+      "neckPickupY": 86.51256576
+    }
+  }
+}

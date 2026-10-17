@@ -1,0 +1,21 @@
+{
+  "generatedAtUtc": "2026-10-17T03:04:32.490526+00:00",
+  "creationMethod": "OpenAI built-in image_gen.imagegen tool; generated from prompt without source image",
+  "purpose": "Illustrative natural burl albedo for a Git-backed Fostinis Site 3D guitar, not a representation of a specific supplier slab",
+  "format": "JPEG",
+  "width": 1024,
+  "height": 1024,
+  "bytes": 466368,
+  "sha256": "780bcb777664539b6c699ae5d8a8a70edc0af1ef888388eacdb82e3f6dc8ce3c",
+  "postProcessing": "RGB format, Lanczos downscale 1254x1254 to 1024x1024, JPEG quality92 with no chroma subsampling; no grain or color modifications",
+  "lumaPercentiles": {
+    "p01": 96.46,
+    "p05": 119.92,
+    "p50": 160.5,
+    "p95": 185.26,
+    "p99": 192.96
+  },
+  "qualityReview": "Dense irregular swirling eyes and knots; full-frame warm tan/brown wood; no object, text, resin, holes or baked specular lighting. Opposite-edge differences are comparable to natural adjacent grain variation, not a mathematical guarantee of perfectly identical edge pixels.",
+  "siteAsset": "public/assets/wood-real44-burl.jpg",
+  "prompt": "Use case: photorealistic-natural. Asset type: seamless tileable square wood albedo texture for a photoreal 3D guitar top, 1024 by 1024 pixels or larger square. Primary request: an entire-frame close-up of beautiful natural burl wood with dense irregular swirling wood grain, small organic eyes and knots, gently tangled and flowing figures. This is a flat PBR base-color/albedo texture viewed straight down, not a photograph of an object. Texture must be seamless and repeat across opposite image edges without visible seams. Color palette: warm pale tan and light honey brown, softly varied medium brown fine grain, a few small subtle natural darker knot centers. Keep overall mid-light value and restrained natural contrast. Lighting: perfectly even neutral diffuse illumination; no baked-in directional lighting, highlights, reflections, sheen, specular shine, cast shadows, vignette, gradient, or depth cues. Surface is clean, tightly figured wood with no holes, pits, bark, cut edges, open cracks, resin, blue/green/red coloring, burned black marks, extreme dark patches, or broad dark streaks. Dense believable burl figure throughout, no single giant central knot and no geometric symmetry. Entire square filled edge to edge with wood grain. No guitar, body silhouette, furniture, tool, prop, text, watermark, logo, border or background."
+}

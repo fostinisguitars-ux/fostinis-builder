@@ -1,0 +1,12 @@
+{
+  "units": "mm",
+  "bodyWoodThicknessMm": 25.4,
+  "exposedMapleCapMm": 6.35,
+  "totalSideThicknessMm": 31.75,
+  "originalBackZMm": -59,
+  "rimZMm": {
+    "sphyx": -13.749609375,
+    "oryx": -13.749609375,
+    "matadaur": -16.41603455543
+  }
+}

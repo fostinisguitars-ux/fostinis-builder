@@ -1,0 +1,680 @@
+[
+  {
+    "key": "signature",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/logo/11a556c7-23eb-4cf8-af24-891f903fc34a.png",
+    "alt": "signature",
+    "bytes": 179407,
+    "retrieved": "2026-10-15",
+    "width": 1242,
+    "height": 974,
+    "files": {
+      "240": {
+        "url": "./assets/heritage/signature-240.webp",
+        "width": 240,
+        "height": 188,
+        "bytes": 14662
+      }
+    }
+  },
+  {
+    "key": "brand-art",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/blob-e85d486.png",
+    "alt": "Fostinis guitars logo guitar Matadaur sphyx oryx",
+    "bytes": 1114246,
+    "retrieved": "2026-10-15",
+    "width": 1182,
+    "height": 2560,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/brand-art-480.webp",
+        "width": 480,
+        "height": 1040,
+        "bytes": 20330
+      },
+      "1200": {
+        "url": "./assets/heritage/brand-art-1200.webp",
+        "width": 1182,
+        "height": 2560,
+        "bytes": 58026
+      }
+    }
+  },
+  {
+    "key": "mark-feature",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/blob-0c2a18b.png",
+    "alt": "Mark Slaughter Fostinis Guitars matadaur",
+    "bytes": 763744,
+    "retrieved": "2026-10-15",
+    "width": 836,
+    "height": 720,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/mark-feature-480.webp",
+        "width": 480,
+        "height": 413,
+        "bytes": 23648
+      },
+      "1200": {
+        "url": "./assets/heritage/mark-feature-1200.webp",
+        "width": 836,
+        "height": 720,
+        "bytes": 46626
+      }
+    }
+  },
+  {
+    "key": "oryx",
+    "sourcePage": "https://fostinisguitars.com/guitar-models",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/273865c7-3a44-4727-8cee-d0fcff4f1e3d.png",
+    "alt": "Oryx Fostinis Guitars",
+    "bytes": 68098,
+    "retrieved": "2026-10-15",
+    "width": 1242,
+    "height": 621,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/oryx-480.webp",
+        "width": 480,
+        "height": 240,
+        "bytes": 8410
+      },
+      "1200": {
+        "url": "./assets/heritage/oryx-1200.webp",
+        "width": 1200,
+        "height": 600,
+        "bytes": 27362
+      }
+    }
+  },
+  {
+    "key": "sphyx",
+    "sourcePage": "https://fostinisguitars.com/guitar-models",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/b1bf1dea-dbda-45a8-bb83-18a78ad2cd83.jpeg",
+    "alt": "Sphyx Fostinis Guitars",
+    "bytes": 156054,
+    "retrieved": "2026-10-15",
+    "width": 1242,
+    "height": 1030,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/sphyx-480.webp",
+        "width": 480,
+        "height": 398,
+        "bytes": 29690
+      },
+      "1200": {
+        "url": "./assets/heritage/sphyx-1200.webp",
+        "width": 1200,
+        "height": 995,
+        "bytes": 122968
+      }
+    }
+  },
+  {
+    "key": "matadaur",
+    "sourcePage": "https://fostinisguitars.com/guitar-models",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/451952961_524720126568317_147215823466701208_n.jpg",
+    "alt": "Electric guitar with a glossy purple and green finish on a dark background.",
+    "bytes": 89625,
+    "retrieved": "2026-10-15",
+    "width": 1141,
+    "height": 720,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/matadaur-480.webp",
+        "width": 480,
+        "height": 303,
+        "bytes": 21524
+      },
+      "1200": {
+        "url": "./assets/heritage/matadaur-1200.webp",
+        "width": 1141,
+        "height": 720,
+        "bytes": 72862
+      }
+    }
+  },
+  {
+    "key": "mark-slaughter",
+    "sourcePage": "https://fostinisguitars.com/artists-1",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/3ece7a8a-5153-4020-a86e-4b3dcb21e066.jpeg",
+    "alt": "Mark Slaughter Fostinis Guitars",
+    "bytes": 75655,
+    "retrieved": "2026-10-15",
+    "width": 836,
+    "height": 720,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/mark-slaughter-480.webp",
+        "width": 480,
+        "height": 413,
+        "bytes": 30288
+      },
+      "1200": {
+        "url": "./assets/heritage/mark-slaughter-1200.webp",
+        "width": 836,
+        "height": 720,
+        "bytes": 62626
+      }
+    }
+  },
+  {
+    "key": "stix-zadinia",
+    "sourcePage": "https://fostinisguitars.com/artists-1",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/53849713-8341-4ed8-ab88-d6035ebd3208.jpeg",
+    "alt": "Stix Zadinia Fostinis Guitars",
+    "bytes": 43940,
+    "retrieved": "2026-10-15",
+    "width": 360,
+    "height": 480,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/stix-zadinia-480.webp",
+        "width": 360,
+        "height": 480,
+        "bytes": 35532
+      },
+      "1200": {
+        "url": "./assets/heritage/stix-zadinia-1200.webp",
+        "width": 360,
+        "height": 480,
+        "bytes": 35532
+      }
+    }
+  },
+  {
+    "key": "janne-nieminen",
+    "sourcePage": "https://fostinisguitars.com/artists-1",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/8a7bc071-22b7-42e0-8b10-dc999f0fdd65.jpeg",
+    "alt": "Janne Nieminen Fostinis Guitars",
+    "bytes": 56526,
+    "retrieved": "2026-10-15",
+    "width": 348,
+    "height": 480,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/janne-nieminen-480.webp",
+        "width": 348,
+        "height": 480,
+        "bytes": 52444
+      },
+      "1200": {
+        "url": "./assets/heritage/janne-nieminen-1200.webp",
+        "width": 348,
+        "height": 480,
+        "bytes": 52444
+      }
+    }
+  },
+  {
+    "key": "peter-henningsson",
+    "sourcePage": "https://fostinisguitars.com/artists-1",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/92d67e87-4476-4d32-8ba8-bf74c73c725d.jpeg",
+    "alt": "Peter Henningsson Fostinis Guitars Matadaur",
+    "bytes": 56184,
+    "retrieved": "2026-10-15",
+    "width": 720,
+    "height": 936,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/peter-henningsson-480.webp",
+        "width": 480,
+        "height": 624,
+        "bytes": 26384
+      },
+      "1200": {
+        "url": "./assets/heritage/peter-henningsson-1200.webp",
+        "width": 720,
+        "height": 936,
+        "bytes": 41970
+      }
+    }
+  },
+  {
+    "key": "mike-kyre",
+    "sourcePage": "https://fostinisguitars.com/artists-1",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/ac520300-041a-424f-a79e-de75ce966b75.jpeg",
+    "alt": "A young man playing an electric guitar against a black background.",
+    "bytes": 56649,
+    "retrieved": "2026-10-15",
+    "width": 1080,
+    "height": 720,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/mike-kyre-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 13088
+      },
+      "1200": {
+        "url": "./assets/heritage/mike-kyre-1200.webp",
+        "width": 1080,
+        "height": 720,
+        "bytes": 46398
+      }
+    }
+  },
+  {
+    "key": "home-feature",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/203b4355-0dbb-4b18-9819-ffee89f0b884.jpeg",
+    "alt": "Original green and purple Matadaur concept from the Fostinis homepage",
+    "retrieved": "2026-10-15",
+    "bytes": 100358,
+    "width": 1076,
+    "height": 686,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-feature-480.webp",
+        "width": 480,
+        "height": 306,
+        "bytes": 24784
+      },
+      "1200": {
+        "url": "./assets/heritage/home-feature-1200.webp",
+        "width": 1076,
+        "height": 686,
+        "bytes": 87068
+      }
+    }
+  },
+  {
+    "key": "home-gallery-1-02",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/IMG_7151.jpg",
+    "galleryId": "bdfd4c74-5462-479a-9d82-769db700916d",
+    "retrieved": "2026-10-15",
+    "bytes": 838772,
+    "alt": "Stars-and-stripes Fostinis guitar resting on a tufted sofa",
+    "width": 1920,
+    "height": 2560,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-1-02-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 81016
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-1-02-1200.webp",
+        "width": 1200,
+        "height": 1600,
+        "bytes": 422258
+      }
+    }
+  },
+  {
+    "key": "home-gallery-1-03",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/IMG_7159.jpg",
+    "galleryId": "bdfd4c74-5462-479a-9d82-769db700916d",
+    "retrieved": "2026-10-15",
+    "bytes": 580395,
+    "alt": "Close photograph of a gold Fostinis headstock with six gold tuners",
+    "width": 1920,
+    "height": 2560,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-1-03-480.webp",
+        "width": 480,
+        "height": 640,
+        "bytes": 50380
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-1-03-1200.webp",
+        "width": 1200,
+        "height": 1600,
+        "bytes": 240784
+      }
+    }
+  },
+  {
+    "key": "home-gallery-1-07",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/Screen%20Shot%202020-08-16%20at%208.41.46%20PM.png",
+    "galleryId": "bdfd4c74-5462-479a-9d82-769db700916d",
+    "retrieved": "2026-10-15",
+    "bytes": 217606,
+    "alt": "Angled photograph of a carved Fostinis guitar with an amber and dark brown burst",
+    "width": 1202,
+    "height": 952,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-1-07-480.webp",
+        "width": 480,
+        "height": 380,
+        "bytes": 55716
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-1-07-1200.webp",
+        "width": 1200,
+        "height": 950,
+        "bytes": 232114
+      }
+    }
+  },
+  {
+    "key": "home-gallery-1-08",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/Screen%20Shot%202020-08-16%20at%208.47.51%20PM.png",
+    "galleryId": "bdfd4c74-5462-479a-9d82-769db700916d",
+    "retrieved": "2026-10-15",
+    "bytes": 98300,
+    "alt": "Fostinis guitar with long curved horns and a peach and pink reflective finish",
+    "width": 1198,
+    "height": 1190,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-1-08-480.webp",
+        "width": 480,
+        "height": 477,
+        "bytes": 22872
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-1-08-1200.webp",
+        "width": 1198,
+        "height": 1190,
+        "bytes": 76304
+      }
+    }
+  },
+  {
+    "key": "home-gallery-1-09",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/Screen%20Shot%202020-08-16%20at%208.42.43%20PM.png",
+    "galleryId": "bdfd4c74-5462-479a-9d82-769db700916d",
+    "retrieved": "2026-10-15",
+    "bytes": 75297,
+    "alt": "Close photograph of a reflective Fostinis body with a black tremolo bridge and four knobs",
+    "width": 1170,
+    "height": 876,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-1-09-480.webp",
+        "width": 480,
+        "height": 359,
+        "bytes": 17698
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-1-09-1200.webp",
+        "width": 1170,
+        "height": 876,
+        "bytes": 58452
+      }
+    }
+  },
+  {
+    "key": "home-gallery-1-12",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/Screen%20Shot%202020-08-16%20at%209.20.38%20PM.png",
+    "galleryId": "bdfd4c74-5462-479a-9d82-769db700916d",
+    "retrieved": "2026-10-15",
+    "bytes": 247665,
+    "alt": "Green Fostinis guitar photographed on wooden boards",
+    "width": 1198,
+    "height": 896,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-1-12-480.webp",
+        "width": 480,
+        "height": 359,
+        "bytes": 61926
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-1-12-1200.webp",
+        "width": 1198,
+        "height": 896,
+        "bytes": 251250
+      }
+    }
+  },
+  {
+    "key": "home-gallery-1-13",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://isteam.wsimg.com/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/8d12a5ec-8d25-44ec-88a9-929add51336b.jpeg",
+    "galleryId": "bdfd4c74-5462-479a-9d82-769db700916d",
+    "retrieved": "2026-10-15",
+    "bytes": 238334,
+    "alt": "Reddish figured-wood Fostinis guitar with a glossy carved top",
+    "width": 1242,
+    "height": 1229,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-1-13-480.webp",
+        "width": 480,
+        "height": 475,
+        "bytes": 63394
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-1-13-1200.webp",
+        "width": 1200,
+        "height": 1187,
+        "bytes": 209242
+      }
+    }
+  },
+  {
+    "key": "home-gallery-2-01",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/Screen%20Shot%202020-08-16%20at%209.19.56%20PM.png",
+    "galleryId": "f2bac4ba-de5e-42ea-9619-4ce19322ff05",
+    "retrieved": "2026-10-15",
+    "bytes": 268118,
+    "alt": "Amber figured Fostinis guitar with white humbuckers photographed in natural light",
+    "width": 1198,
+    "height": 1198,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-2-01-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 69680
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-2-01-1200.webp",
+        "width": 1198,
+        "height": 1198,
+        "bytes": 265524
+      }
+    }
+  },
+  {
+    "key": "home-gallery-2-03",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/Screen%20Shot%202020-08-16%20at%209.18.40%20PM.png",
+    "galleryId": "f2bac4ba-de5e-42ea-9619-4ce19322ff05",
+    "retrieved": "2026-10-15",
+    "bytes": 281117,
+    "alt": "Blue Fostinis guitar with white pickups and a black tremolo on a wooden surface",
+    "width": 1192,
+    "height": 1176,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-2-03-480.webp",
+        "width": 480,
+        "height": 474,
+        "bytes": 76646
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-2-03-1200.webp",
+        "width": 1192,
+        "height": 1176,
+        "bytes": 293988
+      }
+    }
+  },
+  {
+    "key": "home-gallery-2-05",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/Screen%20Shot%202020-08-16%20at%209.22.34%20PM.png",
+    "galleryId": "f2bac4ba-de5e-42ea-9619-4ce19322ff05",
+    "retrieved": "2026-10-15",
+    "bytes": 323514,
+    "alt": "Purple and pink Fostinis guitar photographed on outdoor wooden boards",
+    "width": 1194,
+    "height": 1122,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-2-05-480.webp",
+        "width": 480,
+        "height": 451,
+        "bytes": 78666
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-2-05-1200.webp",
+        "width": 1194,
+        "height": 1122,
+        "bytes": 342474
+      }
+    }
+  },
+  {
+    "key": "home-gallery-2-06",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://img1.wsimg.com/isteam/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/Screen%20Shot%202020-08-16%20at%209.21.15%20PM.png",
+    "galleryId": "f2bac4ba-de5e-42ea-9619-4ce19322ff05",
+    "retrieved": "2026-10-15",
+    "bytes": 229079,
+    "alt": "Close photograph of a glossy purple Fostinis guitar reflecting window light",
+    "width": 1200,
+    "height": 1194,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-2-06-480.webp",
+        "width": 480,
+        "height": 478,
+        "bytes": 57242
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-2-06-1200.webp",
+        "width": 1200,
+        "height": 1194,
+        "bytes": 207156
+      }
+    }
+  },
+  {
+    "key": "home-gallery-3-05",
+    "sourcePage": "https://fostinisguitars.com/",
+    "sourceImage": "https://isteam.wsimg.com/ip/4b9009b1-13e2-41aa-a4a8-bc578cbf01c6/2619ecc3-4485-4ec7-98d0-89da7e24f97b.jpeg",
+    "galleryId": "7f8ff0de-40db-4a31-be63-83cb561696c4",
+    "retrieved": "2026-10-15",
+    "bytes": 685303,
+    "alt": "Fostinis signature headstock with six black tuners on a workshop bench",
+    "width": 2560,
+    "height": 2560,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/home-gallery-3-05-480.webp",
+        "width": 480,
+        "height": 480,
+        "bytes": 36190
+      },
+      "1200": {
+        "url": "./assets/heritage/home-gallery-3-05-1200.webp",
+        "width": 1200,
+        "height": 1200,
+        "bytes": 177836
+      }
+    }
+  },
+  {
+    "key": "pick-black",
+    "sourceKind": "owner-upload",
+    "sourceFile": "upload/4D9719B5-F856-4B78-BEF2-111A4DBB5401.png",
+    "alt": "Black Fostinis guitar pick with a gold signature",
+    "bytes": 441552,
+    "retrieved": "2026-10-15",
+    "width": 1536,
+    "height": 1152,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/pick-black-480.webp",
+        "width": 480,
+        "height": 360,
+        "bytes": 8836
+      },
+      "1200": {
+        "url": "./assets/heritage/pick-black-1200.webp",
+        "width": 1200,
+        "height": 900,
+        "bytes": 31134
+      }
+    }
+  },
+  {
+    "key": "pick-green",
+    "sourceKind": "owner-upload",
+    "sourceFile": "upload/0117A95F-E92B-4C6F-B191-678C47DF0E4F.jpeg",
+    "alt": "Mottled green Fostinis guitar pick with a gold signature",
+    "bytes": 214498,
+    "retrieved": "2026-10-15",
+    "width": 1536,
+    "height": 1273,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/pick-green-480.webp",
+        "width": 480,
+        "height": 398,
+        "bytes": 21778
+      },
+      "1200": {
+        "url": "./assets/heritage/pick-green-1200.webp",
+        "width": 1200,
+        "height": 995,
+        "bytes": 83444
+      }
+    }
+  },
+  {
+    "key": "pick-amber",
+    "sourceKind": "owner-upload",
+    "sourceFile": "upload/23D22840-8BE3-40BE-BEBC-4779C15EC706.jpeg",
+    "alt": "Amber Fostinis guitar pick with a gold signature",
+    "bytes": 235244,
+    "retrieved": "2026-10-15",
+    "width": 1536,
+    "height": 1413,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/pick-amber-480.webp",
+        "width": 480,
+        "height": 441,
+        "bytes": 16864
+      },
+      "1200": {
+        "url": "./assets/heritage/pick-amber-1200.webp",
+        "width": 1200,
+        "height": 1104,
+        "bytes": 86508
+      }
+    }
+  },
+  {
+    "key": "pick-purple",
+    "sourceKind": "owner-upload",
+    "sourceFile": "upload/949B3E3F-2429-4ACF-9FD5-8BCEFB57E530.jpeg",
+    "alt": "Purple Fostinis guitar pick with a gold signature",
+    "bytes": 171283,
+    "retrieved": "2026-10-15",
+    "width": 1536,
+    "height": 1152,
+    "files": {
+      "480": {
+        "url": "./assets/heritage/pick-purple-480.webp",
+        "width": 480,
+        "height": 360,
+        "bytes": 12788
+      },
+      "1200": {
+        "url": "./assets/heritage/pick-purple-1200.webp",
+        "width": 1200,
+        "height": 900,
+        "bytes": 45704
+      }
+    }
+  }
+]

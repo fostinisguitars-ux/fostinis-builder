@@ -1,0 +1,1075 @@
+{
+  "formatVersion": 1,
+  "sourceUnits": "metres; use scale=1000 inside the existing millimetre guitar group",
+  "material": "Reuse the body top material and configureUV(mesh,\"top\")",
+  "neckYmm": 86.51256576,
+  "bridgeYmm": -10.437434,
+  "files": {
+    "sphyx_standard": {
+      "sourceSha256": "cb9e7898083477dcd7e31d36600d67fd27688a52a33638ee79c8e0a52baf92c6",
+      "output": "sphyx_standard_pickup_fills.glb",
+      "bytes": 249984,
+      "patches": {
+        "neck_full": {
+          "vertices": 6476,
+          "triangles": 12428,
+          "projectedAreaMm2": 3391.8957812325,
+          "expectedAreaMm2": 3391.895781232696,
+          "areaErrorMm2": 1.9599610823206604e-10,
+          "maxBoundaryDistanceMm": 7.105427357601002e-15,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 276,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -3.0668594408780336,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": null
+        },
+        "neck_single": {
+          "vertices": 5059,
+          "triangles": 9256,
+          "projectedAreaMm2": 1917.6668448177793,
+          "expectedAreaMm2": 1917.6668448177834,
+          "areaErrorMm2": 4.092726157978177e-12,
+          "maxBoundaryDistanceMm": 7.105427357601002e-15,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 276,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -3.0668594408780336,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "bridge_single": {
+          "vertices": 4023,
+          "triangles": 7272,
+          "projectedAreaMm2": 1917.6560263535291,
+          "expectedAreaMm2": 1917.6560263535296,
+          "areaErrorMm2": 4.547473508864641e-13,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 224,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              -31.437434256076813,
+              10.562566109001637
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "control_1": {
+          "vertices": 532,
+          "triangles": 776,
+          "projectedAreaMm2": 71.14916279887794,
+          "expectedAreaMm2": 71.1491627988762,
+          "areaErrorMm2": 1.7337242752546445e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 125,
+          "boundsMm": [
+            [
+              103.36162894964218,
+              112.88123577833176
+            ],
+            [
+              -104.87856715917587,
+              -95.3589677810669
+            ],
+            [
+              -11.039174161851406,
+              -9.545953013002872
+            ]
+          ],
+          "holeMm": null
+        },
+        "control_3": {
+          "vertices": 535,
+          "triangles": 780,
+          "projectedAreaMm2": 71.1498880355823,
+          "expectedAreaMm2": 71.14988803558299,
+          "areaErrorMm2": 6.963318810448982e-13,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 126,
+          "boundsMm": [
+            [
+              101.52318328619003,
+              111.04282736778259
+            ],
+            [
+              -158.39138627052307,
+              -148.87142181396484
+            ],
+            [
+              -13.365604914724827,
+              -11.037896387279034
+            ]
+          ],
+          "holeMm": null
+        },
+        "switch": {
+          "vertices": 597,
+          "triangles": 922,
+          "projectedAreaMm2": 126.61104065247986,
+          "expectedAreaMm2": 126.61104065247855,
+          "areaErrorMm2": 1.3073986337985843e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 111,
+          "boundsMm": [
+            [
+              80.27972280979156,
+              92.97943115234375
+            ],
+            [
+              -85.71619540452957,
+              -73.01826775074005
+            ],
+            [
+              -1.103042857721448,
+              -0.9999985340982676
+            ]
+          ],
+          "holeMm": null
+        }
+      },
+      "compression": {
+        "encoding": "lossless meshopt; float attributes retained",
+        "decodedTrianglesUnchanged": true,
+        "uncompressedBytes": 933656
+      }
+    },
+    "sphyx_tremolo": {
+      "sourceSha256": "69c0e9f6a929905e7d30a54683308a7e18227b0cad90a5bfe994aaa61fc0bd7c",
+      "output": "sphyx_tremolo_pickup_fills.glb",
+      "bytes": 249984,
+      "patches": {
+        "neck_full": {
+          "vertices": 6476,
+          "triangles": 12428,
+          "projectedAreaMm2": 3391.8957812325,
+          "expectedAreaMm2": 3391.895781232696,
+          "areaErrorMm2": 1.9599610823206604e-10,
+          "maxBoundaryDistanceMm": 7.105427357601002e-15,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 276,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -3.0668594408780336,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": null
+        },
+        "neck_single": {
+          "vertices": 5059,
+          "triangles": 9256,
+          "projectedAreaMm2": 1917.6668448177793,
+          "expectedAreaMm2": 1917.6668448177834,
+          "areaErrorMm2": 4.092726157978177e-12,
+          "maxBoundaryDistanceMm": 7.105427357601002e-15,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 276,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -3.0668594408780336,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "bridge_single": {
+          "vertices": 4023,
+          "triangles": 7272,
+          "projectedAreaMm2": 1917.6560263535291,
+          "expectedAreaMm2": 1917.6560263535296,
+          "areaErrorMm2": 4.547473508864641e-13,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 224,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              -31.437434256076813,
+              10.562566109001637
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "control_1": {
+          "vertices": 532,
+          "triangles": 776,
+          "projectedAreaMm2": 71.14916279887794,
+          "expectedAreaMm2": 71.1491627988762,
+          "areaErrorMm2": 1.7337242752546445e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 125,
+          "boundsMm": [
+            [
+              103.36162894964218,
+              112.88123577833176
+            ],
+            [
+              -104.87856715917587,
+              -95.3589677810669
+            ],
+            [
+              -11.039174161851406,
+              -9.545953013002872
+            ]
+          ],
+          "holeMm": null
+        },
+        "control_3": {
+          "vertices": 535,
+          "triangles": 780,
+          "projectedAreaMm2": 71.1498880355823,
+          "expectedAreaMm2": 71.14988803558299,
+          "areaErrorMm2": 6.963318810448982e-13,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 126,
+          "boundsMm": [
+            [
+              101.52318328619003,
+              111.04282736778259
+            ],
+            [
+              -158.39138627052307,
+              -148.87142181396484
+            ],
+            [
+              -13.365604914724827,
+              -11.037896387279034
+            ]
+          ],
+          "holeMm": null
+        },
+        "switch": {
+          "vertices": 597,
+          "triangles": 922,
+          "projectedAreaMm2": 126.61104065247986,
+          "expectedAreaMm2": 126.61104065247855,
+          "areaErrorMm2": 1.3073986337985843e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 111,
+          "boundsMm": [
+            [
+              80.27972280979156,
+              92.97943115234375
+            ],
+            [
+              -85.71619540452957,
+              -73.01826775074005
+            ],
+            [
+              -1.103042857721448,
+              -0.9999985340982676
+            ]
+          ],
+          "holeMm": null
+        }
+      },
+      "compression": {
+        "encoding": "lossless meshopt; float attributes retained",
+        "decodedTrianglesUnchanged": true,
+        "uncompressedBytes": 933656
+      }
+    },
+    "oryx_standard": {
+      "sourceSha256": "b816bd870656d49801ba7a48da45916af1f689e6ece5e938c2ada3a82add32f6",
+      "output": "oryx_standard_pickup_fills.glb",
+      "bytes": 191988,
+      "patches": {
+        "neck_full": {
+          "vertices": 5442,
+          "triangles": 10446,
+          "projectedAreaMm2": 3391.8851155700886,
+          "expectedAreaMm2": 3391.8851155702296,
+          "areaErrorMm2": 1.4097167877480388e-10,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 226,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": null
+        },
+        "neck_single": {
+          "vertices": 4025,
+          "triangles": 7274,
+          "projectedAreaMm2": 1917.6561791553368,
+          "expectedAreaMm2": 1917.6561791553167,
+          "areaErrorMm2": 2.000888343900442e-11,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 226,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "bridge_single": {
+          "vertices": 4023,
+          "triangles": 7272,
+          "projectedAreaMm2": 1917.6560263535291,
+          "expectedAreaMm2": 1917.6560263535296,
+          "areaErrorMm2": 4.547473508864641e-13,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 224,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              -31.437434256076813,
+              10.562566109001637
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "control_1": {
+          "vertices": 532,
+          "triangles": 776,
+          "projectedAreaMm2": 71.14916279887794,
+          "expectedAreaMm2": 71.1491627988762,
+          "areaErrorMm2": 1.7337242752546445e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 125,
+          "boundsMm": [
+            [
+              103.36162894964218,
+              112.88123577833176
+            ],
+            [
+              -104.87856715917587,
+              -95.3589677810669
+            ],
+            [
+              -11.039174161851406,
+              -9.545953013002872
+            ]
+          ],
+          "holeMm": null
+        },
+        "control_3": {
+          "vertices": 535,
+          "triangles": 780,
+          "projectedAreaMm2": 71.1498880355823,
+          "expectedAreaMm2": 71.14988803558299,
+          "areaErrorMm2": 6.963318810448982e-13,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 126,
+          "boundsMm": [
+            [
+              101.52318328619003,
+              111.04282736778259
+            ],
+            [
+              -158.39138627052307,
+              -148.87142181396484
+            ],
+            [
+              -13.365604914724827,
+              -11.037896387279034
+            ]
+          ],
+          "holeMm": null
+        },
+        "switch": {
+          "vertices": 595,
+          "triangles": 918,
+          "projectedAreaMm2": 126.60777993026002,
+          "expectedAreaMm2": 126.6077799302584,
+          "areaErrorMm2": 1.6200374375330284e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 111,
+          "boundsMm": [
+            [
+              80.27972280979156,
+              92.97943115234375
+            ],
+            [
+              -85.71619540452957,
+              -73.01826775074005
+            ],
+            [
+              -1.1029435554519296,
+              -0.9999232133850455
+            ]
+          ],
+          "holeMm": null
+        }
+      },
+      "compression": {
+        "encoding": "lossless meshopt; float attributes retained",
+        "decodedTrianglesUnchanged": true,
+        "uncompressedBytes": 819804
+      }
+    },
+    "oryx_tremolo": {
+      "sourceSha256": "7c962505f6726d093f1032a7b5cbe589afd4a70a0dc2b56b5c7469c584fe9b0d",
+      "output": "oryx_tremolo_pickup_fills.glb",
+      "bytes": 191920,
+      "patches": {
+        "neck_full": {
+          "vertices": 5442,
+          "triangles": 10446,
+          "projectedAreaMm2": 3391.8851155700886,
+          "expectedAreaMm2": 3391.8851155702296,
+          "areaErrorMm2": 1.4097167877480388e-10,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 226,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": null
+        },
+        "neck_single": {
+          "vertices": 4025,
+          "triangles": 7274,
+          "projectedAreaMm2": 1917.6561791553368,
+          "expectedAreaMm2": 1917.6561791553167,
+          "areaErrorMm2": 2.000888343900442e-11,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 226,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "bridge_single": {
+          "vertices": 4023,
+          "triangles": 7272,
+          "projectedAreaMm2": 1917.6560263535291,
+          "expectedAreaMm2": 1917.6560263535296,
+          "areaErrorMm2": 4.547473508864641e-13,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 224,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              -31.437434256076813,
+              10.562566109001637
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "control_1": {
+          "vertices": 532,
+          "triangles": 776,
+          "projectedAreaMm2": 71.14916279887794,
+          "expectedAreaMm2": 71.1491627988762,
+          "areaErrorMm2": 1.7337242752546445e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 125,
+          "boundsMm": [
+            [
+              103.36162894964218,
+              112.88123577833176
+            ],
+            [
+              -104.87856715917587,
+              -95.3589677810669
+            ],
+            [
+              -11.039174161851406,
+              -9.545953013002872
+            ]
+          ],
+          "holeMm": null
+        },
+        "control_3": {
+          "vertices": 535,
+          "triangles": 780,
+          "projectedAreaMm2": 71.1498880355823,
+          "expectedAreaMm2": 71.14988803558299,
+          "areaErrorMm2": 6.963318810448982e-13,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 126,
+          "boundsMm": [
+            [
+              101.52318328619003,
+              111.04282736778259
+            ],
+            [
+              -158.39138627052307,
+              -148.87142181396484
+            ],
+            [
+              -13.365604914724827,
+              -11.037896387279034
+            ]
+          ],
+          "holeMm": null
+        },
+        "switch": {
+          "vertices": 595,
+          "triangles": 918,
+          "projectedAreaMm2": 126.60777993026002,
+          "expectedAreaMm2": 126.6077799302584,
+          "areaErrorMm2": 1.6200374375330284e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 111,
+          "boundsMm": [
+            [
+              80.27972280979156,
+              92.97943115234375
+            ],
+            [
+              -85.71619540452957,
+              -73.01826775074005
+            ],
+            [
+              -1.1029435554519296,
+              -0.9999987669289112
+            ]
+          ],
+          "holeMm": null
+        }
+      },
+      "compression": {
+        "encoding": "lossless meshopt; float attributes retained",
+        "decodedTrianglesUnchanged": true,
+        "uncompressedBytes": 819804
+      }
+    },
+    "matadaur_standard": {
+      "sourceSha256": "51f16abc86b520bba575bdf0de8d717d4f61b2d71bc8bf9be5fd68e1c7e451d4",
+      "output": "matadaur_standard_pickup_fills.glb",
+      "bytes": 403532,
+      "patches": {
+        "neck_full": {
+          "vertices": 10343,
+          "triangles": 19874,
+          "projectedAreaMm2": 3391.931527141779,
+          "expectedAreaMm2": 3391.9315271418996,
+          "areaErrorMm2": 1.20508047984913e-10,
+          "maxBoundaryDistanceMm": 2.1316282072803006e-14,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 310,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -13.843946158885956,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": null
+        },
+        "neck_single": {
+          "vertices": 7988,
+          "triangles": 14750,
+          "projectedAreaMm2": 1917.7025907270076,
+          "expectedAreaMm2": 1917.7025907269867,
+          "areaErrorMm2": 2.091837814077735e-11,
+          "maxBoundaryDistanceMm": 2.1316282072803006e-14,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 310,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -13.843946158885956,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "bridge_single": {
+          "vertices": 7573,
+          "triangles": 13936,
+          "projectedAreaMm2": 1917.7152284766753,
+          "expectedAreaMm2": 1917.7152284766337,
+          "areaErrorMm2": 4.160938260611147e-11,
+          "maxBoundaryDistanceMm": 2.1316282072803006e-14,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 292,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              -31.437434256076813,
+              10.562566109001637
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "control_1": {
+          "vertices": 494,
+          "triangles": 688,
+          "projectedAreaMm2": 65.40944830280002,
+          "expectedAreaMm2": 65.40944830280296,
+          "areaErrorMm2": 2.9416469260468148e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 132,
+          "boundsMm": [
+            [
+              103.74387353658676,
+              112.49938607215881
+            ],
+            [
+              -104.87565398216248,
+              -95.36147862672806
+            ],
+            [
+              -13.652483001351357,
+              -9.904353879392147
+            ]
+          ],
+          "holeMm": null
+        },
+        "control_3": {
+          "vertices": 1554,
+          "triangles": 2610,
+          "projectedAreaMm2": 475.750980222679,
+          "expectedAreaMm2": 475.7470679488388,
+          "areaErrorMm2": 0.0039122738402284085,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 2,
+          "sourceBoundaryVertices": 187,
+          "boundsMm": [
+            [
+              100.81097483634949,
+              123.52249771356583
+            ],
+            [
+              -170.09830474853516,
+              -138.8792246580124
+            ],
+            [
+              -15.610601752996445,
+              -5.571423564106226
+            ]
+          ],
+          "holeMm": null
+        },
+        "switch": {
+          "vertices": 711,
+          "triangles": 1090,
+          "projectedAreaMm2": 126.6325249601186,
+          "expectedAreaMm2": 126.63252496011592,
+          "areaErrorMm2": 2.6858515411731787e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 142,
+          "boundsMm": [
+            [
+              80.2794098854065,
+              92.97963231801987
+            ],
+            [
+              -85.71791648864746,
+              -73.0181634426117
+            ],
+            [
+              -1.2031655060127378,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": null
+        }
+      },
+      "compression": {
+        "encoding": "lossless meshopt; float attributes retained",
+        "decodedTrianglesUnchanged": true,
+        "uncompressedBytes": 1557948
+      }
+    },
+    "matadaur_tremolo": {
+      "sourceSha256": "144267306ff1c9106e27a9a9e90c1336711ca82bb932dc483b91f8047706bc20",
+      "output": "matadaur_tremolo_pickup_fills.glb",
+      "bytes": 403548,
+      "patches": {
+        "neck_full": {
+          "vertices": 10343,
+          "triangles": 19874,
+          "projectedAreaMm2": 3391.931527141779,
+          "expectedAreaMm2": 3391.9315271418996,
+          "areaErrorMm2": 1.20508047984913e-10,
+          "maxBoundaryDistanceMm": 2.1316282072803006e-14,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 310,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -13.843946158885956,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": null
+        },
+        "neck_single": {
+          "vertices": 7988,
+          "triangles": 14750,
+          "projectedAreaMm2": 1917.7025907270076,
+          "expectedAreaMm2": 1917.7025907269867,
+          "areaErrorMm2": 2.091837814077735e-11,
+          "maxBoundaryDistanceMm": 2.1316282072803006e-14,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 310,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              65.51256775856018,
+              107.51257091760635
+            ],
+            [
+              -13.843946158885956,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "bridge_single": {
+          "vertices": 7573,
+          "triangles": 13936,
+          "projectedAreaMm2": 1917.7152284766753,
+          "expectedAreaMm2": 1917.7152284766319,
+          "areaErrorMm2": 4.3428372009657323e-11,
+          "maxBoundaryDistanceMm": 2.1316282072803006e-14,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 292,
+          "boundsMm": [
+            [
+              -44.50000077486038,
+              44.50000077486038
+            ],
+            [
+              -31.437434256076813,
+              10.562566109001637
+            ],
+            [
+              -1.0000000474974513,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": {
+            "width": 78,
+            "height": 19,
+            "radius": 3
+          }
+        },
+        "control_1": {
+          "vertices": 494,
+          "triangles": 688,
+          "projectedAreaMm2": 65.40944830280002,
+          "expectedAreaMm2": 65.40944830280296,
+          "areaErrorMm2": 2.9416469260468148e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 132,
+          "boundsMm": [
+            [
+              103.74387353658676,
+              112.49938607215881
+            ],
+            [
+              -104.87565398216248,
+              -95.36147862672806
+            ],
+            [
+              -13.652483001351357,
+              -9.904353879392147
+            ]
+          ],
+          "holeMm": null
+        },
+        "control_3": {
+          "vertices": 1554,
+          "triangles": 2610,
+          "projectedAreaMm2": 475.75098187702235,
+          "expectedAreaMm2": 475.74706960318053,
+          "areaErrorMm2": 0.003912273841820024,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 2,
+          "sourceBoundaryVertices": 187,
+          "boundsMm": [
+            [
+              100.81097483634949,
+              123.52249771356583
+            ],
+            [
+              -170.09830474853516,
+              -138.8792246580124
+            ],
+            [
+              -15.610601752996445,
+              -5.571423564106226
+            ]
+          ],
+          "holeMm": null
+        },
+        "switch": {
+          "vertices": 711,
+          "triangles": 1090,
+          "projectedAreaMm2": 126.6325249601186,
+          "expectedAreaMm2": 126.63252496011592,
+          "areaErrorMm2": 2.6858515411731787e-12,
+          "maxBoundaryDistanceMm": 0,
+          "maxBoundaryNormalError": 0,
+          "negativeSourceNormalCount": 0,
+          "sourceBoundaryVertices": 142,
+          "boundsMm": [
+            [
+              80.2794098854065,
+              92.97963231801987
+            ],
+            [
+              -85.71791648864746,
+              -73.0181634426117
+            ],
+            [
+              -1.2031655060127378,
+              -1.0000000474974513
+            ]
+          ],
+          "holeMm": null
+        }
+      },
+      "compression": {
+        "encoding": "lossless meshopt; float attributes retained",
+        "decodedTrianglesUnchanged": true,
+        "uncompressedBytes": 1557948
+      }
+    }
+  },
+  "serializedChecks": {
+    "originalGlbsUnchanged": true,
+    "serializedGlbReadable": true,
+    "meshes": 36,
+    "triangles": 223696,
+    "maxUvError": 3.874301912620837e-8,
+    "allPositionsAndNormalsFinite": true,
+    "allNormalsUnit": true,
+    "noReversedTopTriangles": true
+  }
+}

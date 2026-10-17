@@ -1,0 +1,94 @@
+{
+  "units": "mm",
+  "scale": 1,
+  "neckTransform": {
+    "rotationZDegrees": -90,
+    "translation": [
+      0,
+      372.57195887,
+      1.8625
+    ]
+  },
+  "oryxHeelExtensionMm": 50.755429402000004,
+  "neckUnscaled": true,
+  "bodies": {
+    "matadaur_standard": {
+      "addedBodyVolumeMm3": 0,
+      "translationMm": [
+        20.8503708884,
+        21.588992035,
+        0
+      ],
+      "removedBodyVolumeMm3": 111.475042,
+      "originalNeckIntersectionMm3": 93.500818,
+      "remainingIntersectionMm3": 0.0,
+      "sourceNeckScale": 1,
+      "validSolid": true
+    },
+    "matadaur_tremolo": {
+      "addedBodyVolumeMm3": 0,
+      "translationMm": [
+        20.8503708884,
+        21.588992035,
+        0
+      ],
+      "removedBodyVolumeMm3": 115.13557,
+      "originalNeckIntersectionMm3": 93.500819,
+      "remainingIntersectionMm3": 0.0,
+      "sourceNeckScale": 1,
+      "validSolid": true
+    },
+    "oryx_standard": {
+      "addedBodyVolumeMm3": 0,
+      "translationMm": [
+        13.9326447681,
+        0,
+        0
+      ],
+      "removedBodyVolumeMm3": 445.935594,
+      "originalNeckIntersectionMm3": 320.36504,
+      "remainingIntersectionMm3": 0.0,
+      "sourceNeckScale": 1,
+      "validSolid": true
+    },
+    "oryx_tremolo": {
+      "addedBodyVolumeMm3": 0,
+      "translationMm": [
+        13.9326447681,
+        0,
+        0
+      ],
+      "removedBodyVolumeMm3": 438.124697,
+      "originalNeckIntersectionMm3": 320.36504,
+      "remainingIntersectionMm3": 0.0,
+      "sourceNeckScale": 1,
+      "validSolid": true
+    },
+    "sphyx_standard": {
+      "addedBodyVolumeMm3": 0,
+      "translationMm": [
+        13.9326447681,
+        0,
+        0
+      ],
+      "removedBodyVolumeMm3": 103.389583,
+      "originalNeckIntersectionMm3": 100.651776,
+      "remainingIntersectionMm3": 0.0,
+      "sourceNeckScale": 1,
+      "validSolid": true
+    },
+    "sphyx_tremolo": {
+      "addedBodyVolumeMm3": 0,
+      "translationMm": [
+        13.9326447681,
+        0,
+        0
+      ],
+      "removedBodyVolumeMm3": 103.389583,
+      "originalNeckIntersectionMm3": 100.651777,
+      "remainingIntersectionMm3": 0.0,
+      "sourceNeckScale": 1,
+      "validSolid": true
+    }
+  }
+}

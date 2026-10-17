@@ -1,0 +1,57 @@
+{
+  "validClosedSolids": 2,
+  "overallNeckBoundsPreserved": true,
+  "oryxHeelSections": [
+    {
+      "yMm": 140,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 150,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 155,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 160,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 165,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 175,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 185,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 195,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 205,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 220,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 245,
+      "connectedSections": 1
+    },
+    {
+      "yMm": 265,
+      "connectedSections": 1
+    }
+  ],
+  "formerSplitLocationsFilled": true,
+  "scaleLengthMm": 647.7,
+  "neckScale": 1
+}

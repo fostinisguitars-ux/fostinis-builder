@@ -1,0 +1,11 @@
+{
+  "units": "mm",
+  "originalNeckPickupY": 77.387566,
+  "neckPickupY": 86.51256576,
+  "bridgePickupY": -10.437434,
+  "fretboardEndY": 107.18756576,
+  "maximumFretboardPickupGapMm": 3.175,
+  "openCoilHalfLengthMm": 17.5,
+  "coveredPickupHalfLengthMm": 18.5,
+  "mountingFrameHalfLengthMm": 20
+}
