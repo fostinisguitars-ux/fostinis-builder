@@ -17,7 +17,11 @@ for(const file of await readdir(new URL('public/',root))){
  const end=html.indexOf('\n',catalogStart);
  if(catalogStart<0||end<0)throw new Error('Missing pricing embed in '+file);
  let updated=html.slice(0,start)+engine+'window.FostinisPricing=createPricingEngine(window.FostinisCommerceCatalog);'+html.slice(end);
- const configGuard="if("+JSON.stringify(PUBLIC_ORIGINS)+".includes(location.origin))fetch('/api/commerce/config'";
+ const storefrontCheck=JSON.stringify(PUBLIC_ORIGINS)+'.includes(location.origin)';
+ const hostedGuard='const hosted='+storefrontCheck+';';
+ updated=updated.replace(/const hosted=location\.origin==='https:\/\/fostinis-design-review\.bouncybow11\.chatgpt\.site';/,hostedGuard);
+ updated=updated.replace(/const hosted=\[[^\n]+?\]\.includes\(location\.origin\);/,hostedGuard);
+ const configGuard="if("+storefrontCheck+")fetch('/api/commerce/config'";
  updated=updated.replace(/if\(location\.origin==='https:\/\/fostinis-design-review\.bouncybow11\.chatgpt\.site'\)fetch\('\/api\/commerce\/config'/,configGuard);
  updated=updated.replace(/if\(\[[^\n]+?\]\.includes\(location\.origin\)\)fetch\('\/api\/commerce\/config'/,configGuard);
  // A classic blocking script loads once before the existing inline application.
