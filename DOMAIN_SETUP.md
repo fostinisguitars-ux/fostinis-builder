@@ -26,6 +26,6 @@ Leave MX, SPF, DKIM, DMARC, and other unrelated records unchanged. If the websit
 
 ## Completion
 
-The host registered both `fostinisguitars.com` and `www.fostinisguitars.com` on October 17, 2026. Both are currently awaiting DNS and certificate validation. After the records resolve, refresh their status in Sites and confirm both domain and SSL status are active before announcing the custom domain as live.
+Both `fostinisguitars.com` and `www.fostinisguitars.com` were confirmed active by Sites on October 17, 2026, with active HTTPS certificates. The complete site is published as version 49. The records above are the current working configuration; no further DNS changes are needed.
 
 The old GitHub repository state is preserved in branch `backup-before-showroom-2026-10-17`.
