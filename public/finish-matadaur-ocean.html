@@ -952,7 +952,7 @@ function render(){
   row(refs,'Component price total ('+q.referenceCount+'/'+q.references.length+')',money(q.referenceSubtotalCents));
  }
  const cta=document.getElementById('checkout-stripe');
- const hosted=location.origin==='https://fostinis-design-review.bouncybow11.chatgpt.site';
+ const hosted=["https://fostinis-design-review.bouncybow11.chatgpt.site","https://fostinisguitars.com","https://www.fostinisguitars.com"].includes(location.origin);
  if(cta){cta.disabled=busy||!hosted||!config?.ready||q.subtotalCents===null||Boolean(current.notes.trim());
  cta.textContent=busy?'Opening secure checkout…':config?.mode==='test'?'Test Stripe checkout · no real payment':'Pay securely with Stripe';}
  const message=document.getElementById('checkout-availability');
