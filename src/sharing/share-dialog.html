@@ -1,0 +1,14 @@
+<dialog id="build-share-dialog" aria-labelledby="share-title" aria-describedby="share-description">
+ <div class="share-header"><div><div class="eyebrow">Made by you. Shared with friends.</div><h2 id="share-title">Share your build.</h2></div><button type="button" id="share-close" aria-label="Close sharing">✕</button></div>
+ <p id="share-description">Three views of your guitar, with Fostinis Guitars on every photo. Social photos show finishes, pickups and hardware. Text and email include All Appointments.</p>
+ <div class="share-destinations" role="group" aria-label="Where would you like to share?">
+  <button type="button" data-share-platform="tiktok" aria-pressed="false">TikTok</button><button type="button" data-share-platform="instagram" aria-pressed="true">Instagram</button><button type="button" data-share-platform="x" aria-pressed="false">X</button><button type="button" data-share-platform="facebook" aria-pressed="false">Facebook</button><button type="button" data-share-platform="text" aria-pressed="false">Text</button><button type="button" data-share-platform="email" aria-pressed="false">Email</button>
+ </div>
+ <p id="share-status" class="note" role="status" aria-live="polite">Preparing your three photos…</p>
+ <div id="share-gallery" class="share-gallery" aria-label="Front, back and 45 degree photos" aria-busy="true"></div>
+ <div class="share-actions"><button type="button" id="share-native" class="primary" disabled>Share photos…</button><a id="share-message" hidden>Open email</a><a id="share-open-platform" target="_blank" rel="noopener noreferrer" hidden>Open Instagram ↗</a><button type="button" id="share-retry" hidden>Prepare photos again</button></div>
+ <p id="share-help" class="note"></p>
+ <div class="share-downloads"><a id="share-download-all" hidden>Download all three photos (ZIP)</a><button type="button" id="share-copy-message">Copy caption</button><button type="button" id="share-copy-link">Copy build link</button></div>
+ <label for="share-copy-area" class="eyebrow">Your message</label><textarea id="share-copy-area" rows="3" readonly aria-label="Share message or caption"></textarea>
+ <p class="note">Anyone with your build link can see the guitar and its nickname. Build notes are left out.</p>
+</dialog>

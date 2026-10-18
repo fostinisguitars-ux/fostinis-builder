@@ -1,0 +1,9 @@
+<dialog id="saved-builds-dialog" aria-labelledby="saved-builds-title" aria-describedby="saved-builds-description">
+ <div class="share-header"><div><div class="eyebrow">Pick up where you left off</div><h2 id="saved-builds-title">Your saved builds.</h2></div><button type="button" id="saved-build-close" aria-label="Close saved builds">✕</button></div>
+ <p id="saved-builds-description">Your current choices and nickname save automatically in this browser. Keep named versions below, or download a backup to continue on another device. Backups include your build notes.</p>
+ <form id="save-build-form"><label for="saved-build-name">Save this version as</label><div class="save-build-row"><input id="saved-build-name" type="text" maxlength="40" required autocomplete="off"><button type="submit" class="primary">Save build</button></div></form>
+ <p id="saved-build-status" class="note" role="status" aria-live="polite"></p>
+ <div class="share-downloads"><a id="download-current-build">Download this build</a><a id="download-saved-builds" hidden>Export saved builds</a><label class="backup-import">Import backup<input id="import-build-backup" type="file" accept=".json,application/json"></label></div>
+ <p class="note">Use the same browser to see your saved list. Before clearing browser data, download a backup. Resuming a saved version replaces that model’s current working copy.</p>
+ <div id="saved-build-list" aria-label="Saved guitar builds"></div>
+</dialog>

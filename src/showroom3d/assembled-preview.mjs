@@ -15,25 +15,32 @@ export function renderGuitarView({scene,models,selected,environmentGroup,key,env
  }
 }
 
-export function completedCamera(rec,{side='front',focus='full',aspect=8/3}={}){
+export function completedCamera(rec,{side='front',focus='full',aspect=8/3,upright=false}={}){
  rec.group.updateWorldMatrix(true,true);
  const bounds=new T.Box3().setFromObject(focus==='body'?rec.body:rec.group);
  if(bounds.isEmpty())throw Error('The showroom guitar is still loading.');
- const center=bounds.getCenter(new T.Vector3()),size=bounds.getSize(new T.Vector3());
+ const center=bounds.getCenter(new T.Vector3());
  const camera=new T.PerspectiveCamera(32,aspect,.005,10);
- // Roll the camera, not the guitar: this retains the showroom's light direction
- // on every material, and fits the entire selected model at either orientation.
+ // Move the camera around the unchanged guitar. Fit all eight projected bounds
+ // corners so portrait exports and the true 45-degree view cannot crop hardware.
+ const direction=side==='angle'?new T.Vector3(Math.SQRT1_2,0,Math.SQRT1_2):new T.Vector3(0,0,side==='back'?-1:1);
+ camera.up.set(upright?0:-1,upright?1:0,0);
+ camera.position.copy(center).add(direction);camera.lookAt(center);camera.updateMatrixWorld();
+ const right=new T.Vector3().setFromMatrixColumn(camera.matrixWorld,0),up=new T.Vector3().setFromMatrixColumn(camera.matrixWorld,1);
  const tangent=Math.tan(T.MathUtils.degToRad(camera.fov/2));
- const distance=Math.max(size.x/(2*tangent),size.y/(2*tangent*aspect))*1.15+size.z/2;
- camera.up.set(-1,0,0);camera.position.copy(center).add(new T.Vector3(0,0,distance*(side==='back'?-1:1)));camera.lookAt(center);camera.updateMatrixWorld();
+ let distance=.05;
+ for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){
+  const point=new T.Vector3(x,y,z).sub(center),depth=point.dot(direction);
+  distance=Math.max(distance,Math.abs(point.dot(right))/(tangent*aspect*.86)+depth,Math.abs(point.dot(up))/(tangent*.86)+depth);
+ }
+ camera.position.copy(center).addScaledVector(direction,distance);camera.far=Math.max(10,distance*3);camera.updateProjectionMatrix();camera.lookAt(center);camera.updateMatrixWorld();
  return camera;
 }
 
-export function captureCompletedGuitar(context,{side='front',focus='full'}={}){
+export function captureCompletedGuitar(context,{side='front',focus='full',upright=false,width=1600,height=focus==='body'?1200:600}={}){
  const {renderer,models,selected,afterCapture}=context,rec=models.get(selected);
  if(!rec?.body)throw Error('The showroom guitar is still loading.');
- const width=1600,height=focus==='body'?1200:600;
- const camera=completedCamera(rec,{side,focus,aspect:width/height});
+ const camera=completedCamera(rec,{side,focus,aspect:width/height,upright});
  const size=renderer.getSize(new T.Vector2()),ratio=renderer.getPixelRatio();
  try{
   renderer.setPixelRatio(1);renderer.setSize(width,height,false);
@@ -83,6 +90,13 @@ export function createCompletedPreview({studio,F,context,waitForBuilds,waitForTe
   const result=cached?.key===key?cached:captureCompletedGuitar({...context,selected:snapshot.selected},{side:snapshot.review?.side==='back'?'back':'front',focus:snapshot.review?.focus||'full'});
   return (await fetch(result.url)).blob();
  }
+ async function exportShareViews(){
+  const identity=s=>JSON.stringify([s.selected,s.builds[s.selected]]),requested=identity(studio.getSnapshot()),snapshot=await ready();
+  if(requested!==identity(snapshot))throw Error('Your guitar changed. Prepare the sharing photos again.');
+  // Capture synchronously after readiness: all three images use one build state.
+  const views=['front','back','angle'].map(side=>({side,...captureCompletedGuitar({...context,selected:snapshot.selected},{side,upright:true,width:720,height:1440})}));
+  return {snapshot,views};
+ }
  function unavailable(){revision++;cached=null;host.removeAttribute('aria-busy');if(studio.getSnapshot().review?.side!=='original')status('The completed 3D preview is unavailable. Your selections are saved. Reload the page to restore your showroom view.');}
- return {invalidate,refresh,exportPNG,unavailable};
+ return {invalidate,refresh,exportPNG,exportShareViews,unavailable};
 }

@@ -56,8 +56,8 @@ test('Full and body cameras fit actual CAD geometry for all three models, bridge
   const state={...F.initial(model),bridgeModel},body=await asset(model+'_'+bridgeBodyType(state));
   if(bridgeRoutingKey(state)!=='original')configureBridgeBody(body,await asset(model+'_standard'),state,SADDLE_Y);
   group.add(body,await asset(model==='oryx'?'oryx_neck':'shared_neck'),makeHardware(model,state,window.FostinisParts));
-  for(const focus of ['full','body'])for(const side of ['front','back']){
-   const camera=completedCamera({group,body},{side,focus,aspect:focus==='body'?4/3:8/3});
+  for(const focus of ['full','body'])for(const side of ['front','back','angle'])for(const upright of [false,true]){
+   const camera=completedCamera({group,body},{side,focus,upright,aspect:upright?.5:focus==='body'?4/3:8/3});
    const box=new T.Box3().setFromObject(focus==='body'?body:group);
    for(const x of [box.min.x,box.max.x])for(const y of [box.min.y,box.max.y])for(const z of [box.min.z,box.max.z]){const p=new T.Vector3(x,y,z).project(camera);assert(Math.abs(p.x)<.88&&Math.abs(p.y)<.88,model+'/'+bridgeModel+'/'+focus+'/'+side+' clipped');assert(p.z>-1&&p.z<1);}
    views++;
@@ -101,10 +101,22 @@ test('Save preview downloads the displayed PNG and rejects a model change while 
  let release;u.pending=new Promise(resolve=>{release=resolve;});const pending=u.controller.exportPNG();u.snapshot.selected='sphyx';release();await assert.rejects(pending,/guitar changed/);
 });
 
+test('Sharing captures three distinct upright views from one completed build, without changing its materials',async()=>{
+ const u=uiFixture(),before=u.c.models.get('oryx').body.material;
+ const result=await u.controller.exportShareViews();assert.deepEqual(result.views.map(v=>v.side),['front','back','angle']);
+ assert(result.views.every(v=>v.width===720&&v.height===1440));
+ const cameras=u.c.renderer.calls.map(call=>call.camera),center=new T.Box3().setFromObject(u.c.models.get('oryx').group).getCenter(new T.Vector3());
+ const directions=cameras.map(camera=>camera.position.clone().sub(center).normalize());
+ assert(Math.abs(directions[0].z-1)<1e-8);assert(Math.abs(directions[1].z+1)<1e-8);assert(Math.abs(directions[2].x-Math.SQRT1_2)<1e-8);assert(Math.abs(directions[2].z-Math.SQRT1_2)<1e-8);
+ assert(cameras.every(camera=>camera.up.y===1));assert.strictEqual(u.c.models.get('oryx').body.material,before);
+ assert.equal(u.c.renderer.ratio,1.8);assert.deepEqual(u.c.renderer.size.toArray(),[640,300]);
+ let release;u.pending=new Promise(resolve=>{release=resolve;});const stale=u.controller.exportShareViews();u.snapshot.selected='sphyx';release();await assert.rejects(stale,/guitar changed/);
+});
+
 test('All native routes use showroom previews and PNG exports, retaining Original shape',()=>{
  let routes=0;
  for(const name of fs.readdirSync('public').filter(x=>x.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;
-  assert(h.includes("review:{side:view,focus:"),name);assert(h.includes('window.FostinisShowroom.exportPreview()'),name);assert(h.includes('/showroom-360.js?v=47'),name);assert(h.includes('/showroom-360.css?v=47'),name);
+  assert(h.includes("review:{side:view,focus:"),name);assert(h.includes('window.FostinisShowroom.exportPreview()'),name);assert(h.includes('/showroom-360.js?v=51'),name);assert(h.includes('/showroom-360.css?v=51'),name);
   const reviewStart=h.indexOf('function renderReview(){'),review=h.slice(reviewStart,h.indexOf('function go(id,',reviewStart));assert(review.includes("if(view==='original')"));assert(!review.includes('surfaceImage:'));assert(!review.includes("side:view==='back'"));
   const save=h.slice(h.indexOf('async function exportPreview(){'),h.indexOf('function exportBuild(){'));assert(!save.includes('F.renderer('));assert(!save.includes('materialURL('));assert(!save.includes('image/svg+xml'));
   for(const script of h.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(script[1],{filename:name});routes++;
