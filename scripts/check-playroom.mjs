@@ -88,6 +88,6 @@ test('The branded amp and cable stay in the room, preserving guitar-only exports
  room.traverse(m=>{if(m.isMesh)for(const v of m.geometry.attributes.position.array)assert(Number.isFinite(v));});amp.setConnected(false);assert(!room.children.some(c=>c.name==='Connected guitar cable'));
 });
 test('All showroom routes load the playroom without changing commerce scripts',()=>{
- let count=0;for(const name of fs.readdirSync('public').filter(n=>n.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;count++;assert(h.includes('/playroom.js?v=59'));assert(h.includes('/playroom.css?v=59'));assert(h.includes('/build-commerce.js?v=54'));}
+ let count=0;for(const name of fs.readdirSync('public').filter(n=>n.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;count++;assert(h.includes('/playroom.js?v=60'));assert(h.includes('/playroom.css?v=60'));assert(h.includes('/showroom-loader.js?v=60'));assert(h.includes('/build-commerce.js?v=54'));}
  assert.equal(count,233);assert(fs.statSync('public/playroom.js').size<60000);
 });

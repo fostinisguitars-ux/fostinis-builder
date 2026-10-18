@@ -147,7 +147,7 @@ export class GuitarAudio {
     const voice={source,envelope};this.voices.add(voice);
     source.onended=()=>{source.disconnect();envelope.disconnect();this.voices.delete(voice);};
     source.start(start);source.stop(start+hold+.12);
-    this.later(()=>this.onNote({midi,string,fret}),Math.max(0,(start-c.currentTime)*1000));
+    this.later(()=>this.onNote({midi,string,fret,duration:hold,velocity}),Math.max(0,(start-c.currentTime)*1000));
     // Limit repeated taps to a practical polyphony without leaving old nodes alive.
     if(this.voices.size>32){const old=this.voices.values().next().value;try{old.source.stop();}catch{}this.voices.delete(old);}
   }

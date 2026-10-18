@@ -3,7 +3,7 @@
 let loading=false,observer;
 function load(){
  if(loading)return;loading=true;observer?.disconnect();
- import('./showroom-360.js?v=58').catch(error=>{
+ import('./showroom-360.js?v=60').catch(error=>{
   loading=false;console.error('Showroom module unavailable',error);
   const status=document.getElementById('preview-status');
   if(status)status.textContent='The 3D view could not load. Your build options are still available; reopen the showroom to retry.';
@@ -15,3 +15,5 @@ if('IntersectionObserver' in window){
 }else load();
 window.addEventListener('fostinis:navigate',event=>{if(['showroom','parts','review'].includes(event.detail.page))load();});
 for(const id of ['share-build','export-image'])document.getElementById(id)?.addEventListener('click',load,{capture:true});
+
+window.addEventListener('fostinis:playroom-open',load);
