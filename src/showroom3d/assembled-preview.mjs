@@ -53,14 +53,14 @@ export function captureCompletedGuitar(context,{side='front',focus='full',uprigh
 
 export function completedKey(snapshot){return JSON.stringify([snapshot.selected,snapshot.builds[snapshot.selected],snapshot.review?.side||'front',snapshot.review?.focus||'full']);}
 
-export function createCompletedPreview({studio,F,context,waitForBuilds,waitForTextures}){
+export function createCompletedPreview({studio,F,context,waitForBuilds,waitForTextures,shouldRender=()=>true}){
  const host=document.getElementById('review-image');let revision=0,cached=null;
  function status(message){const p=document.createElement('p');p.className='completed-preview-status';p.setAttribute('role','status');p.textContent=message;host.replaceChildren(p);}
  function invalidate(){
   revision++;
   const snapshot=studio.getSnapshot();
   if(snapshot.review?.side==='original'){host.removeAttribute('aria-busy');return;}
-  if(cached?.key!==completedKey(snapshot)){cached=null;host.setAttribute('aria-busy','true');status('Preparing your showroom guitar…');}
+  if(cached?.key!==completedKey(snapshot)){cached=null;if(shouldRender()){host.setAttribute('aria-busy','true');status('Preparing your showroom guitar…');}}
  }
  async function ready(){
   let pending;do{pending=waitForBuilds();await pending;await waitForTextures();}while(pending!==waitForBuilds());
@@ -71,16 +71,16 @@ export function createCompletedPreview({studio,F,context,waitForBuilds,waitForTe
  }
  async function refresh(){
   const ticket=++revision,snapshot=studio.getSnapshot(),key=completedKey(snapshot);
-  if(snapshot.review?.side==='original')return;
+  if(snapshot.review?.side==='original'||!shouldRender())return;
   if(cached?.key===key){host.replaceChildren(cached.image);host.removeAttribute('aria-busy');return cached;}
   host.setAttribute('aria-busy','true');status('Preparing your showroom guitar…');
   try{
    await ready();
-   if(ticket!==revision||key!==completedKey(studio.getSnapshot()))return;
+   if(ticket!==revision||key!==completedKey(studio.getSnapshot())||!shouldRender())return;
    const result=captureCompletedGuitar({...context,selected:snapshot.selected},snapshot.review);
    const img=new Image();img.width=result.width;img.height=result.height;img.alt=F.MODELS[snapshot.selected].name+' — completed '+(snapshot.review?.side==='back'?'back':'front')+' from your showroom build';img.src=result.url;
    await img.decode();
-   if(ticket!==revision||key!==completedKey(studio.getSnapshot()))return;
+   if(ticket!==revision||key!==completedKey(studio.getSnapshot())||!shouldRender())return;
    host.replaceChildren(img);host.removeAttribute('aria-busy');cached={...result,key,image:img};return cached;
   }catch(error){if(ticket===revision){cached=null;host.removeAttribute('aria-busy');status('The completed 3D preview is unavailable. Your selections are saved. Reload the page to restore your showroom view.');console.error('Completed showroom preview unavailable',error);}}
  }

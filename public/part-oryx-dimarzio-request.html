@@ -128,7 +128,7 @@ html[data-current-page=showroom] .build-dock{visibility:hidden;opacity:0;pointer
 .supplier-price a{font-size:13px;color:#dcc294}
 @media(max-width:600px){.build-price{padding:16px}.price-row{gap:12px;font-size:13px}.build-price .price-row:nth-last-of-type(1){font-size:16px}}
 
-</style><link rel="stylesheet" href="/showroom-360.css?v=51">
+</style><link rel="stylesheet" href="/showroom-360.css?v=53">
 <link rel="stylesheet" href="/build-sharing.css?v=52">
 <script src="/build-sharing.js?v=52"></script>
 </head><body data-entry-page="parts" data-preset-type="" data-preset-burst="" data-preset-key="pickupSet" data-preset-value="dimarzio-request" data-preset-model="oryx" data-preset-finish="" data-finish-base="./">
@@ -1070,6 +1070,7 @@ const imageLoads=new Map(),renderVersions={},displaySurfaces={};
 function materialURL(id,s){const key=F.materialKey(id,s);return MATERIALS[key]||'./assets/materials/'+key+'.jpg?v=21';}
 function loadImage(src){if(!imageLoads.has(src))imageLoads.set(src,new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(src);im.onerror=()=>{imageLoads.delete(src);reject(Error('Preview image unavailable'));};im.src=src;}));return imageLoads.get(src);}
 async function renderModel(id){
+ if(window.FostinisShowroom?.ready){paintModel(id);return;}
  const s={...builds[id]},version=(renderVersions[id]||0)+1;renderVersions[id]=version;
  try{
  if(EMBEDDED||s.wood==='burl'){paintModel(id,undefined);if(id===selected){$('preview-status').textContent=previewCaption(id,s);$('live-preview').setAttribute('aria-busy','false');$('retry-preview').hidden=true;}return;}
@@ -1081,10 +1082,12 @@ async function renderModel(id){
   if(id===selected&&page==='review')renderReview();
  }catch(error){if(id===selected){$('preview-status').textContent='Finish image unavailable. Your hardware selections are still applied. Retry the finish below.';$('live-preview').setAttribute('aria-busy','false');$('retry-preview').hidden=false;}}
 }
-function paintModel(id,surface){const s=builds[id];$('frame-'+id).innerHTML=legacyPreview(id,s,{upright:true,surfaceImage:surface,cutout:true,stand:true});$('finish-'+id).textContent=label('finish',s)+' / '+F.WOODS[s.wood].name;$('hardware-'+id).textContent=label('hardware',s)+' · '+label('bridgeModel',s);if(id===selected)renderLive();}
+function paintModel(id,surface){const s=builds[id];if(!window.FostinisShowroom?.ready)$('frame-'+id).innerHTML=legacyPreview(id,s,{upright:true,surfaceImage:surface,cutout:true,stand:true});$('finish-'+id).textContent=label('finish',s)+' / '+F.WOODS[s.wood].name;$('hardware-'+id).textContent=label('hardware',s)+' · '+label('bridgeModel',s);if(id===selected)renderLive();}
 function previewCaption(id,s){if(previewFocus==='headstock'){const p=P.tuners.find(p=>p.id===s.tunerModel);return F.MODELS[id].name+' · '+(previewSide==='back'?'Rear headstock':'Front headstock')+' · '+p.name+' · '+p.specs.gearRatio+' · '+p.specs.lock+(previewSide==='front'?' · '+label('headstockBurst',s)+' (included)':'');}return F.MODELS[id].name+' · '+(previewSide==='back'?(previewFocus==='neck'?'Neck: '+label('neckFinish',s)+' / '+label('neckWood',s):'Back: '+label('backFinish',s)+' / '+label('backWood',s)):'Top: '+(s.finishType==='solid'?'Solid ':'Dye ')+label('finish',s)+' / '+label('burst',s)+' / '+label('wood',s));}
-function notifyVirtualShowroom(){if(window.FostinisStudio?.ready)window.dispatchEvent(new CustomEvent('fostinis:build'));}
-function renderLive(){queueMicrotask(notifyVirtualShowroom);$('live-preview').dataset.focus=previewFocus;const s=builds[selected],options={surfaceImage:EMBEDDED||previewSide==='back'?undefined:(displaySurfaces[selected]||materialURL(selected,F.initial(selected))),side:previewSide,focus:previewFocus};$('live-preview-image').innerHTML=legacyPreview(selected,s,options);$('parts-preview-image').innerHTML=legacyPreview(selected,s,options);$('parts-build-title').textContent='Your '+F.MODELS[selected].name;$('parts-build-summary').textContent=label('pickupSet',s)+' · '+label('bridgeModel',s)+' · '+label('tunerModel',s);document.querySelectorAll('[data-preview-focus]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.previewFocus===previewFocus)));document.querySelectorAll('[data-preview-side]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.previewSide===previewSide)));document.querySelectorAll('[data-inspect-detail]').forEach(sel=>sel.value=previewFocus);$('preview-status').textContent=previewCaption(selected,s);}
+// On-demand showroom updates, revision 53.
+let lastVirtualSnapshot='';
+function notifyVirtualShowroom(){if(!window.FostinisStudio?.ready)return;const next=JSON.stringify(window.FostinisStudio.getSnapshot());if(next===lastVirtualSnapshot)return;lastVirtualSnapshot=next;window.dispatchEvent(new CustomEvent('fostinis:build'));}
+function renderLive(){queueMicrotask(notifyVirtualShowroom);$('live-preview').dataset.focus=previewFocus;const s=builds[selected],options={surfaceImage:EMBEDDED||previewSide==='back'?undefined:(displaySurfaces[selected]||materialURL(selected,F.initial(selected))),side:previewSide,focus:previewFocus};if(!window.FostinisShowroom?.ready){const preview=legacyPreview(selected,s,options);$('live-preview-image').innerHTML=preview;$('parts-preview-image').innerHTML=preview;}$('parts-build-title').textContent='Your '+F.MODELS[selected].name;$('parts-build-summary').textContent=label('pickupSet',s)+' · '+label('bridgeModel',s)+' · '+label('tunerModel',s);document.querySelectorAll('[data-preview-focus]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.previewFocus===previewFocus)));document.querySelectorAll('[data-preview-side]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.previewSide===previewSide)));document.querySelectorAll('[data-inspect-detail]').forEach(sel=>sel.value=previewFocus);$('preview-status').textContent=previewCaption(selected,s);}
 function focusBuilder(){try{$('builder').scrollIntoView?.({behavior:'auto',block:'start'});$('panel-title').focus({preventScroll:true});}catch(error){$('panel-title').focus();}}
 function createExhibits(){for(const [id,m] of Object.entries(F.MODELS)){const b=$('exhibits').querySelector('[data-model="'+id+'"]');b.onclick=event=>{if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||event.button>0)return;try{setModel(id);go('showroom',{target:'builder'});event.preventDefault();}catch(error){console.error('Opening model page',error);}};renderModel(id);}}
 function optionPriceLabel(key,id,state=builds[selected]){let candidate=state;if(key==='pickupLayout')candidate=E.normalize({...state,pickupLayout:id});if(key==='pickupSet'){candidate={...state,pickupSet:id};if(!E.count(candidate,'H')||(E.count(candidate,'S')&&E.system({...candidate,pickupLayout:'hh'})!=='passive'))candidate.pickupLayout='hh';candidate=E.normalize(candidate);}const p=key==='pickupLayout'||key==='pickupSet'?window.FostinisPricing.priceOption('pickupSet',candidate.pickupSet,candidate):window.FostinisPricing.priceOption(key,id,state);return p.cents===null?'Contact us':p.cents===0?'Included':'+'+new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(p.cents/100);}
@@ -1277,6 +1280,7 @@ function initialize(){
   }
  };
  window.addEventListener('fostinis:navigate',followNavigation);
+ window.addEventListener('fostinis:3d-unavailable',()=>{for(const id of Object.keys(F.MODELS))renderModel(id);});
  page=window.FostinisNavigation.current();
  if(page==='review')renderReview();
  $('boot-status').hidden=true;document.documentElement.classList.add('app-ready');
@@ -1305,7 +1309,7 @@ function progress(){queued=false;const length=document.documentElement.scrollHei
 window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(progress);}},{passive:true});
 window.addEventListener('resize',progress,{passive:true});progress();
 })();
-</script><script type="module" src="/showroom-360.js?v=51"></script>
+</script><script type="module" src="/showroom-loader.js?v=53"></script>
 <dialog id="build-share-dialog" aria-labelledby="share-title" aria-describedby="share-description">
  <div class="share-header"><div><div class="eyebrow">Made by you. Shared with friends.</div><h2 id="share-title">Share your build.</h2></div><button type="button" id="share-close" aria-label="Close sharing">✕</button></div>
  <p id="share-description">Three views of your guitar, with Fostinis Guitars on every photo. Social photos show finishes, pickups and hardware. Text and email include All Appointments.</p>

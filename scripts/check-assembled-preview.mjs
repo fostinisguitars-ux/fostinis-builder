@@ -72,10 +72,24 @@ class Element{
 function uiFixture(){
  const host=new Element();globalThis.document={getElementById:()=>host,createElement:()=>new Element()};globalThis.Image=class extends Element{async decode(){}};
  const c=context();let snapshot={selected:'oryx',builds:Object.fromEntries([...c.models].map(([id,r])=>[id,{...r.state}])),review:{side:'front',focus:'full'}};
- let pending=Promise.resolve(),textures=Promise.resolve();
- const controller=createCompletedPreview({studio:{getSnapshot:()=>structuredClone(snapshot)},F,context:c,waitForBuilds:()=>pending,waitForTextures:()=>textures});
- return {c,host,controller,get snapshot(){return snapshot;},set snapshot(s){snapshot=s;},set textures(p){textures=p;},set pending(p){pending=p;}};
+ let pending=Promise.resolve(),textures=Promise.resolve(),visible=true;
+ const controller=createCompletedPreview({studio:{getSnapshot:()=>structuredClone(snapshot)},F,context:c,waitForBuilds:()=>pending,waitForTextures:()=>textures,shouldRender:()=>visible});
+ return {c,host,controller,get snapshot(){return snapshot;},set snapshot(s){snapshot=s;},set textures(p){textures=p;},set pending(p){pending=p;},set visible(v){visible=v;}};
 }
+
+test('Hidden review images do no GPU capture or PNG encoding; entering review uses the latest build',async()=>{
+ const u=uiFixture();u.visible=false;
+ for(const finish of ['amber','sapphire','purple']){u.snapshot.builds.oryx.finish=finish;u.c.models.get('oryx').state={finish};u.controller.invalidate();await u.controller.refresh();}
+ assert.equal(u.c.renderer.calls.length,0);assert.equal(u.host.children.length,0);
+ u.visible=true;const result=await u.controller.refresh();assert.equal(result.key,completedKey(u.snapshot));assert.equal(u.c.renderer.calls.length,1);
+ u.visible=false;const shared=await u.controller.exportShareViews();assert.equal(shared.views.length,3);assert.equal(u.c.renderer.calls.length,4,'Explicit sharing still captures off-screen');
+});
+
+test('Leaving review while textures load cancels its pending capture',async()=>{
+ const u=uiFixture();let release;u.textures=new Promise(resolve=>{release=resolve;});const pending=u.controller.refresh();u.visible=false;release();
+ assert.equal(await pending,undefined);assert.equal(u.c.renderer.calls.length,0);
+ u.visible=true;await u.controller.refresh();assert.equal(u.c.renderer.calls.length,1);
+});
 
 test('Review switches sides/models/body detail and restores the completed image after Original shape',async()=>{
  const u=uiFixture();const initial=await u.controller.refresh();assert(u.host.children[0] instanceof Image);
@@ -116,7 +130,7 @@ test('Sharing captures three distinct upright views from one completed build, wi
 test('All native routes use showroom previews and PNG exports, retaining Original shape',()=>{
  let routes=0;
  for(const name of fs.readdirSync('public').filter(x=>x.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;
-  assert(h.includes("review:{side:view,focus:"),name);assert(h.includes('window.FostinisShowroom.exportPreview()'),name);assert(h.includes('/showroom-360.js?v=51'),name);assert(h.includes('/showroom-360.css?v=51'),name);
+  assert(h.includes("review:{side:view,focus:"),name);assert(h.includes('window.FostinisShowroom.exportPreview()'),name);assert(h.includes('/showroom-loader.js?v=53'),name);assert(h.includes('/showroom-360.css?v=53'),name);
   const reviewStart=h.indexOf('function renderReview(){'),review=h.slice(reviewStart,h.indexOf('function go(id,',reviewStart));assert(review.includes("if(view==='original')"));assert(!review.includes('surfaceImage:'));assert(!review.includes("side:view==='back'"));
   const save=h.slice(h.indexOf('async function exportPreview(){'),h.indexOf('function exportBuild(){'));assert(!save.includes('F.renderer('));assert(!save.includes('materialURL('));assert(!save.includes('image/svg+xml'));
   for(const script of h.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(script[1],{filename:name});routes++;

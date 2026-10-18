@@ -55,7 +55,6 @@ function getShareData(){`);
  else html=html.replace(/<dialog id="build-share-dialog"[\s\S]*?<\/dialog>/,dialog.trim());
  if(!html.includes('id="saved-builds-dialog"'))html=html.replace('</body>',saveDialog+'\n</body>');
  else html=html.replace(/<dialog id="saved-builds-dialog"[\s\S]*?<\/dialog>/,saveDialog.trim());
- html=html.replace(/(\/showroom-360\.(?:js|css)\?v=)\d+/g,(_,prefix)=>prefix+'51');
  html=html.replace(/(\/build-sharing\.(?:js|css)\?v=)\d+/g,(_,prefix)=>prefix+'52');
  fs.writeFileSync(path,html);count++;
 }
