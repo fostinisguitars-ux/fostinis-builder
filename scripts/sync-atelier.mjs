@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-const version=61;
+const version=62;
 // The atelier uses the same model definitions and state manager as the builder.
 // Keep its source of truth in the canonical showroom; append the new UI once.
 let base=fs.readFileSync('public/showroom.html','utf8');

@@ -5,7 +5,7 @@ export const FOSTINIS_VIDEOS = [
     "duration": "4:00",
     "model": "matadaur",
     "category": "sound-showcase",
-    "note": "Peter Henningsson plays the Matadaur Model-C. Pickup model and selector positions are not specified.",
+    "note": "Peter Henningsson plays the Matadaur Model-C.",
     "url": "https://www.youtube.com/watch?v=dlpBwhyYuoM"
   },
   {
@@ -14,7 +14,7 @@ export const FOSTINIS_VIDEOS = [
     "duration": "4:30",
     "model": "sphyx",
     "category": "sound-showcase",
-    "note": "Mike Kyre performs The Lands of Nowhere on a Sphyx. A full mixed performance; pickup positions are not specified.",
+    "note": "Mike Kyre performs The Lands of Nowhere on a Sphyx.",
     "url": "https://www.youtube.com/watch?v=gandwtB1EV4"
   },
   {
