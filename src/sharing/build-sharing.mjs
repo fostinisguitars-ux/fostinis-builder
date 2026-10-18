@@ -1,6 +1,7 @@
 import {cleanNickname,decodeBuild,buildURL,shareKey,PLATFORMS,messageFor,messageLink,nativePayload,canShareFiles,photoZIP,fileStem} from './share-core.mjs';
 import {makeShareCards} from './share-cards.mjs';
 import {initializeSavedBuilds} from './saved-builds.mjs';
+import {copyText,selectCopyText} from './clipboard.mjs';
 
 // This small classic bundle loads before the inline configurator, so a validated
 // shared build is applied before any model is rendered or persisted.
@@ -9,7 +10,7 @@ function initialize(){
  const studio=window.FostinisStudio,F=window.Fostinis,$=id=>document.getElementById(id),dialog=$('build-share-dialog');
  if(!studio?.getShareData||!dialog)return;
  initializeSavedBuilds({studio,F});
- let platform='instagram',data=null,url='',key='',revision=0,photos=null,rawViews=null,rawKey='',urls=[],sharing=false,returnFocus=null;
+ let platform='instagram',data=null,url='',key='',revision=0,photos=null,rawViews=null,rawKey='',urls=[],sharing=false,returnFocus=null,copyRevision=0;
  const cache=new Map();
  function status(message){$('share-status').textContent=message;}
  function revoke(){for(const value of urls)URL.revokeObjectURL(value);urls=[];}
@@ -19,7 +20,7 @@ function initialize(){
  function configureActions(){
   if(!data)return;const p=PLATFORMS[platform],privateMessage=platform==='email'||platform==='text';
   for(const button of dialog.querySelectorAll('[data-share-platform]'))button.setAttribute('aria-pressed',String(button.dataset.sharePlatform===platform));
-  $('share-copy-area').value=messageFor(platform,data,url);$('share-copy-message').textContent=privateMessage?'Copy full appointments':'Copy caption';
+  $('share-copy-area').value=messageFor(platform,data,url);$('share-copy-label').textContent='Your message';$('share-copy-message').textContent=privateMessage?'Copy full appointments':'Copy caption';
   $('share-message').hidden=!privateMessage;if(privateMessage){$('share-message').href=messageLink(platform,data,url,navigator.userAgent);$('share-message').textContent=platform==='email'?'Open email with appointments':'Open text with appointments';}
   $('share-open-platform').hidden=privateMessage;if(!privateMessage){$('share-open-platform').href=p.url;$('share-open-platform').textContent='Open '+p.name+' ↗';}
   const payload=nativePayload(platform,data,url,photos?.map(photo=>photo.file)||[]),supported=canShareFiles(navigator,payload);
@@ -55,10 +56,10 @@ function initialize(){
   }catch(error){if(ticket!==revision)return;photos=null;status(error.message||'The photos could not be prepared. Try again, or share the build link.');$('share-retry').hidden=false;configureActions();$('share-native').hidden=true;}
   finally{if(ticket===revision)$('share-gallery').removeAttribute('aria-busy');}
  }
- function open(){returnFocus=document.activeElement;dialog.showModal();prepare();}
+ function open(){returnFocus=document.activeElement;$('share-copy-status').hidden=true;dialog.showModal();prepare();}
  $('share-build').addEventListener('click',open);$('share-close').addEventListener('click',()=>dialog.close());
- dialog.addEventListener('close',()=>{revision++;revoke();photos=null;returnFocus?.focus();});
- for(const button of dialog.querySelectorAll('[data-share-platform]'))button.addEventListener('click',()=>{const previous=PLATFORMS[platform].format;platform=button.dataset.sharePlatform;if(previous!==PLATFORMS[platform].format)prepare();else configureActions();});
+ dialog.addEventListener('close',()=>{revision++;copyRevision++;revoke();photos=null;returnFocus?.focus();});
+ for(const button of dialog.querySelectorAll('[data-share-platform]'))button.addEventListener('click',()=>{copyRevision++;$('share-copy-status').hidden=true;const previous=PLATFORMS[platform].format;platform=button.dataset.sharePlatform;if(previous!==PLATFORMS[platform].format)prepare();else configureActions();});
  $('share-retry').addEventListener('click',prepare);
  $('share-native').addEventListener('click',async()=>{
   if(sharing||!photos||!fresh())return;
@@ -70,8 +71,12 @@ function initialize(){
   finally{sharing=false;configureActions();}
  });
  async function copy(value,label){
-  try{if(!navigator.clipboard?.writeText)throw Error('clipboard');await navigator.clipboard.writeText(value);status(label+' copied.');}
-  catch{$('share-copy-area').value=value;$('share-copy-area').focus();$('share-copy-area').select();status('Select and copy the text shown below.');}
+  const ticket=++copyRevision,field=$('share-copy-area'),feedback=$('share-copy-status'),button=document.activeElement;
+  $('share-copy-label').textContent=label;feedback.hidden=false;feedback.textContent='Copying…';
+  const copied=await copyText(value,{field,document,navigator});
+  if(ticket!==copyRevision||!dialog.open)return;
+  if(copied){feedback.textContent=label+' copied. Ready to paste.';button?.focus({preventScroll:true});}
+  else{feedback.textContent='Automatic copying is unavailable in this browser. The text is selected below; use your device’s Copy command.';field.value=value;selectCopyText(field);field.scrollIntoView({block:'nearest'});}
  }
  $('share-copy-link').addEventListener('click',()=>{if(fresh())copy(url,'Build link');});
  $('share-copy-message').addEventListener('click',()=>{if(fresh())copy(messageFor(platform,data,url),platform==='email'||platform==='text'?'Full appointments':'Caption');});

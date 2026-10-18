@@ -47,7 +47,7 @@ function getShareData(){`);
   replace('<button disabled data-requires-js id="share-build"','<button disabled data-requires-js data-saved-builds type="button" aria-haspopup="dialog" aria-controls="saved-builds-dialog">Save / resume builds</button><button disabled data-requires-js id="share-build"');
   html=html.replace(/(<strong data-current-model>[^<]+<\/strong>)/,'$1<button disabled data-requires-js data-saved-builds class="saved-builds-dock" type="button" aria-haspopup="dialog" aria-controls="saved-builds-dialog">Saved builds</button>');
  }
- if(!html.includes('/build-sharing.js'))html=html.replace('</head>','<link rel="stylesheet" href="/build-sharing.css?v=51">\n<script src="/build-sharing.js?v=51"></script>\n</head>');
+ if(!html.includes('/build-sharing.js'))html=html.replace('</head>','<link rel="stylesheet" href="/build-sharing.css?v=52">\n<script src="/build-sharing.js?v=52"></script>\n</head>');
  if(!html.includes("window.addEventListener('pagehide',persist)"))replace("$('notes').oninput=e=>{notes[selected]=e.target.value;updateInquiry();clearTimeout(saveTimer);saveTimer=setTimeout(persist,200);};",`$('notes').oninput=e=>{notes[selected]=e.target.value;updateInquiry();clearTimeout(saveTimer);saveTimer=setTimeout(persist,200);};
  // Flush pending note edits when a customer leaves or backgrounds the page.
  window.addEventListener('pagehide',persist);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')persist();});`);
@@ -55,7 +55,8 @@ function getShareData(){`);
  else html=html.replace(/<dialog id="build-share-dialog"[\s\S]*?<\/dialog>/,dialog.trim());
  if(!html.includes('id="saved-builds-dialog"'))html=html.replace('</body>',saveDialog+'\n</body>');
  else html=html.replace(/<dialog id="saved-builds-dialog"[\s\S]*?<\/dialog>/,saveDialog.trim());
- html=html.replace(/(\/(?:showroom-360|build-sharing)\.(?:js|css)\?v=)\d+/g,'$1'+'51');
+ html=html.replace(/(\/showroom-360\.(?:js|css)\?v=)\d+/g,(_,prefix)=>prefix+'51');
+ html=html.replace(/(\/build-sharing\.(?:js|css)\?v=)\d+/g,(_,prefix)=>prefix+'52');
  fs.writeFileSync(path,html);count++;
 }
 console.log('Connected sharing and nicknames on '+count+' routes');

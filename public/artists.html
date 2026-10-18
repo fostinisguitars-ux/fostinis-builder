@@ -129,8 +129,8 @@ html[data-current-page=showroom] .build-dock{visibility:hidden;opacity:0;pointer
 @media(max-width:600px){.build-price{padding:16px}.price-row{gap:12px;font-size:13px}.build-price .price-row:nth-last-of-type(1){font-size:16px}}
 
 </style><link rel="stylesheet" href="/showroom-360.css?v=51">
-<link rel="stylesheet" href="/build-sharing.css?v=51">
-<script src="/build-sharing.js?v=51"></script>
+<link rel="stylesheet" href="/build-sharing.css?v=52">
+<script src="/build-sharing.js?v=52"></script>
 </head><body data-entry-page="artists" data-preset-type="" data-preset-burst="" data-preset-key="" data-preset-value="" data-preset-model="" data-preset-finish="" data-finish-base="./">
 <a href="#main" class="skip">Skip to showroom</a>
 <div class="ribbon">FOSTINIS GUITARS · THREE PERSONALITIES. ONE STANDARD.</div>
@@ -1316,8 +1316,9 @@ window.addEventListener('resize',progress,{passive:true});progress();
  <div id="share-gallery" class="share-gallery" aria-label="Front, back and 45 degree photos" aria-busy="true"></div>
  <div class="share-actions"><button type="button" id="share-native" class="primary" disabled>Share photos…</button><a id="share-message" hidden>Open email</a><a id="share-open-platform" target="_blank" rel="noopener noreferrer" hidden>Open Instagram ↗</a><button type="button" id="share-retry" hidden>Prepare photos again</button></div>
  <p id="share-help" class="note"></p>
- <div class="share-downloads"><a id="share-download-all" hidden>Download all three photos (ZIP)</a><button type="button" id="share-copy-message">Copy caption</button><button type="button" id="share-copy-link">Copy build link</button></div>
- <label for="share-copy-area" class="eyebrow">Your message</label><textarea id="share-copy-area" rows="3" readonly aria-label="Share message or caption"></textarea>
+ <div class="share-downloads"><a id="share-download-all" hidden>Download all three photos (ZIP)</a><button type="button" id="share-copy-message" aria-describedby="share-copy-status">Copy caption</button><button type="button" id="share-copy-link" aria-describedby="share-copy-status">Copy build link</button></div>
+ <p id="share-copy-status" class="note" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+ <label id="share-copy-label" for="share-copy-area" class="eyebrow">Your message</label><textarea id="share-copy-area" rows="3" readonly aria-labelledby="share-copy-label" aria-describedby="share-copy-status"></textarea>
  <p class="note">Anyone with your build link can see the guitar and its nickname. Build notes are left out.</p>
 </dialog>
 
