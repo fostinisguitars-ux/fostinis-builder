@@ -132,7 +132,7 @@ test('Sharing captures three distinct upright views from one completed build, wi
 test('All native routes use showroom previews and PNG exports, retaining Original shape',()=>{
  let routes=0;
  for(const name of fs.readdirSync('public').filter(x=>x.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;
-  assert(h.includes("review:{side:view,focus:"),name);assert(h.includes('window.FostinisShowroom.exportPreview()'),name);assert(h.includes('/showroom-loader.js?v=55'),name);assert(h.includes('/showroom-360.css?v=53'),name);
+  assert(h.includes("review:{side:view,focus:"),name);assert(h.includes('window.FostinisShowroom.exportPreview()'),name);assert(h.includes('/showroom-loader.js?v=56'),name);assert(h.includes('/showroom-360.css?v=53'),name);
   const reviewStart=h.indexOf('function renderReview(){'),review=h.slice(reviewStart,h.indexOf('function go(id,',reviewStart));assert(review.includes("if(view==='original')"));assert(!review.includes('surfaceImage:'));assert(!review.includes("side:view==='back'"));
   const save=h.slice(h.indexOf('async function exportPreview(){'),h.indexOf('function exportBuild(){'));assert(!save.includes('F.renderer('));assert(!save.includes('materialURL('));assert(!save.includes('image/svg+xml'));
   for(const script of h.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(script[1],{filename:name});routes++;

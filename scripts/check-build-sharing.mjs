@@ -80,7 +80,7 @@ test('All photos are included in a standards-readable ZIP with valid headers and
 test('Every route has a single sharing entry point and nickname field and valid inline JavaScript',()=>{
  let count=0;for(const name of fs.readdirSync('public').filter(name=>name.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;
   for(const id of ['guitar-nickname','guitar-name','share-build','build-share-dialog','share-gallery','share-native','share-copy-status','share-copy-label','save-shared-build','saved-builds-dialog','save-build-form','import-build-backup'])assert.equal(h.split('id="'+id+'"').length-1,1,name+'/'+id);
-  assert(h.includes('/build-sharing.js?v=55'));assert(h.includes('/showroom-loader.js?v=55'));assert(h.includes('getShareData,getSavedBuild,restoreBuild,isSharedBuild:'));
+  assert(h.includes('/build-sharing.js?v=55'));assert(h.includes('/showroom-loader.js?v=56'));assert(h.includes('getShareData,getSavedBuild,restoreBuild,isSharedBuild:'));
   for(const match of h.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(match[1],{filename:name});count++;
  }assert.equal(count,233);
 });
