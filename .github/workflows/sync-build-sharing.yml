@@ -17,7 +17,7 @@ jobs:
         run: |
           import hashlib, pathlib, tarfile, urllib.request
           archive = pathlib.Path("/tmp/fostinis-sharing.tar.xz")
-          urllib.request.urlretrieve("https://fostinisguitars.com/github-export/fostinis-sharing-20261018.tar.xz", archive)
+          urllib.request.urlretrieve("https://fostinis-design-review.bouncybow11.chatgpt.site/github-export/fostinis-sharing-20261018.tar.xz", archive)
           assert hashlib.sha256(archive.read_bytes()).hexdigest() == "0ecea372b984ea600ffea2b5b8ce2cf1a16d3ff90ffdd4a11c2970cc83bf468b", "Source patch checksum mismatch"
           with tarfile.open(archive, "r:xz") as bundle:
               members = bundle.getmembers()
