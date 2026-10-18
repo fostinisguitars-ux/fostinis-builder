@@ -1,4 +1,5 @@
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
 export const orders = sqliteTable("orders", {
   id: text("id").primaryKey(), requestId: text("request_id").notNull().unique(), fingerprint: text("fingerprint").notNull(),
   buildJson: text("build_json").notNull(), quoteJson: text("quote_json").notNull(), subtotalCents: integer("subtotal_cents").notNull(),
@@ -31,3 +32,17 @@ export const atelierPolls = sqliteTable("atelier_polls", {id:text("id").primaryK
 export const atelierVotes = sqliteTable("atelier_votes", {id:text("id").primaryKey(),pollId:text("poll_id").notNull(),voterHash:text("voter_hash").notNull(),optionId:text("option_id").notNull(),createdAt:text("created_at").notNull()},t=>[index("atelier_votes_poll").on(t.pollId)]);
 export const atelierLimits = sqliteTable("atelier_limits", {id:text("id").primaryKey(),count:integer("count").notNull(),createdAt:text("created_at").notNull()});
 export const atelierMetrics = sqliteTable("atelier_metrics", {id:text("id").primaryKey(),event:text("event").notNull(),count:integer("count").notNull(),day:text("day").notNull()});
+
+export const atelierUploads = sqliteTable("atelier_uploads", {
+ id:text("id").primaryKey(),tokenHash:text("token_hash").notNull(),objectKey:text("object_key").notNull().unique(),field:text("field").notNull(),
+ name:text("name").notNull(),type:text("type").notNull(),size:integer("size").notNull(),createdAt:text("created_at").notNull(),
+});
+export const atelierInvoices = sqliteTable("atelier_invoices", {
+ id:text("id").primaryKey(),requestId:text("request_id").notNull(),accessToken:text("access_token").notNull().unique(),
+ buildJson:text("build_json").notNull(),quoteJson:text("quote_json").notNull(),adjustmentsJson:text("adjustments_json").notNull(),
+ baseCents:integer("base_cents").notNull(),subtotalCents:integer("subtotal_cents").notNull(),shippingCents:integer("shipping_cents").notNull(),
+ currency:text("currency").notNull(),specification:text("specification").notNull(),leadTime:text("lead_time").notNull(),
+ status:text("status").notNull().default("draft"),revision:integer("revision").notNull().default(1),orderId:text("order_id"),
+ checkoutAttempt:integer("checkout_attempt").notNull().default(0),checkoutStartedAt:text("checkout_started_at"),checkoutLock:text("checkout_lock"),
+ createdAt:text("created_at").notNull(),updatedAt:text("updated_at").notNull(),issuedAt:text("issued_at"),paidAt:text("paid_at"),
+}, t=>[uniqueIndex("atelier_invoice_active_request").on(t.requestId).where(sql`${t.status} != 'void'`)]);

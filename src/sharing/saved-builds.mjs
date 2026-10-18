@@ -1,17 +1,18 @@
 import {cleanNickname,SHARE_FIELDS,fileStem} from './share-core.mjs';
+import {cleanCustomRequests} from '../../lib/custom-requests.mjs';
 export const SAVED_BUILDS_KEY='fostinis-saved-builds-v1';
 export function normalizeSavedBuild(input,F,{legacy=false}={}){
  if(!input||!Object.hasOwn(F.MODELS,input.model)||!input.selections||typeof input.selections!=='object')throw Error('This file does not contain a valid Fostinis build.');
  if(Object.hasOwn(input.selections,'handedness')&&!F.choices.handedness.includes(input.selections.handedness))throw Error('This build includes an unavailable handedness option.');
  if(!legacy)for(const key of SHARE_FIELDS){if(key==='handedness'&&!Object.hasOwn(input.selections,key))continue;if(!F.choices[key].includes(input.selections[key]))throw Error('This build includes an unavailable option. Please use a current build backup.');}
- return {model:input.model,selections:F.normalize(input.model,input.selections),nickname:cleanNickname(input.nickname),notes:typeof input.notes==='string'?input.notes.slice(0,3000):''};
+ return {model:input.model,selections:F.normalize(input.model,input.selections),nickname:cleanNickname(input.nickname),notes:typeof input.notes==='string'?input.notes.slice(0,3000):'',customRequests:cleanCustomRequests(input.customRequests,SHARE_FIELDS)};
 }
 export function parseBuildBackup(text,F){
  if(typeof text!=='string'||text.length>1024*1024)throw Error('Choose a Fostinis build backup smaller than 1 MB.');
  let parsed;try{parsed=JSON.parse(text);}catch{throw Error('This file is not a readable build backup.');}
  if(parsed?.format==='fostinis-build-backup'&&parsed.version===1&&Array.isArray(parsed.builds)&&parsed.builds.length>0&&parsed.builds.length<=20)return parsed.builds.map(b=>({...normalizeSavedBuild(b,F),name:cleanNickname(b.name)||cleanNickname(b.nickname)||'My '+F.MODELS[b.model].name}));
  // Keep previously downloaded Save build sheet files useful after this update.
- if(parsed?.schemaVersion===9&&parsed.builds&&typeof parsed.builds==='object')return Object.keys(F.MODELS).filter(model=>Object.hasOwn(parsed.builds,model)).map(model=>({...normalizeSavedBuild({model,selections:parsed.builds[model],nickname:parsed.nicknames?.[model],notes:parsed.notes?.[model]},F,{legacy:true}),name:cleanNickname(parsed.nicknames?.[model])||'My '+F.MODELS[model].name}));
+ if(parsed?.schemaVersion===9&&parsed.builds&&typeof parsed.builds==='object')return Object.keys(F.MODELS).filter(model=>Object.hasOwn(parsed.builds,model)).map(model=>({...normalizeSavedBuild({model,selections:parsed.builds[model],nickname:parsed.nicknames?.[model],notes:parsed.notes?.[model],customRequests:parsed.customRequests?.[model]},F,{legacy:true}),name:cleanNickname(parsed.nicknames?.[model])||'My '+F.MODELS[model].name}));
  throw Error('Choose a Fostinis build backup or a saved Fostinis build sheet.');
 }
 export function serializeBuildBackup(builds){return JSON.stringify({format:'fostinis-build-backup',version:1,exportedAt:new Date().toISOString(),builds},null,2);}
