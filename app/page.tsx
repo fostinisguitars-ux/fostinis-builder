@@ -1,2 +1,2 @@
 import { redirect } from "next/navigation";
-export default function Home() { redirect("/showroom.html"); }
+export default function Home() { redirect("/atelier.html"); }

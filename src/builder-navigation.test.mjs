@@ -71,5 +71,5 @@ test('Every native route loads the shared navigation and handles both category t
   assert.strictEqual(revealed,sections['group-details']);assert.equal(sections['group-finish'].open,false);assert.equal(sections['group-hardware'].open,false);assert.equal(buttons[2]['aria-pressed'],'true');
   for(const [,script]of h.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g))if(script.trim()&&!script.trim().startsWith('{'))new vm.Script(script,{filename:name});count++;
  }
- assert.equal(count,233);
+ assert.equal(count,234);
 });

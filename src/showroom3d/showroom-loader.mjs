@@ -3,7 +3,7 @@
 let loading=false,observer;
 function load(){
  if(loading)return;loading=true;observer?.disconnect();
- import('./showroom-360.js?v=60').catch(error=>{
+ import('./showroom-360.js?v=61').catch(error=>{
   loading=false;console.error('Showroom module unavailable',error);
   const status=document.getElementById('preview-status');
   if(status)status.textContent='The 3D view could not load. Your build options are still available; reopen the showroom to retry.';

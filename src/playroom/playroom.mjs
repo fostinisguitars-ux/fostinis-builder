@@ -2,6 +2,7 @@ import {GuitarAudio,OPEN_STRINGS,CHORDS,noteName,DEFAULTS} from './audio.mjs';
 import {LAYOUTS,positions,modifications,switchingVoice} from './switching.mjs';
 import {REFERENCES,referenceIds} from './references.mjs';
 import {createPerformanceView} from './performance.mjs';
+import {FOSTINIS_VIDEOS} from '../atelier/videos.mjs';
 
 const F=window.Fostinis,studio=window.FostinisStudio;
 if(F&&studio?.ready&&!window.FostinisPlayroom)initialize();
@@ -34,9 +35,10 @@ function initialize(){
  </section></div>
 
  <p class="pr-honesty">The playable sound is synthesized to illustrate pickup positions and wiring. It is not a recording or calibrated model of the chosen pickups, guitar woods, or a commercial amplifier.</p>
+ <section class="pr-recordings" aria-labelledby="pr-fostinis-title"><div class="pr-recordings-head"><div><span class="pr-eyebrow">REAL FOSTINIS INSTRUMENTS</span><h3 id="pr-fostinis-title">See the guitar. Hear the player.</h3></div><a href="/atelier.html?view=sound">The listening room ↗</a></div><p>Performances and reviews from our YouTube channel. These archive instruments may have different pickups, hardware, and recording rigs from your design.</p><div class="pr-fostinis-films">${FOSTINIS_VIDEOS.slice(0,3).map(v=>`<article><button type="button" data-fostinis-video="${v.id}" aria-label="Play ${v.title}"><img loading="lazy" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="${v.title}"><span>▶ ${v.duration}</span></button><h4>${v.title}</h4><p>${v.note}</p><a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></article>`).join('')}</div><div id="pr-fostinis-player" hidden></div></section>
  <section class="pr-recordings" aria-labelledby="pr-recordings-title"><div class="pr-recordings-head"><div><span class="pr-eyebrow">HEAR THE REAL PICKUPS</span><h3 id="pr-recordings-title">Recordings for your choices.</h3></div><span class="pr-badge">Manufacturer references</span></div><p>Original demonstrations use other guitars and recording rigs. Their sound is independent of the virtual amp controls. Each reference lists what is covered.</p><div id="pr-references"></div><div id="pr-video" hidden></div></section>
  </div>`;
- document.body.append(dialog);const $=id=>dialog.querySelector('#'+id);
+ document.body.append(dialog);dialog.addEventListener('click',event=>{const button=event.target.closest('[data-fostinis-video]');if(!button)return;const id=button.dataset.fostinisVideo;if(!FOSTINIS_VIDEOS.some(v=>v.id===id))return;engine.stop();const host=dialog.querySelector('#pr-fostinis-player');host.hidden=false;host.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0" title="Fostinis guitar performance" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';host.scrollIntoView({block:'nearest',behavior:'smooth'});});dialog.addEventListener('close',()=>{dialog.querySelector('#pr-fostinis-player').replaceChildren();dialog.querySelector('#pr-fostinis-player').hidden=true;});const $=id=>dialog.querySelector('#'+id);
  let snapshot=studio.getSnapshot(),build=snapshot.builds[snapshot.selected],position='bridge',enabled=new Set(),previousFocus,previousOverflow='',previewRevision=0,connecting=false,connectionRevision=0;
  const performanceView=createPerformanceView($('pr-preview'));
  const engine=new GuitarAudio({onNote:highlight,onSequenceEnd:()=>{performanceView.stop();dialog.querySelectorAll('[data-riff]').forEach(b=>b.setAttribute('aria-pressed','false'));}});
@@ -144,7 +146,7 @@ function initialize(){
  document.addEventListener('click',e=>{if(e.target.closest('[data-open-playroom]'))open();});
  window.addEventListener('fostinis:build',()=>{if(dialog.open)updateBuild();});
  window.addEventListener('fostinis:navigate',()=>{if(dialog.open)close();});
- document.addEventListener('visibilitychange',()=>{if(document.hidden&&dialog.open){unplug();$('pr-video').replaceChildren();$('pr-video').hidden=true;}});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&dialog.open){unplug();$('pr-fostinis-player').replaceChildren();$('pr-fostinis-player').hidden=true;$('pr-video').replaceChildren();$('pr-video').hidden=true;}});
  window.addEventListener('pagehide',()=>engine.disconnect());
  window.FostinisPlayroom={open,get connected(){return engine.connected;}};
  updateBuild();

@@ -99,5 +99,5 @@ export function createCompletedPreview({studio,F,context,waitForBuilds,waitForTe
   return {snapshot,views};
  }
  function unavailable(){revision++;cached=null;host.removeAttribute('aria-busy');if(studio.getSnapshot().review?.side!=='original')status('The completed 3D preview is unavailable. Your selections are saved. Reload the page to restore your showroom view.');}
- return {invalidate,refresh,exportPNG,exportShareViews,unavailable};
+ return {invalidate,refresh,exportPNG,exportShareViews,unavailable,invalidateLighting(){revision++;cached=null;refresh();}};
 }
