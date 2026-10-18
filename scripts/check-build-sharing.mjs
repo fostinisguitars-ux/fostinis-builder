@@ -11,15 +11,15 @@ const html=fs.readFileSync('public/review.html','utf8'),scripts=[...html.matchAl
 vm.runInNewContext(scripts[0][1].slice(scripts[0][1].indexOf('window.FostinisParts=')),{window});const F=window.Fostinis;
 // These labels and visibility rules come from the real inline configurator.
 function fixture({saved,encoded}={}){
- const elements=new Map(),writes=[],windowCopy={...window,FostinisSharing:{cleanNickname,decodeBuild}},localStorage={getItem:key=>key==='fostinis-showroom-v4'&&saved?JSON.stringify(saved):null,setItem:(key,value)=>writes.push([key,JSON.parse(value)])};
- const $=id=>{if(!elements.has(id))elements.set(id,{textContent:'',value:'',hidden:true});return elements.get(id);};
+ const elements=new Map(),writes=[],navigation=[],windowCopy={...window,FostinisSharing:{cleanNickname,decodeBuild}},localStorage={getItem:key=>key==='fostinis-showroom-v4'&&saved?JSON.stringify(saved):null,setItem:(key,value)=>writes.push([key,JSON.parse(value)])};
+ const $=id=>{if(!elements.has(id))elements.set(id,{textContent:'',value:'',hidden:true,focus(){this.focused=true;},select(){this.selected=true;},scrollIntoView(){this.scrolled=true;}});return elements.get(id);};
  windowCopy.FostinisPricing={catalog};windowCopy.location={search:encoded?'?build='+encoded:''};
  const schemaStart=html.indexOf('const SCHEMA='),schemaEnd=html.indexOf('function legacyPreview(',schemaStart),stateStart=html.indexOf("const STORAGE='fostinis-showroom-v4'"),stateEnd=html.indexOf('function toast(',stateStart);
- const context=vm.createContext({window:windowCopy,F,P:F.PARTS,$,localStorage,URLSearchParams,URL,document:{body:{dataset:{}}},location:{search:encoded?'?build='+encoded:'',href:'https://fostinisguitars.com/review.html'},history:{replaceState(){}},toast(){},go(){},renderFields(){},updateSelected(){},renderLive(){},renderModel(){},updateSummary(){},CustomEvent:class{constructor(type){this.type=type;}},console});
- vm.runInContext(html.slice(schemaStart,schemaEnd)+html.slice(stateStart,stateEnd)+html.split('\n').find(line=>line.startsWith('function setModel('))+`\nglobalThis.api={getShareData,getSavedBuild,restoreBuild,persist,renderNickname,saveSharedBuild,isShared:()=>sharedBuildActive,error:()=>sharedBuildError,setModel:id=>selected=id,nicknames,notes,builds};`,context);
+ const context=vm.createContext({window:windowCopy,F,P:F.PARTS,$,localStorage,URLSearchParams,URL,document:{body:{dataset:{}}},location:{search:encoded?'?build='+encoded:'',href:'https://fostinisguitars.com/review.html'},history:{replaceState(){}},toast(){},go:(page,options)=>navigation.push({page,...options}),renderFields(){},updateSelected(){},renderLive(){},renderModel(){},updateSummary(){},updateInquiry(){},CustomEvent:class{constructor(type){this.type=type;}},console});
+ vm.runInContext(html.slice(schemaStart,schemaEnd)+html.slice(stateStart,stateEnd)+html.split('\n').find(line=>line.startsWith('function setModel('))+`\nglobalThis.api={getShareData,getSavedBuild,restoreBuild,persist,renderNickname,saveSharedBuild,continueSharedBuild,isShared:()=>sharedBuildActive,error:()=>sharedBuildError,setModel:id=>selected=id,nicknames,notes,builds};`,context);
  const nicknameStart=html.indexOf("$('guitar-nickname').oninput="),nicknameEnd=html.indexOf("$('notes').oninput=",nicknameStart);windowCopy.dispatchEvent=()=>{};
  vm.runInContext(html.slice(nicknameStart,nicknameEnd),context);
- return {api:context.api,elements,$,writes};
+ return {api:context.api,elements,$,writes,navigation};
 }
 test('Every model and option round-trips through a stable share link with no notes, prices, or other builds',()=>{
  assert.deepEqual([...Object.keys(F.choices)].sort(),[...SHARE_FIELDS].sort());let count=0;
@@ -80,9 +80,26 @@ test('All photos are included in a standards-readable ZIP with valid headers and
 test('Every route has a single sharing entry point and nickname field and valid inline JavaScript',()=>{
  let count=0;for(const name of fs.readdirSync('public').filter(name=>name.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;
   for(const id of ['guitar-nickname','guitar-name','share-build','build-share-dialog','share-gallery','share-native','share-copy-status','share-copy-label','save-shared-build','saved-builds-dialog','save-build-form','import-build-backup'])assert.equal(h.split('id="'+id+'"').length-1,1,name+'/'+id);
-  assert(h.includes('/build-sharing.js?v=52'));assert(h.includes('/showroom-loader.js?v=53'));assert(h.includes('getShareData,getSavedBuild,restoreBuild,isSharedBuild:'));
+  assert(h.includes('/build-sharing.js?v=54'));assert(h.includes('/showroom-loader.js?v=53'));assert(h.includes('getShareData,getSavedBuild,restoreBuild,isSharedBuild:'));
   for(const match of h.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(match[1],{filename:name});count++;
  }assert.equal(count,233);
+});
+
+test('Recipients customize, order or rename their own exact copy and can resume or share it independently',()=>{
+ const sender=structuredClone({model:'oryx',selections:F.normalize('oryx',{finish:'purple',burst:'faded',backBurst:'faded',neckBurst:'faded',pickupLayout:'hss',hardware:'gold',caseOption:'fitted'}),nickname:'Midnight Rose'}),encoded=encodeBuild(sender,F);
+ for(const action of ['customize','order','rename']){
+  const u=fixture({encoded,saved:{selected:'sphyx',builds:{sphyx:F.normalize('sphyx',{finish:'ruby'})},nicknames:{sphyx:'Keep me'}}});
+  u.api.continueSharedBuild(action);
+  assert(!u.api.isShared());assert.equal(u.api.getShareData().nickname,sender.nickname);assert.deepEqual({...u.api.getShareData().selections},sender.selections);
+  const saved=u.writes.at(-1)[1];assert.equal(saved.nicknames.sphyx,'Keep me');assert.equal(saved.builds.sphyx.finish,'ruby');assert.deepEqual(saved.builds.oryx,sender.selections);
+  assert.equal(u.navigation.at(-1).page,action==='customize'?'showroom':'review');
+  if(action==='order')assert.equal(u.navigation.at(-1).target,'build-checkout');
+  if(action==='rename')assert(u.$('guitar-nickname').focused&&u.$('guitar-nickname').selected&&u.$('guitar-nickname').scrolled);
+  u.$('guitar-nickname').oninput({target:{value:'My Midnight'}});u.api.builds.oryx.finish='ruby';u.api.persist();
+  const resumed=fixture({saved:u.writes.at(-1)[1]});assert.equal(resumed.api.getShareData().nickname,'My Midnight');assert.equal(resumed.api.getShareData().selections.finish,'ruby');
+  const next=decodeBuild(encodeBuild(resumed.api.getShareData(),F),F);assert.equal(next.nickname,'My Midnight');assert.equal(next.selections.finish,'ruby');
+  assert.deepEqual(structuredClone(decodeBuild(encoded,F)),sender,'The sender’s link remains an immutable snapshot');
+ }
 });
 
 test('Named snapshots survive reload and restore selections, nickname and notes without changing other models',()=>{

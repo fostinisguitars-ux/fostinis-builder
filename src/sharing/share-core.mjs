@@ -1,9 +1,10 @@
+import {cleanNickname} from '../../lib/build-nickname.mjs';
+export {cleanNickname} from '../../lib/build-nickname.mjs';
 // Version 1 keeps a fixed order. Append a new codec version when fields change;
 // never encode choice indexes, which can change when the catalog is reordered.
 export const SHARE_FIELDS=Object.freeze(['finishType','backFinishType','neckFinishType','burst','headstockBurst','burstWidth','backBurst','neckBurst','finish','wood','sheen','pickups','bridge','hardware','wiring','tuners','fretboard','inlays','backWood','backFinish','backSheen','neckWood','neckFinish','neckSheen','pickupSet','bridgeModel','tunerModel','knobs','pickupLayout','singleCoilModel','singleCoilCover','killswitch','caseOption','pot1Mod','pot2Mod','pot3Mod','pot4Mod']);
 export const PLATFORMS=Object.freeze({tiktok:{name:'TikTok',format:'story',url:'https://www.tiktok.com/'},instagram:{name:'Instagram',format:'portrait',url:'https://www.instagram.com/'},x:{name:'X',format:'portrait',url:'https://x.com/compose/post'},facebook:{name:'Facebook',format:'portrait',url:'https://www.facebook.com/'},text:{name:'Text',format:'portrait'},email:{name:'Email',format:'portrait'}});
 export const VIEWS=Object.freeze([{side:'front',label:'Front'},{side:'back',label:'Back'},{side:'angle',label:'45° view'}]);
-export function cleanNickname(value){return typeof value==='string'?[...value.replace(/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/g,' ').replace(/\s+/g,' ').trim()].slice(0,40).join(''):'';}
 export function encodeBuild({model,selections,nickname},F){
  if(!Object.hasOwn(F.MODELS,model))throw Error('Choose a guitar to share.');
  const state=F.normalize(model,selections),payload={v:1,m:model,s:SHARE_FIELDS.map(key=>state[key]),n:cleanNickname(nickname)};

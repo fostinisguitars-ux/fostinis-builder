@@ -10,6 +10,7 @@ function initialize(){
  const studio=window.FostinisStudio,F=window.Fostinis,$=id=>document.getElementById(id),dialog=$('build-share-dialog');
  if(!studio?.getShareData||!dialog)return;
  initializeSavedBuilds({studio,F});
+ const shareDescription=$('share-description').textContent;
  let platform='instagram',data=null,url='',key='',revision=0,photos=null,rawViews=null,rawKey='',urls=[],sharing=false,returnFocus=null,copyRevision=0;
  const cache=new Map();
  function status(message){$('share-status').textContent=message;}
@@ -30,7 +31,7 @@ function initialize(){
    'Choose '+p.name+' in your phone’s share menu. If it is not listed, save the photos below, open '+p.name+' and add them to a '+(platform==='tiktok'?'photo post':platform==='instagram'?'carousel or story':'post')+'. Paste the caption if you want to include your build link.';
  }
  async function prepare(){
-  const ticket=++revision;data=current();key=shareKey(data);url=buildURL(data,F,location.origin);photos=null;revoke();$('share-gallery').replaceChildren();$('share-gallery').setAttribute('aria-busy','true');$('share-download-all').hidden=true;$('share-retry').hidden=true;$('share-title').textContent=(data.nickname?'Share “'+data.nickname+'”':'Share your '+data.modelName)+'.';configureActions();status('Preparing the front, back and 45° photos…');
+  const ticket=++revision;data=current();key=shareKey(data);url=buildURL(data,F,location.origin);photos=null;revoke();$('share-gallery').replaceChildren();$('share-gallery').setAttribute('aria-busy','true');$('share-download-all').hidden=true;$('share-retry').hidden=true;$('share-title').textContent=studio.isSharedBuild?.()?(data.nickname?'“'+data.nickname+'”':'A shared '+data.modelName):(data.nickname?'Share “'+data.nickname+'”.':'Share your '+data.modelName+'.');configureActions();status('Preparing the front, back and 45° photos…');
   const format=PLATFORMS[platform].format,cacheKey=key+':'+format;
   try{
    let result=cache.get(cacheKey);
@@ -56,9 +57,10 @@ function initialize(){
   }catch(error){if(ticket!==revision)return;photos=null;status(error.message||'The photos could not be prepared. Try again, or share the build link.');$('share-retry').hidden=false;configureActions();$('share-native').hidden=true;}
   finally{if(ticket===revision)$('share-gallery').removeAttribute('aria-busy');}
  }
- function open(){returnFocus=document.activeElement;$('share-copy-status').hidden=true;dialog.showModal();prepare();}
+ function open(){const recipient=!!studio.isSharedBuild?.();$('share-recipient').hidden=!recipient;$('share-eyebrow').textContent=recipient?'Shared with you. Make it yours.':'Made by you. Shared with friends.';$('share-description').textContent=recipient?'Explore this Fostinis Guitar from the front, back and 45° view.':shareDescription;returnFocus=document.activeElement;$('share-copy-status').hidden=true;dialog.showModal();prepare();}
  $('share-build').addEventListener('click',open);$('share-close').addEventListener('click',()=>dialog.close());
  dialog.addEventListener('close',()=>{revision++;copyRevision++;revoke();photos=null;returnFocus?.focus();});
+ for(const button of document.querySelectorAll('[data-shared-action]'))button.addEventListener('click',()=>{returnFocus=null;if(dialog.open)dialog.close();studio.continueSharedBuild(button.dataset.sharedAction);});
  for(const button of dialog.querySelectorAll('[data-share-platform]'))button.addEventListener('click',()=>{copyRevision++;$('share-copy-status').hidden=true;const previous=PLATFORMS[platform].format;platform=button.dataset.sharePlatform;if(previous!==PLATFORMS[platform].format)prepare();else configureActions();});
  $('share-retry').addEventListener('click',prepare);
  $('share-native').addEventListener('click',async()=>{
@@ -83,6 +85,6 @@ function initialize(){
  $('share-message').addEventListener('click',event=>{if(!fresh())event.preventDefault();});
  for(const event of ['fostinis:build','fostinis:identity'])window.addEventListener(event,()=>{if(dialog.open&&data&&shareKey(current())!==key){revision++;photos=null;revoke();$('share-gallery').replaceChildren();$('share-download-all').hidden=true;$('share-gallery').removeAttribute('aria-busy');fresh();}});
  if(studio.isSharedBuild?.())open();
- if(studio.sharedBuildError){$('shared-build-notice').hidden=false;$('shared-build-message').textContent=studio.sharedBuildError;$('save-shared-build').hidden=true;}
+ if(studio.sharedBuildError){$('shared-build-notice').hidden=false;$('shared-build-message').textContent=studio.sharedBuildError;$('shared-build-actions').hidden=true;}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initialize,{once:true});else queueMicrotask(initialize);
