@@ -28,12 +28,14 @@ for(const file of fs.readdirSync('public').filter(name=>name.endsWith('.html')))
   replace("aria-label=\"${escape(m.name+' — '+", "aria-label=\"${escape(m.name+' — '+(s.handedness==='left'?'Left-handed':'Right-handed')+' — '+");
   replace('${isolatedView}${stand}<g transform="${transform}">','${isolatedView}${stand}<g data-component="guitar-handedness" transform="${handedTransform}"><g transform="${transform}">');
   replace('${content}</g></g></svg>`;','${content}</g></g></g></svg>`;');
-  // Keep knob numerals readable; the owner wants the headstock logo to flip.
+  // Keep knob numerals readable.
   replace('<text x="${xx}" y="${yy+1.7}"', '<text transform="${s.handedness===\'left\'?`translate(0 ${2*(yy+1.7)}) scale(1 -1)`: \'\'}" x="${xx}" y="${yy+1.7}"');
  }
- // Revision 56: let the signature follow the left-handed headstock.
- html=html.replace("<svg transform=\"${s.handedness==='left'?`translate(0 ${2*logoY+logoH}) scale(1 -1)`: ''}\" x=\"${logoX}\" y=\"${logoY}\" width=\"${logoW}\"", "<svg x=\"${logoX}\" y=\"${logoY}\" width=\"${logoW}\"");
- html=html.replace(/(\/build-sharing\.js\?v=)\d+/g,'$155').replace(/(\/showroom-loader\.js\?v=)\d+/g,'$156').replace(/(\/commerce-catalog\.js\?v=)[^"\s]+/g,'$12026-10-18-handedness');
+ // Revision 57: counter-reflect and turn the logo 180 degrees in its own plane.
+ // In native atlas coordinates this is an X reflection; the full guitar's
+ // reflection cancels the mirrored letters in the horizontal left-handed view.
+ html=html.replace("<svg x=\"${logoX}\" y=\"${logoY}\" width=\"${logoW}\"", "<svg transform=\"${s.handedness==='left'?`translate(${2*logoX+logoW} 0) scale(-1 1)`: ''}\" x=\"${logoX}\" y=\"${logoY}\" width=\"${logoW}\"");
+ html=html.replace(/(\/build-sharing\.js\?v=)\d+/g,'$155').replace(/(\/showroom-loader\.js\?v=)\d+/g,'$157').replace(/(\/commerce-catalog\.js\?v=)[^"\s]+/g,'$12026-10-18-handedness');
  fs.writeFileSync(path,html);count++;
 }
 console.log('Connected handedness on '+count+' routes');

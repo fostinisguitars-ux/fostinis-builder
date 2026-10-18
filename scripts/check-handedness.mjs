@@ -8,6 +8,7 @@ import {createPricingEngine} from '../lib/commerce/pricing-engine.mjs';
 import {encodeBuild,decodeBuild,SHARE_FIELDS_V1} from '../src/sharing/share-core.mjs';
 import {normalizeSavedBuild,createBuildStore,serializeBuildBackup,parseBuildBackup} from '../src/sharing/saved-builds.mjs';
 import {applyHandedness} from '../src/showroom3d/handedness.mjs';
+import {completedCamera} from '../src/showroom3d/assembled-preview.mjs';
 import {makeHardware} from '../src/showroom3d/geometry.mjs';
 
 const html=fs.readFileSync('public/review.html','utf8'),window={};
@@ -58,18 +59,23 @@ test('The actual selector updates each model independently and reveals the full 
  context.selected='oryx';vm.runInContext("configure('handedness','right')",context);assert.equal(persisted.oryx.handedness,'right');assert.equal(persisted.sphyx.handedness,'left');assert.equal(persisted.matadaur.handedness,'left');
 });
 
-test('The complete guitar and headstock logo reflect once and return to their original geometry',()=>{
+test('Left-handed guitars keep a rotated, legible headstock logo and restore the right-handed original',()=>{
  for(const model of Object.keys(F.MODELS)){
   const state=F.initial(model),group=new T.Group(),signature=new T.Group(),logo=new T.Mesh(new T.PlaneGeometry(80,60),new T.MeshBasicMaterial());
   group.position.set(.52,.42,0);group.scale.setScalar(.001);logo.rotation.set(-17*Math.PI/180,0,Math.PI/2);logo.position.set(0,736,-30);signature.add(logo);
-  const hardware=makeHardware(model,state,F.PARTS);group.add(hardware,signature);const rec={group,signature};group.updateWorldMatrix(true,true);
+  const hardware=makeHardware(model,state,F.PARTS);group.add(hardware,signature);const rec={group,signature,logo,state};group.updateWorldMatrix(true,true);
   const meshes=[];hardware.traverse(o=>{if(o.isMesh)meshes.push(o);});
   const points=meshes.map(m=>m.getWorldPosition(new T.Vector3())),logoMatrix=logo.matrixWorld.clone(),geometries=meshes.map(m=>m.geometry);
   applyHandedness(rec,{handedness:'left'});applyHandedness(rec,{handedness:'left'});
   meshes.forEach((m,i)=>{const p=m.getWorldPosition(new T.Vector3());assert(Math.abs(p.x-(1.04-points[i].x))<1e-9);assert(Math.abs(p.y-points[i].y)<1e-9);assert(Math.abs(p.z-points[i].z)<1e-9);assert.strictEqual(m.geometry,geometries[i]);});
-  const reflectedLogo=new T.Matrix4().makeTranslation(2*group.position.x,0,0).multiply(new T.Matrix4().makeScale(-1,1,1)).multiply(logoMatrix);
-  logo.matrixWorld.elements.forEach((value,i)=>assert(Math.abs(value-reflectedLogo.elements[i])<1e-9,'Headstock logo must flip with the guitar'));
-  assert(logo.matrixWorld.determinant()<0);
+  const turnedLogo=logoMatrix.clone().multiply(new T.Matrix4().makeRotationZ(Math.PI));
+  logo.matrixWorld.elements.forEach((value,i)=>assert(Math.abs(value-turnedLogo.elements[i])<1e-9,'Rotate the lettering on the face; never mirror it'));
+  assert(logo.matrixWorld.determinant()>0,'Lettering must preserve its orientation');
+  rec.state={...state,handedness:'left'};
+  const camera=completedCamera(rec,{side:'front',aspect:8/3});
+  const origin=logo.localToWorld(new T.Vector3()).project(camera),right=logo.localToWorld(new T.Vector3(10,0,0)).project(camera),top=logo.localToWorld(new T.Vector3(0,10,0)).project(camera);
+  assert(right.x>origin.x,'Logo must read from left to right in the left-handed preview');
+  assert(top.y>origin.y,'Logo must be upright in the left-handed preview');
   applyHandedness(rec,{handedness:'right'});assert.deepEqual(logo.matrixWorld.elements,logoMatrix.elements);meshes.forEach((m,i)=>assert(m.getWorldPosition(new T.Vector3()).distanceTo(points[i])<1e-9));
  }
 });
@@ -83,7 +89,7 @@ test('Every entry point exposes the same selector, and fallback front/back/detai
  assert.equal(routes,233);
  for(const model of Object.keys(F.MODELS))for(const side of ['front','back'])for(const focus of ['full','body','headstock','controls'])for(const upright of [true,false]){
   const svg=F.renderer({'headstock-signature':'signature.jpg'}).svg(model,{...F.initial(model),handedness:'left'},{side,focus,upright,stand:true});
-  assert(!svg.includes('<svg transform='),'The signature must not cancel the guitar reflection');
+  if(side==='front')assert(/<svg transform="translate\([0-9.]+ 0\) scale\(-1 1\)" x=/.test(svg),'The logo must cancel mirrored letters and turn with the left-handed view');
   assert(svg.includes('data-handedness="left"'));assert(svg.includes('Left-handed'));assert(svg.includes('data-component="guitar-handedness" transform="translate('));assert(svg.includes('scale(-1 1)'));
   assert(!svg.includes('NaN'));const bounds=svg.match(/viewBox="([^"]+)"/g).at(-1).match(/[\d.-]+/g).map(Number);assert(bounds.every(Number.isFinite));
  }
