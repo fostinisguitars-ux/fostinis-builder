@@ -13,7 +13,7 @@ export function drawShareCard(ctx,image,data,side,format='portrait'){
  const title=cleanNickname(data.nickname)||'My '+data.modelName;
  let titleSize=46,titleLines=[];do{ctx.font='500 '+titleSize+'px Georgia, serif';titleLines=wrapText(ctx,title,940);if(titleLines.length<=2)break;titleSize-=2;}while(titleSize>30);
  ctx.fillStyle='#faf6ed';titleLines.forEach((line,i)=>ctx.fillText(line,64,top+116+i*(titleSize+8)));
- ctx.font='500 22px Arial, sans-serif';ctx.fillStyle='#b3b5bc';ctx.fillText(data.modelName.toUpperCase()+'  /  '+VIEWS.find(view=>view.side===side).label.toUpperCase(),64,top+187);
+ ctx.font='500 22px Arial, sans-serif';ctx.fillStyle='#b3b5bc';ctx.fillText(data.modelName.toUpperCase()+'  /  '+(data.selections.handedness==='left'?'LEFT-HANDED':'RIGHT-HANDED')+'  /  '+VIEWS.find(view=>view.side===side).label.toUpperCase(),64,top+187);
  const imageBox={x:30,y:bodyTop,w:620,h:bottom-bodyTop};
  const scale=Math.min(imageBox.w/image.width,imageBox.h/image.height),iw=image.width*scale,ih=image.height*scale;
  ctx.drawImage(image,imageBox.x+(imageBox.w-iw)/2,imageBox.y+(imageBox.h-ih)/2,iw,ih);

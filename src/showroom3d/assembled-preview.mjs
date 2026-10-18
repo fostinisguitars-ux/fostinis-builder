@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {horizontalCameraUp} from './handedness.mjs';
 
 // The detail view and completed image render the very same scene objects. No
 // second set of finish swatches, composited photographs, or material overrides.
@@ -24,7 +25,7 @@ export function completedCamera(rec,{side='front',focus='full',aspect=8/3,uprigh
  // Move the camera around the unchanged guitar. Fit all eight projected bounds
  // corners so portrait exports and the true 45-degree view cannot crop hardware.
  const direction=side==='angle'?new T.Vector3(Math.SQRT1_2,0,Math.SQRT1_2):new T.Vector3(0,0,side==='back'?-1:1);
- camera.up.set(upright?0:-1,upright?1:0,0);
+ camera.up.set(upright?0:horizontalCameraUp(rec.state),upright?1:0,0);
  camera.position.copy(center).add(direction);camera.lookAt(center);camera.updateMatrixWorld();
  const right=new T.Vector3().setFromMatrixColumn(camera.matrixWorld,0),up=new T.Vector3().setFromMatrixColumn(camera.matrixWorld,1);
  const tangent=Math.tan(T.MathUtils.degToRad(camera.fov/2));

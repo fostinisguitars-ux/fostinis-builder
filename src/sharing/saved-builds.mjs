@@ -2,7 +2,8 @@ import {cleanNickname,SHARE_FIELDS,fileStem} from './share-core.mjs';
 export const SAVED_BUILDS_KEY='fostinis-saved-builds-v1';
 export function normalizeSavedBuild(input,F,{legacy=false}={}){
  if(!input||!Object.hasOwn(F.MODELS,input.model)||!input.selections||typeof input.selections!=='object')throw Error('This file does not contain a valid Fostinis build.');
- if(!legacy)for(const key of SHARE_FIELDS)if(!F.choices[key].includes(input.selections[key]))throw Error('This build includes an unavailable option. Please use a current build backup.');
+ if(Object.hasOwn(input.selections,'handedness')&&!F.choices.handedness.includes(input.selections.handedness))throw Error('This build includes an unavailable handedness option.');
+ if(!legacy)for(const key of SHARE_FIELDS){if(key==='handedness'&&!Object.hasOwn(input.selections,key))continue;if(!F.choices[key].includes(input.selections[key]))throw Error('This build includes an unavailable option. Please use a current build backup.');}
  return {model:input.model,selections:F.normalize(input.model,input.selections),nickname:cleanNickname(input.nickname),notes:typeof input.notes==='string'?input.notes.slice(0,3000):''};
 }
 export function parseBuildBackup(text,F){
@@ -41,7 +42,7 @@ export function initializeSavedBuilds({studio,F}){
    if(!records.length){const p=document.createElement('p');p.textContent='Your named builds will appear here. Your current progress already saves automatically in this browser.';list.append(p);}
    for(const record of records){
     const item=document.createElement('article'),heading=document.createElement('h3'),detail=document.createElement('p'),actions=document.createElement('div'),resume=document.createElement('button'),download=document.createElement('a'),remove=document.createElement('button');
-    heading.textContent=record.name;detail.textContent=F.MODELS[record.model].name+(record.nickname?' · '+record.nickname:'')+' · '+new Date(record.updatedAt).toLocaleDateString();actions.className='saved-item-actions';resume.type=remove.type='button';resume.textContent='Resume build';remove.textContent='Remove saved version';download.textContent='Download backup';backupLink(download,[record],fileStem({...record,modelName:F.MODELS[record.model].name})+'_Backup.json');
+    heading.textContent=record.name;detail.textContent=F.MODELS[record.model].name+' · '+(record.selections.handedness==='left'?'Left-handed':'Right-handed')+(record.nickname?' · '+record.nickname:'')+' · '+new Date(record.updatedAt).toLocaleDateString();actions.className='saved-item-actions';resume.type=remove.type='button';resume.textContent='Resume build';remove.textContent='Remove saved version';download.textContent='Download backup';backupLink(download,[record],fileStem({...record,modelName:F.MODELS[record.model].name})+'_Backup.json');
     resume.onclick=()=>{try{studio.restoreBuild(record);dialog.close();}catch(error){status(error.message);}};
     remove.onclick=()=>{try{store.remove(record.id);refresh();status('Saved version removed. Your current working build is unchanged.');}catch(error){status(error.message);}};
     actions.append(resume,download,remove);item.append(heading,detail,actions);list.append(item);

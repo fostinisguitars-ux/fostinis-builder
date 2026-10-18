@@ -2,20 +2,22 @@ import {cleanNickname} from '../../lib/build-nickname.mjs';
 export {cleanNickname} from '../../lib/build-nickname.mjs';
 // Version 1 keeps a fixed order. Append a new codec version when fields change;
 // never encode choice indexes, which can change when the catalog is reordered.
-export const SHARE_FIELDS=Object.freeze(['finishType','backFinishType','neckFinishType','burst','headstockBurst','burstWidth','backBurst','neckBurst','finish','wood','sheen','pickups','bridge','hardware','wiring','tuners','fretboard','inlays','backWood','backFinish','backSheen','neckWood','neckFinish','neckSheen','pickupSet','bridgeModel','tunerModel','knobs','pickupLayout','singleCoilModel','singleCoilCover','killswitch','caseOption','pot1Mod','pot2Mod','pot3Mod','pot4Mod']);
+export const SHARE_FIELDS_V1=Object.freeze(['finishType','backFinishType','neckFinishType','burst','headstockBurst','burstWidth','backBurst','neckBurst','finish','wood','sheen','pickups','bridge','hardware','wiring','tuners','fretboard','inlays','backWood','backFinish','backSheen','neckWood','neckFinish','neckSheen','pickupSet','bridgeModel','tunerModel','knobs','pickupLayout','singleCoilModel','singleCoilCover','killswitch','caseOption','pot1Mod','pot2Mod','pot3Mod','pot4Mod']);
+export const SHARE_FIELDS=Object.freeze([...SHARE_FIELDS_V1,'handedness']);
 export const PLATFORMS=Object.freeze({tiktok:{name:'TikTok',format:'story',url:'https://www.tiktok.com/'},instagram:{name:'Instagram',format:'portrait',url:'https://www.instagram.com/'},x:{name:'X',format:'portrait',url:'https://x.com/compose/post'},facebook:{name:'Facebook',format:'portrait',url:'https://www.facebook.com/'},text:{name:'Text',format:'portrait'},email:{name:'Email',format:'portrait'}});
 export const VIEWS=Object.freeze([{side:'front',label:'Front'},{side:'back',label:'Back'},{side:'angle',label:'45° view'}]);
 export function encodeBuild({model,selections,nickname},F){
  if(!Object.hasOwn(F.MODELS,model))throw Error('Choose a guitar to share.');
- const state=F.normalize(model,selections),payload={v:1,m:model,s:SHARE_FIELDS.map(key=>state[key]),n:cleanNickname(nickname)};
+ const state=F.normalize(model,selections),payload={v:2,m:model,s:SHARE_FIELDS.map(key=>state[key]),n:cleanNickname(nickname)};
  const bytes=new TextEncoder().encode(JSON.stringify(payload));return btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 }
 export function decodeBuild(encoded,F){
  if(typeof encoded!=='string'||!encoded||encoded.length>4096||!/^[A-Za-z0-9_-]+$/.test(encoded))throw Error('This shared build link is incomplete. Ask for a new link.');
  try{
   const bytes=Uint8Array.from(atob(encoded.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0)),p=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
-  if(p.v!==1||!Object.hasOwn(F.MODELS,p.m)||!Array.isArray(p.s)||p.s.length!==SHARE_FIELDS.length||typeof p.n!=='string')throw Error('shape');
-  const selections={};SHARE_FIELDS.forEach((key,i)=>{if(typeof p.s[i]!=='string'||!F.choices[key]?.includes(p.s[i]))throw Error('choice');selections[key]=p.s[i];});
+  const fields=p.v===1?SHARE_FIELDS_V1:p.v===2?SHARE_FIELDS:null;
+  if(!fields||!Object.hasOwn(F.MODELS,p.m)||!Array.isArray(p.s)||p.s.length!==fields.length||typeof p.n!=='string')throw Error('shape');
+  const selections={handedness:'right'};fields.forEach((key,i)=>{if(typeof p.s[i]!=='string'||!F.choices[key]?.includes(p.s[i]))throw Error('choice');selections[key]=p.s[i];});
   return {model:p.m,selections:F.normalize(p.m,selections),nickname:cleanNickname(p.n)};
  }catch{throw Error('This shared build link is invalid or uses unavailable options. Ask for a new link.');}
 }

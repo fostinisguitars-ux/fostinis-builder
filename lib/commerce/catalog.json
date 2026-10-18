@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-17-faded-burst",
+  "version": "2026-10-18-handedness",
   "checkedAt": "2026-10-16",
   "currency": "usd",
   "currencyApproved": true,
@@ -20,6 +20,22 @@
   },
   "provenance": "Model starting amounts approved July 6, 2026. Owner-approved hardware allowances and 20% excess-only markup, fixed figured-maple and burst charges, and all remaining listed options included at no extra charge. Shipping, tax and payment launch still require configuration. Headstock bursts are included at zero extra charge per the owner’s October 15 instruction. Headstocks offer only body-matched color/burst or classic black, both included, per the owner’s October 16 instruction. Owner instruction October 16: single humbucker included; popular pickup combinations priced using existing allowance; $50 per modified pot; gig bag included; custom fitted case +$500. Installed momentary killswitch +$75 based on posted US shop labor and roughly $20 switch.",
   "fields": {
+    "handedness": {
+      "label": "Handedness",
+      "default": "right",
+      "options": {
+        "right": {
+          "label": "Right-handed",
+          "cents": 0,
+          "approved": true
+        },
+        "left": {
+          "label": "Left-handed",
+          "cents": 0,
+          "approved": true
+        }
+      }
+    },
     "finishType": {
       "label": "Top finish type",
       "options": {

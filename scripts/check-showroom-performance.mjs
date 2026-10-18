@@ -52,7 +52,7 @@ test('Real trackball gestures wake a stopped room and real detail damping settle
 const markup=fs.readFileSync('public/review.html','utf8'),inline=[...markup.matchAll(/<script>([\s\S]*?)<\/script>/g)],Fwindow={};vm.runInNewContext(inline[0][1].slice(inline[0][1].indexOf('window.FostinisParts=')),{window:Fwindow});const F=Fwindow.Fostinis;
 test('Every finish choice reuses hardware; all physical appointments still invalidate it',()=>{
  const finishes=new Set(FINISH_FIELDS);let checked=0;
- for(const model of Object.keys(F.MODELS)){const state=F.initial(model);for(const [key,values]of Object.entries(F.choices))for(const value of values){if(value===state[key])continue;const next={...state,[key]:value};if(finishes.has(key)){assert.equal(hardwareKey(next),hardwareKey(state),key);assert.notEqual(finishKey(next),finishKey(state),key);}else assert.notEqual(hardwareKey(next),hardwareKey(state),key);checked++;}}
+ for(const model of Object.keys(F.MODELS)){const state=F.initial(model);for(const [key,values]of Object.entries(F.choices))for(const value of values){if(value===state[key])continue;const next={...state,[key]:value};if(key==='handedness'){assert.equal(hardwareKey(next),hardwareKey(state));assert.equal(finishKey(next),finishKey(state));}else if(finishes.has(key)){assert.equal(hardwareKey(next),hardwareKey(state),key);assert.notEqual(finishKey(next),finishKey(state),key);}else assert.notEqual(hardwareKey(next),hardwareKey(state),key);checked++;}}
  console.log('Verified update routing for '+checked+' appointment changes.');
 });
 test('The real configurator skips hidden SVGs and finish downloads after WebGL is ready, and retains its fallback',async()=>{
@@ -64,9 +64,9 @@ test('The real configurator skips hidden SVGs and finish downloads after WebGL i
  window.FostinisShowroom.ready=false;vm.runInContext("paintModel('sphyx');",context);assert.equal(legacy,2);assert.equal(get('frame-sphyx').innerHTML,'fallback');assert.equal(get('live-preview-image').innerHTML,'fallback');
 });
 test('The lightweight loader waits for a visible guitar or explicit action and imports the renderer once',async()=>{
- const source=fs.readFileSync('public/showroom-loader.js','utf8');assert(source.includes("import('./showroom-360.js?v=53')"));
+ const source=fs.readFileSync('public/showroom-loader.js','utf8');assert(source.includes("import('./showroom-360.js?v=55')"));
  function fixture(){let imports=0,observe;const events={},clicks={},elements=new Map();const window={IntersectionObserver:true,addEventListener:(name,fn)=>events[name]=fn};
-  vm.runInNewContext(source.replace("import('./showroom-360.js?v=53')",'loadModule()'),{window,console,document:{querySelector:selector=>{elements.set(selector,{});return elements.get(selector);},getElementById:id=>({addEventListener:(event,fn)=>clicks[id]=fn})},IntersectionObserver:class{constructor(fn){observe=fn;}observe(){}disconnect(){}},loadModule:()=>{imports++;return Promise.resolve();}});
+  vm.runInNewContext(source.replace("import('./showroom-360.js?v=55')",'loadModule()'),{window,console,document:{querySelector:selector=>{elements.set(selector,{});return elements.get(selector);},getElementById:id=>({addEventListener:(event,fn)=>clicks[id]=fn})},IntersectionObserver:class{constructor(fn){observe=fn;}observe(){}disconnect(){}},loadModule:()=>{imports++;return Promise.resolve();}});
   return {get imports(){return imports;},events,clicks,visible:()=>observe([{isIntersecting:true}])};}
  const u=fixture();assert.equal(u.imports,0);u.events['fostinis:navigate']({detail:{page:'artists'}});assert.equal(u.imports,0);u.visible();u.visible();u.clicks['share-build']();assert.equal(u.imports,1);
  const v=fixture();v.clicks['share-build']();assert.equal(v.imports,1);const w=fixture();w.events['fostinis:navigate']({detail:{page:'parts'}});assert.equal(w.imports,1);

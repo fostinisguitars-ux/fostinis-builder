@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import test from 'node:test';
 import * as T from 'three';
+import {applyHandedness} from '../src/showroom3d/handedness.mjs';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
 import {makeHardware,SADDLE_Y} from '../src/showroom3d/geometry.mjs';
@@ -51,13 +52,14 @@ test('A failed capture restores the showroom and detail renderer without hiding 
 test('Full and body cameras fit actual CAD geometry for all three models, bridge routings and both sides',async()=>{
  const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder),assets=new Map();let views=0;
  async function asset(name){if(!assets.has(name)){const b=fs.readFileSync('public/assets/cad/'+name+'.glb');assets.set(name,await loader.parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),''));}const object=assets.get(name).scene.clone(true);object.traverse(m=>{if(m.isMesh)m.geometry=m.geometry.clone();});object.scale.setScalar(1000);return object;}
- for(const model of ['sphyx','oryx','matadaur'])for(const bridgeModel of F.choices.bridgeModel){
+ for(const model of ['sphyx','oryx','matadaur'])for(const bridgeModel of F.choices.bridgeModel)for(const handedness of ['right','left']){
   const group=new T.Group();group.position.set(model==='oryx'?0:model==='sphyx'?-.52:.52,.42,0);group.scale.setScalar(.001);
-  const state={...F.initial(model),bridgeModel},body=await asset(model+'_'+bridgeBodyType(state));
+  const state={...F.initial(model),bridgeModel,handedness},body=await asset(model+'_'+bridgeBodyType(state));
   if(bridgeRoutingKey(state)!=='original')configureBridgeBody(body,await asset(model+'_standard'),state,SADDLE_Y);
   group.add(body,await asset(model==='oryx'?'oryx_neck':'shared_neck'),makeHardware(model,state,window.FostinisParts));
+  const rec={group,body,state};applyHandedness(rec,state);
   for(const focus of ['full','body'])for(const side of ['front','back','angle'])for(const upright of [false,true]){
-   const camera=completedCamera({group,body},{side,focus,upright,aspect:upright?.5:focus==='body'?4/3:8/3});
+   const camera=completedCamera(rec,{side,focus,upright,aspect:upright?.5:focus==='body'?4/3:8/3});
    const box=new T.Box3().setFromObject(focus==='body'?body:group);
    for(const x of [box.min.x,box.max.x])for(const y of [box.min.y,box.max.y])for(const z of [box.min.z,box.max.z]){const p=new T.Vector3(x,y,z).project(camera);assert(Math.abs(p.x)<.88&&Math.abs(p.y)<.88,model+'/'+bridgeModel+'/'+focus+'/'+side+' clipped');assert(p.z>-1&&p.z<1);}
    views++;
@@ -130,7 +132,7 @@ test('Sharing captures three distinct upright views from one completed build, wi
 test('All native routes use showroom previews and PNG exports, retaining Original shape',()=>{
  let routes=0;
  for(const name of fs.readdirSync('public').filter(x=>x.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;
-  assert(h.includes("review:{side:view,focus:"),name);assert(h.includes('window.FostinisShowroom.exportPreview()'),name);assert(h.includes('/showroom-loader.js?v=53'),name);assert(h.includes('/showroom-360.css?v=53'),name);
+  assert(h.includes("review:{side:view,focus:"),name);assert(h.includes('window.FostinisShowroom.exportPreview()'),name);assert(h.includes('/showroom-loader.js?v=55'),name);assert(h.includes('/showroom-360.css?v=53'),name);
   const reviewStart=h.indexOf('function renderReview(){'),review=h.slice(reviewStart,h.indexOf('function go(id,',reviewStart));assert(review.includes("if(view==='original')"));assert(!review.includes('surfaceImage:'));assert(!review.includes("side:view==='back'"));
   const save=h.slice(h.indexOf('async function exportPreview(){'),h.indexOf('function exportBuild(){'));assert(!save.includes('F.renderer('));assert(!save.includes('materialURL('));assert(!save.includes('image/svg+xml'));
   for(const script of h.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(script[1],{filename:name});routes++;

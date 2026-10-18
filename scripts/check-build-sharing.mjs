@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import test from 'node:test';
-import {cleanNickname,encodeBuild,decodeBuild,buildURL,SHARE_FIELDS,PLATFORMS,messageFor,messageLink,nativePayload,canShareFiles,socialSummary,photoZIP} from '../src/sharing/share-core.mjs';
+import {cleanNickname,encodeBuild,decodeBuild,buildURL,SHARE_FIELDS,SHARE_FIELDS_V1,PLATFORMS,messageFor,messageLink,nativePayload,canShareFiles,socialSummary,photoZIP} from '../src/sharing/share-core.mjs';
 import {drawShareCard,wrapText,CARD_SIZES} from '../src/sharing/share-cards.mjs';
 import catalog from '../lib/commerce/catalog.json' with {type:'json'};
 import {createBuildStore,parseBuildBackup,serializeBuildBackup,SAVED_BUILDS_KEY} from '../src/sharing/saved-builds.mjs';
@@ -34,7 +34,7 @@ test('Every model and option round-trips through a stable share link with no not
 test('Malformed, oversized and unsupported shared builds are rejected before import',()=>{
  for(const input of ['',null,'=','a'.repeat(4097),Buffer.from('{}').toString('base64url')])assert.throws(()=>decodeBuild(input,F));
  const base=JSON.parse(Buffer.from(encodeBuild({model:'sphyx',selections:F.initial('sphyx'),nickname:''},F),'base64url'));
- for(const patch of [{v:2},{m:'__proto__'},{m:'constructor'},{s:[]},{s:[...base.s.slice(0,-1),'<script>']},{n:{html:'oops'}}])assert.throws(()=>decodeBuild(Buffer.from(JSON.stringify({...base,...patch})).toString('base64url'),F));
+ for(const patch of [{v:3},{m:'__proto__'},{m:'constructor'},{s:[]},{s:[...base.s.slice(0,-1),'<script>']},{n:{html:'oops'}}])assert.throws(()=>decodeBuild(Buffer.from(JSON.stringify({...base,...patch})).toString('base64url'),F));
  assert.equal(cleanNickname('  Midnight\nRose\u202e  '),'Midnight Rose');assert.equal([...cleanNickname('🎸'.repeat(50))].length,40);
 });
 test('Nickname persists per model, migrates existing saves, and sits above appointments',()=>{
@@ -80,13 +80,13 @@ test('All photos are included in a standards-readable ZIP with valid headers and
 test('Every route has a single sharing entry point and nickname field and valid inline JavaScript',()=>{
  let count=0;for(const name of fs.readdirSync('public').filter(name=>name.endsWith('.html'))){const h=fs.readFileSync('public/'+name,'utf8');if(!h.includes('window.FostinisStudio='))continue;
   for(const id of ['guitar-nickname','guitar-name','share-build','build-share-dialog','share-gallery','share-native','share-copy-status','share-copy-label','save-shared-build','saved-builds-dialog','save-build-form','import-build-backup'])assert.equal(h.split('id="'+id+'"').length-1,1,name+'/'+id);
-  assert(h.includes('/build-sharing.js?v=54'));assert(h.includes('/showroom-loader.js?v=53'));assert(h.includes('getShareData,getSavedBuild,restoreBuild,isSharedBuild:'));
+  assert(h.includes('/build-sharing.js?v=55'));assert(h.includes('/showroom-loader.js?v=55'));assert(h.includes('getShareData,getSavedBuild,restoreBuild,isSharedBuild:'));
   for(const match of h.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(match[1],{filename:name});count++;
  }assert.equal(count,233);
 });
 
 test('Recipients customize, order or rename their own exact copy and can resume or share it independently',()=>{
- const sender=structuredClone({model:'oryx',selections:F.normalize('oryx',{finish:'purple',burst:'faded',backBurst:'faded',neckBurst:'faded',pickupLayout:'hss',hardware:'gold',caseOption:'fitted'}),nickname:'Midnight Rose'}),encoded=encodeBuild(sender,F);
+ const sender=structuredClone({model:'oryx',selections:F.normalize('oryx',{handedness:'left',finish:'purple',burst:'faded',backBurst:'faded',neckBurst:'faded',pickupLayout:'hss',hardware:'gold',caseOption:'fitted'}),nickname:'Midnight Rose'}),encoded=encodeBuild(sender,F);
  for(const action of ['customize','order','rename']){
   const u=fixture({encoded,saved:{selected:'sphyx',builds:{sphyx:F.normalize('sphyx',{finish:'ruby'})},nicknames:{sphyx:'Keep me'}}});
   u.api.continueSharedBuild(action);
