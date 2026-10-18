@@ -4,6 +4,7 @@ The new entry is `/atelier.html`; the root page and static index lead to the sam
 
 ## Customer experience
 
+- The homepage includes a showroom preview immediately after the hero, with guitar, lounge, and cabinet-wall camera buttons. The preview and header entry open `/showroom.html` at the top, before the builder. The existing room canvas is reused and loads as the preview approaches the viewport; data-saving visitors can activate it explicitly. The original room artwork and guitar images remain a clickable fallback if WebGL is unavailable. The full showroom retains its drag, zoom, lighting, and instrument controls.
 - `?view=materials`: six representative wood appearances on rotatable, bookmatched blanks; unfinished, satin, and gloss surfaces; adjustable light. These are illustrations, not physical inventory. Burl uses the existing generated illustrative texture.
 - `?view=collection`: up to 20 named configurations, private cross-device access links, individual design links, comparison, friend voting, JSON import/export, and real configured thumbnails where WebGL is available. Existing browser backups remain compatible.
 - The reveal uses the existing scene's three configured views. A silent 12-second film can be downloaded as MP4 or WebM when supported; leaving the tab stops recording. Browsers without recording can still preview and use the existing photo exports.
