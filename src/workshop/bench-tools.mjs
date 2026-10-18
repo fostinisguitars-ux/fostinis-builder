@@ -10,7 +10,7 @@ export function makeBenchTools(scene,{texture,material,geometry}){
  const rubber=material(new T.MeshStandardMaterial({color:'#121816',roughness:.9}));
  const pearl=material(new T.MeshPhysicalMaterial({map:texture('/assets/wood-pearl-nacre-v9.jpg'),color:'#ebe7dd',roughness:.24,iridescence:.7,clearcoat:.8,metalness:.08}));
  const groups={};
- function station(id,x,y,z=0){const g=new T.Group();g.position.set(x,y,z);g.userData.workshopStation=id;scene.add(g);groups[id]=g;return g;}
+ function station(id,x,y,z=0){const g=new T.Group();g.position.set(x,y,z);g.name=id;scene.add(g);groups[id]=g;return g;}
  function mesh(g,geo,mat,x=0,y=0,z=0){const m=new T.Mesh(geometry(geo),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;g.add(m);return m;}
  const box=(g,w,h,d,mat,x=0,y=0,z=0,r=.002)=>mesh(g,new RoundedBoxGeometry(w,h,d,2,Math.min(r,w/3,h/3,d/3)),mat,x,y,z);
  function cylinder(g,r,h,mat,x=0,y=0,z=0,r2=r){const m=mesh(g,new T.CylinderGeometry(r,r2,h,28),mat,x,y,z);m.rotation.x=Math.PI/2;return m;}
