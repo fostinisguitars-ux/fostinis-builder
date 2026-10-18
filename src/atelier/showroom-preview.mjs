@@ -13,7 +13,7 @@ export function showroomPreviewMarkup(){
    </div>
    <div class="at-showroom-toolbar"><div class="at-showroom-views" role="group" aria-label="Choose a showroom preview angle">${VIEWS.map(([id,label],i)=>`<button type="button" data-room-view="${id}" aria-pressed="${i===0}" disabled>${label}</button>`).join('')}</div><button type="button" class="at-text-link at-showroom-load" hidden>Activate 3D preview ↗</button><p class="at-showroom-status" role="status">A glimpse inside. Click the room to enter.</p></div>
   </div>
-  <div class="at-showroom-caption"><span>SPHYX / ORYX / MATADAUR</span><a class="at-text-link" href="${SHOWROOM_URL}">Explore the full showroom ↗</a></div>
+  <div class="at-showroom-caption"><span>SPHYX / ORYX / MATADAUR</span><div class="ws-home-entry"><a class="at-text-link" href="/atelier.html?view=workshop-tour">Visit the interactive workshop ↗</a><a class="at-text-link" href="${SHOWROOM_URL}">Explore the full showroom ↗</a></div></div>
  </section>`;
 }
 
