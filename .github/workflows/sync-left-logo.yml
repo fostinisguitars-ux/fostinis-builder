@@ -1,0 +1,56 @@
+name: Sync left-handed headstock logo
+on:
+  push:
+    branches: [left-logo-2026-10-18-56]
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Verify and apply reviewed source
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib, json, subprocess, tarfile
+          archive = Path('.github/fostinis-left-logo-source.tar.xz')
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == '4d02f904d451e07a988c5f9cf0a039f68933b1448ca8c7c00ed6ce12f69de75b'
+          with tarfile.open(archive) as tar:
+              members = tar.getmembers()
+              assert len(members) == 244
+              manifest = json.load(tar.extractfile('handedness-sync-manifest.json'))
+              assert len(manifest) == 243
+              expected = {entry['path']: entry for entry in manifest}
+              assert len(expected) == 243
+              payload = {}
+              for member in members:
+                  if member.name == 'handedness-sync-manifest.json':
+                      continue
+                  path = Path(member.name)
+                  assert member.isfile() and not path.is_absolute() and '..' not in path.parts
+                  assert path.parts[0] in ['public', 'scripts', 'src', 'lib']
+                  entry = expected[member.name]
+                  assert not path.is_symlink()
+                  if entry['before'] is None:
+                      assert not path.exists(), 'Unexpected existing file: ' + str(path)
+                  else:
+                      actual = subprocess.check_output(['git', 'hash-object', str(path)]).decode().strip()
+                      assert actual == entry['before'], 'Source changed: ' + str(path)
+                  data = tar.extractfile(member).read()
+                  assert hashlib.sha256(data).hexdigest() == entry['after']
+                  payload[path] = data
+              assert len(payload) == 243
+              for path, data in payload.items():
+                  path.parent.mkdir(parents=True, exist_ok=True)
+                  path.write_bytes(data)
+          print('Verified and synchronized 243 source files.')
+          PY
+      - name: Commit synchronized source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- public scripts src lib
+          git diff --cached --quiet && exit 0
+          git commit -m 'Flip headstock logo with left-handed guitars'
+          git push origin HEAD:left-logo-2026-10-18-56
