@@ -3,7 +3,7 @@ const version=67;
 // The atelier uses the same model definitions and state manager as the builder.
 // Keep its source of truth in the canonical showroom; append the new UI once.
 let base=fs.readFileSync('public/showroom.html','utf8');
-base=base.replace(/<title>[^<]*<\/title>/,'<title>Fostinis Atelier — A guitar made personal</title>')
+base=base.replace(/<title>[^<]*<\/title>/,'<title>Fostinis Design Studio — A guitar made personal</title>')
  .replace('<body ', '<body class="atelier-page" data-atelier="true" ')
  .replace('</head>', '<meta name="referrer" content="no-referrer">\n</head>');
 fs.writeFileSync('public/atelier.html',base);
